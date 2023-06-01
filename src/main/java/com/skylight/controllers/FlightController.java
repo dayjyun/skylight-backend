@@ -1,6 +1,7 @@
 package com.skylight.controllers;
 
 import com.skylight.models.Flight;
+import com.skylight.models.User;
 import com.skylight.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,4 +36,24 @@ public class FlightController {
    public Optional<Flight> getFlightById(@PathVariable Long flightId) {
       return flightService.getFlightById(flightId);
    }
+
+   // Functionality: Delete flight (Public | Private)
+   // Path: /api/flights/{flightId}
+   @DeleteMapping(path = "/{flightId})")
+   public void deleteFlight(@PathVariable Long flightId) {
+      return flightService.deleteFlight(flightId);
+   }
+
+   // Functionality: Purchase ticket for flight (Public | Public)
+   // Path: /api/flights/{flightId}/tickets
+   @PostMapping(path = "/{flightId}/tickets")
+   public Flight purchaseTicket(@PathVariable Long flightId, @RequestBody User user) {
+      return flightService.purchaseTicket(flightId, user);
+   }
+
+   // Functionality: Get all tickets for flight (Public | Private)
+   // Path: /api/flights/{flightId}/tickets
+
+   // Functionality: Delete ticket for flight (Public | Private)
+   // Path: /api/flights/{flightId}/tickets
 }
