@@ -17,7 +17,7 @@ public class AirportService {
    public void setAirportRepository(AirportRepository airportRepository) {
        this.airportRepository = airportRepository;
     }
-    
+
    /**
     * allAirports returns a list of all airports in the database
     * A NotFoundException is thrown if no airports are found
@@ -38,18 +38,18 @@ public class AirportService {
    /**
     * getAirportById returns an airport by its id
     * A NotFoundException is thrown if no airport is found
-    * @param airportId is the targeted airport
+    * @param airportId is the airport to search
     * @return Airport
     */
    public Optional<Airport> getAirportById(Long airportId) {
       // Create an optional of an airport
       Optional<Airport> airport = airportRepository.findById(airportId);
-      // Check if the optional is empty
-      if(airport.isEmpty()) {
-         // Throw an error if no airport is found
-         throw new NotFoundException("No airport found");
+      // Check if the optional is present
+      if(airport.isPresent()) {
+         // Return the airport data
+         return airport;
       }
-      // Return the airport data
-      return airport;
+      // Throw an error if no airport is found
+      throw new NotFoundException("No airport found");
    }
 }

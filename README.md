@@ -26,7 +26,7 @@
 - [REST Assured](https://mvnrepository.com/artifact/io.rest-assured/rest-assured)
 - [Spring Boot Starter Validation](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation)
 - [jjwt-api](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api)
-_ [jjwt-impl](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl)
+- [jjwt-impl](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl)
 - [jjwt-jackson](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson)
 </details>
 
