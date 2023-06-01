@@ -47,7 +47,7 @@ public class FlightService {
    }
 
    /**
-    * getFlightById returns a flight by its id
+    * getFlightById returns a flight by its ID
     * A NotFoundException is thrown if a flight is not found with the provided ID
     * @param flightId is the flight ID to search by
     * @return a Flight
