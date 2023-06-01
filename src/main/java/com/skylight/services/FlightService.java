@@ -84,14 +84,14 @@ public class FlightService {
    }
 
 //   purchaseTicket
-//   public Flight purchaseTicketForFlight(Long flightId, User user) {
-//      Optional<Flight> flight = flightRepository.findById(flightId);
-//      if(flight.isPresent()) {
-//         Flight flightData = flight.get();
-//         // Subtract number of seats from flight
-//         return flightData;
-//      }
-//   }
+   public Flight purchaseTicketForFlight(Long flightId, User user) {
+      Optional<Flight> flight = flightRepository.findById(flightId);
+      if(flight.isPresent()) {
+         Flight flightData = flight.get();
+         // Subtract number of seats from flight
+         return flightData;
+      }
+   }
 
 //   getAllTickets
       // Check you're the pilot

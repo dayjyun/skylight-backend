@@ -46,10 +46,10 @@ public class FlightController {
 
    // Functionality: Purchase ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
-//   @PostMapping(path = "/{flightId}/tickets")
-//   public Flight purchaseTicketForFlight(@PathVariable Long flightId, @RequestBody User user) {
-//      return flightService.purchaseTicketForFlight(flightId, user);
-//   }
+   @PostMapping(path = "/{flightId}/tickets")
+   public Flight purchaseTicketForFlight(@PathVariable Long flightId, @RequestBody User user) {
+      return flightService.purchaseTicketForFlight(flightId, user);
+   }
 
    // Functionality: Get all tickets for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets

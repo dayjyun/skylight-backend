@@ -31,4 +31,7 @@ public class AirportController {
    public Optional<Airport> getAirportById(@PathVariable Long airportId) {
       return airportService.getAirportById(airportId);
    }
+
+   // Departure flights
+   // Arriving Flights
 }
