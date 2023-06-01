@@ -66,6 +66,21 @@ public class FlightService {
    }
 
 //   deleteFlight
+   public Optional<Flight> deleteFlightById(Long flightId) {
+      // Create an optional of a flight
+      Optional<Flight> flight = flightRepository.findById(flightId);
+      // Check if the flight belongs to logged-in user
+
+      // Check if the flight is present
+      if(flight.isPresent()) {
+         // Delete the flight
+         flightRepository.deleteById(flightId);
+         // Return the deleted flight
+         return flight;
+      }
+      // Throw a NotFoundException if the flight is not found
+      throw new NotFoundException("Flight " + flightId + " not found");
+   }
 
 //   purchaseTicket
 
