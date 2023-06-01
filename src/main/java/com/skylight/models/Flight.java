@@ -27,6 +27,10 @@ public class Flight {
    @Column
    private String arrivalTime;
 
+   // Waiting period preset for 60 minutes
+   @Column
+   private int layoverTime = 60;
+
    @ManyToOne
    @JoinColumn(name = "origin_airport")
    private Airport originAirport;
@@ -57,7 +61,8 @@ public class Flight {
 
    public Flight() {}
 
-   public Flight(Long id, Long numberOfSeats, String airplane, String date, String departureTime, String arrivalTime, String time,
+   public Flight(Long id, Long numberOfSeats, String airplane, String date, String departureTime, int layoverTime, String arrivalTime,
+                 String time,
                  String distance, Float price) {
       this.id = id;
       this.numberOfSeats = numberOfSeats;
@@ -65,6 +70,7 @@ public class Flight {
       this.date = date;
       this.departureTime = departureTime;
       this.arrivalTime = arrivalTime;
+      this.layoverTime = layoverTime;
       this.distance = distance;
       this.price = price;
    }
@@ -115,6 +121,14 @@ public class Flight {
 
    public void setArrivalTime(String arrivalTime) {
       this.arrivalTime = arrivalTime;
+   }
+
+   public int getLayoverTime() {
+      return layoverTime;
+   }
+
+   public void setLayoverTime(int layoverTime) {
+      this.layoverTime = layoverTime;
    }
 
    public Airport getOriginAirport() {
