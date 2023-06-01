@@ -23,7 +23,6 @@ public class FlightService {
     * A NotFoundException is thrown if there are no flights in the database
     * @return a list of flights
     */
-
    public List<Flight> getAllFlights() {
       // Create a list of flights
       List<Flight> allFlights = flightRepository.findAll();
@@ -82,6 +81,9 @@ public class FlightService {
       throw new NotFoundException("Flight " + flightId + " not found");
    }
 
+   //   getAllTickets
+   // Check you're the pilot
+
 //   purchaseTicket
 //   public Flight purchaseTicketForFlight(Long flightId, User user) {
 //      Optional<Flight> flight = flightRepository.findById(flightId);
@@ -91,9 +93,4 @@ public class FlightService {
 //         return flightData;
 //      }
 //   }
-
-//   getAllTickets
-      // Check you're the pilot
-
-//   deleteMyTicket
 }

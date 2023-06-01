@@ -8,7 +8,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("/api/tickets")
 public class TicketController {
-   
+
    @Autowired
    private TicketService ticketService;
+
+   // Get ticket details
+
+   // Delete ticket
 }

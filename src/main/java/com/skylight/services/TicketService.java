@@ -12,4 +12,8 @@ public class TicketService {
    public void setTicketRepository(TicketRepository ticketRepository) {
       this.ticketRepository = ticketRepository;
    }
+
+   // get ticket details
+
+   // delete ticket details
 }
