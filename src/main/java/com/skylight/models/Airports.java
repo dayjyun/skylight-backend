@@ -1,12 +1,32 @@
 package com.skylight.models;
 
+import javax.persistence.*;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name = "airports")
 public class Airports {
+   @Column
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+
+   @Column
    private String name;
+
+   @Column
    private String airportCode;
+
+   @Column
    private String city;
+
+   @Column
    private String state;
+
+   @Column
    private String latitude;
+
+   @Column
    private String longitude;
 
    public Airports() {}

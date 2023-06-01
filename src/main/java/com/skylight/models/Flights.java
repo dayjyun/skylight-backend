@@ -1,19 +1,43 @@
 package com.skylight.models;
 
+import javax.persistence.*;
+import javax.persistence.GenerationType;
+
+@Entity
+@Table(name = "flights")
 public class Flights {
+   @Column
+   @Id
+   @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
+
+   @Column
    private Long numberOfSeats;
+
+   @Column
    private String airplane;
+
+   @Column
    private String date;
+
+   @Column
    private String time;
+
+   @Column
    private String origin;
+
+   @Column
    private String destination;
+
+   @Column
    private String distance;
-   private String price;
+
+   @Column
+   private Float price;
 
    public Flights() {}
 
-   public Flights(Long id, Long numberOfSeats, String airplane, String date, String time, String origin, String destination, String distance, String price) {
+   public Flights(Long id, Long numberOfSeats, String airplane, String date, String time, String origin, String destination, String distance, Float price) {
       this.id = id;
       this.numberOfSeats = numberOfSeats;
       this.airplane = airplane;
@@ -89,11 +113,11 @@ public class Flights {
       this.distance = distance;
    }
 
-   public String getPrice() {
+   public Float getPrice() {
       return price;
    }
 
-   public void setPrice(String price) {
+   public void setPrice(Float price) {
       this.price = price;
    }
 
