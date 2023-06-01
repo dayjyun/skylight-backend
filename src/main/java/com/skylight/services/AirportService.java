@@ -21,18 +21,18 @@ public class AirportService {
 
    /**
     * allAirports returns a list of all airports in the database
-    * A NotFoundException is thrown if no airports are found
-    * @return List of all airports
+    * A NotFoundException is thrown if there are no airports in the database
+    * @return a list of all airports
     */
    public List<Airport> getAllAirports() {
       // Create a list of airports
        List<Airport> allAirports = airportRepository.findAll();
-       // Check if the list is empty
+       // Check if the list of airports is empty
        if(allAirports.isEmpty()) {
-          // Throw an error if not airports are found
+          // Throw an error if no airports are found
           throw new NotFoundException("No airports found");
        }
-       // Return the list of all airports if not empty
+       // Return the list of all airports in the database
        return allAirports;
     }
 
@@ -45,12 +45,12 @@ public class AirportService {
    public Optional<Airport> getAirportById(Long airportId) {
       // Create an optional of an airport
       Optional<Airport> airport = airportRepository.findById(airportId);
-      // Check if the optional is present
+      // Check if the airport is present
       if(airport.isPresent()) {
          // Return the airport data
          return airport;
       }
-      // Throw an error if no airport is found
+      // Throw an error if the airport is found
       throw new NotFoundException("No airport found");
    }
 }

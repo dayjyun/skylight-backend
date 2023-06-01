@@ -18,11 +18,21 @@ public class FlightService {
       this.flightRepository = flightRepository;
    }
 
+   /**
+    * getAllFlights returns all flights in the database
+    * A NotFoundException is thrown if there are no flights in the database
+    * @return a list of flights
+    */
+
    public List<Flight> getAllFlights() {
+      // Create a list of flights
       List<Flight> allFlights = flightRepository.findAll();
+      // Check if the list of flights is empty
       if(allFlights.isEmpty()) {
+         // Throw a NotFoundException if no flights are found
          throw new NotFoundException("No flights found");
       }
+      // Return the list of all flights in the database
       return allFlights;
    }
 
@@ -33,10 +43,14 @@ public class FlightService {
     * @return a Flight
     */
    public Optional<Flight> getFlightById(Long flightId) {
+      // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
+      // Check if the flight is present
       if(flight.isPresent()) {
+         // Return the flight data
          return flight;
       }
+      // Throw a NotFoundException if the flight is not found
       throw new NotFoundException("Flight not found");
    }
 }
