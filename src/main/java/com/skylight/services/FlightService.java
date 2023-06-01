@@ -120,7 +120,7 @@ public class FlightService {
          // Add flight to ticket
          ticket.setFlight(flight.get());
          // Add the ticket to the flight
-//         flight.get().setListOfTickets(ticket);
+         flight.get().getListOfTickets().add(ticket);
          // Save the flight
          flightRepository.save(flight.get());
          // Return the ticket
