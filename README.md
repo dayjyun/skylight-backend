@@ -1,5 +1,36 @@
-# Endpoints
+# Table Of Contents
+- [SkyLight](#skylight)
 
+# SkyLight
+
+# Technologies
+
+# Features
+
+# Run Application
+
+<details>
+    <summary>Dependencies</summary>
+
+- [Spring Boot Starter Data REST](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-rest)
+- [Spring Boot DevTools](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-devtools)
+- [H2 Database Engine](https://mvnrepository.com/artifact/com.h2database/h2)
+- [Spring Boot Starter JDBC](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-jdbc)
+- [Spring Boot Starter Test](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-test)
+- [Spring Boot Starter Data JPA](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa)
+- [Spring Boot Starter Security](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-security)
+- [JUnit](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api)
+- [Cucumber Java](https://mvnrepository.com/artifact/io.cucumber/cucumber-java)
+- [Cucumber JUnit](https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-api)
+- [Cucumber Spring](https://mvnrepository.com/artifact/io.cucumber/cucumber-spring)
+- [REST Assured](https://mvnrepository.com/artifact/io.rest-assured/rest-assured)
+- [Spring Boot Starter Validation](https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-validation)
+- [jjwt-api](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api)
+_ [jjwt-impl](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl)
+- [jjwt-jackson](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson)
+</details>
+
+# Endpoints
 ## User
 | Request Type |          URL           |                  Functionality                  | Access  |
 |:------------:|:----------------------:|:-----------------------------------------------:|:-------:|
