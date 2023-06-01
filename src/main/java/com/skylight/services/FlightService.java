@@ -2,6 +2,7 @@ package com.skylight.services;
 
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.Flight;
+import com.skylight.models.Ticket;
 import com.skylight.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -64,7 +65,12 @@ public class FlightService {
       throw new NotFoundException("Flight not found");
    }
 
-//   deleteFlight
+   /**
+    * deleteFlightById deletes flight by ID
+    * A NotFoundException is thrown if the flight is not found with the provided ID
+    * @param flightId is the flight ID to search by
+    * @return the deleted flight data
+    */
    public Optional<Flight> deleteFlightById(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
@@ -82,15 +88,29 @@ public class FlightService {
    }
 
    //   getAllTickets
-   // Check you're the pilot
+   public List<Ticket> getFlightTickets(Long flightId) {
+      // Create an optional of a flight
+      Optional<Flight> flight = flightRepository.findById(flightId);
+      // Check you're the pilot
 
-//   purchaseTicket
-//   public Flight purchaseTicketForFlight(Long flightId, User user) {
-//      Optional<Flight> flight = flightRepository.findById(flightId);
-//      if(flight.isPresent()) {
-//         Flight flightData = flight.get();
-//         // Subtract number of seats from flight
-//         return flightData;
-//      }
-//   }
+      // Check if the flight is present
+      if(flight.isPresent()) {
+         //  Get the list of tickets for the flight
+         List<Ticket> tickets = flight.get().getListOfTickets();
+         // Check if the list of tickets is empty
+         if(tickets.isEmpty()) {
+            // Throw a NotFoundException if no tickets are found
+            throw new NotFoundException("No tickets found");
+         }
+         // Return the list of tickets for the flight
+         return tickets;
+      }
+      // Throw a NotFoundException if the flight is not found
+      throw new NotFoundException("Flight " + flightId + " not found");
+   }
+
+
+
+   // Create tickets for flight
+
 }

@@ -27,4 +27,8 @@ public class TicketController {
    public Optional<Ticket> deleteTicket(@PathVariable Long ticketId) {
       return ticketService.deleteTicket(ticketId);
    }
+
+   // Functionality: User books ticket (Public | Private)
+   // Path: /api/tickets/{ticketId}/bookFlight
+
 }

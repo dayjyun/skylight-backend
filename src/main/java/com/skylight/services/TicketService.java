@@ -36,7 +36,12 @@ public class TicketService {
       throw new NotFoundException("Ticket not found");
    }
 
-   // delete ticket details
+   /**
+    * deleteTicket deletes a ticket by its ID
+    * A NotFoundException is thrown if the ticket is not found with the provided ID
+    * @param ticketId is the ticket ID to search by
+    * @return the deleted ticket data
+    */
    public Optional<Ticket> deleteTicket(Long ticketId) {
       // Create an optional for a ticket
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
@@ -48,6 +53,6 @@ public class TicketService {
          return ticket;
       }
       // Throw a NotFoundException if the ticket is not found
-      throw new NotFoundException("Ticket not found");
+      throw new NotFoundException("Ticket " + ticketId + " not found");
    }
 }

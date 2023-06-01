@@ -1,7 +1,7 @@
 package com.skylight.controllers;
 
 import com.skylight.models.Flight;
-import com.skylight.models.User;
+import com.skylight.models.Ticket;
 import com.skylight.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -46,17 +46,17 @@ public class FlightController {
 
    // Functionality: Get all tickets for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
+   @GetMapping(path = "/{flightId}/tickets")
+   public List<Ticket> getFlightTickets(@PathVariable Long flightId) {
+      return flightService.getFlightTickets(flightId);
+   }
 
    // Functionality: Create tickets for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
-
    // manually add individual amount of tickets?
 //   @PostMapping(path = "/{flightId}/tickets")
 //   public Flight purchaseTicketForFlight(@PathVariable Long flightId, @RequestBody User user) {
 //      return flightService.purchaseTicketForFlight(flightId, user);
 //   }
 
-
-   // Functionality: Delete ticket for flight (Public | Private)
-   // Path: /api/flights/{flightId}/tickets
 }
