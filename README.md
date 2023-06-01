@@ -59,10 +59,10 @@ _ [jjwt-impl](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl)
 | DELETE       | /api/flights/{flightId}                                                                                   | Delete flight                                                        | Private |
 
 ## Airports
-| Request Type |           URL            |         Functionality         | Access |
-|:------------:|:------------------------:|:-----------------------------:|:------:|
-|     GET      |      /api/airports       |  Returns a list of airports   | Public |
-|     GET      | /api/airport/{airportId} | Returns details of an airport | Public |
+| Request Type |            URL            |         Functionality         | Access |
+|:------------:|:-------------------------:|:-----------------------------:|:------:|
+|     GET      |       /api/airports       |  Returns a list of airports   | Public |
+|     GET      | /api/airports/{airportId} | Returns details of an airport | Public |
 
 # Diagram
 ![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png) 
