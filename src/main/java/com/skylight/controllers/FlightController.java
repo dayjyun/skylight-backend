@@ -44,12 +44,12 @@ public class FlightController {
       return flightService.deleteFlightById(flightId);
    }
 
-   // Functionality: Purchase ticket for flight (Public | Public)
+   // Functionality: Purchase ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
-   @PostMapping(path = "/{flightId}/tickets")
-   public Flight purchaseTicket(@PathVariable Long flightId, @RequestBody User user) {
-      return flightService.purchaseTicket(flightId, user);
-   }
+//   @PostMapping(path = "/{flightId}/tickets")
+//   public Flight purchaseTicketForFlight(@PathVariable Long flightId, @RequestBody User user) {
+//      return flightService.purchaseTicketForFlight(flightId, user);
+//   }
 
    // Functionality: Get all tickets for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets

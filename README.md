@@ -32,14 +32,16 @@
 
 # Endpoints
 ## User
-| Request Type |          URL           |                  Functionality                  | Access  |
-|:------------:|:----------------------:|:-----------------------------------------------:|:-------:|
-|     POST     |   /api/auth/register   |              User creates account               | Public  |
-|     POST     |    /api/auth/login     |             User logs into account              | Public  |
-|     GET      |     /api/myProfile     |        Returns logged-in user’s account         | Private |
-|     PUT      |     /api/myProfile     |                Edit user account                | Private |
-|     GET      | /api/myProfile/flights |  Returns a list of flights the user purchased   | Private |
-|     GET      |   /api/myProfile/air   | Returns a list of flight the user has submitted | Private |
+| Request Type |                URL                |                     Functionality                      | Access  |
+|:------------:|:---------------------------------:|:------------------------------------------------------:|:-------:|
+|     POST     |        /api/auth/register         |                  User creates account                  | Public  |
+|     POST     |          /api/auth/login          |                 User logs into account                 | Public  |
+|     GET      |          /api/myProfile           |            Returns logged-in user’s account            | Private |
+|     PUT      |          /api/myProfile           |                   Edit user account                    | Private |
+|     GET      |      /api/myProfile/flights       |      Returns a list of flights the user purchased      | Private |
+|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights purchased | Private |
+|    DELETE    | /api/myProfile/flights/{flightId} |      Delete flight from list of flights purchased      | Private |
+|     GET      |        /api/myProfile/air         |    Returns a list of flight the user has submitted     | Private |
 
 ## Credit Cards
 | Request Type | URL            | Functionality                         | Access  |

@@ -12,6 +12,7 @@ public class Flight {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
+   // Number of seats/tickets available
    @Column
    private Long numberOfSeats;
 
@@ -47,11 +48,12 @@ public class Flight {
 
    // List of flights a passenger is scheduled to board
    @ManyToMany
-   @JoinTable(name = "flight_passengers",
+   @JoinTable(name = "tickets",
                joinColumns = @JoinColumn(name = "flight_id"),
                inverseJoinColumns = @JoinColumn(name = "user_id"))
    @JsonIgnore
    private List<User> bookedFlightsList;
+   // Ticket number?
 
    @Column
    private String distance;
