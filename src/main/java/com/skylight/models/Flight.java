@@ -1,11 +1,12 @@
 package com.skylight.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
-import javax.persistence.GenerationType;
+import java.util.List;
 
 @Entity
 @Table(name = "flights")
-public class Flights {
+public class Flight {
    @Column
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +24,27 @@ public class Flights {
    @Column
    private String time;
 
-   @Column
-   private String origin;
+   @ManyToOne
+   @JoinColumn(name = "origin_airport")
+   private Airport originAirport;
 
-   @Column
-   private String destination;
+   @ManyToOne
+   @JoinColumn(name = "destination_airport")
+   private Airport destinationAirport;
+
+   // Pilot created flight / assigned to the flight
+   @ManyToOne
+   @JoinColumn(name = "pilot_id")
+   @JsonIgnore
+   private User pilot;
+
+   // List of flights a passenger is scheduled to board
+   @ManyToMany
+   @JoinTable(name = "flight_passengers",
+               joinColumns = @JoinColumn(name = "flight_id"),
+               inverseJoinColumns = @JoinColumn(name = "user_id"))
+   @JsonIgnore
+   private List<User> bookedFlightsList;
 
    @Column
    private String distance;
@@ -35,16 +52,14 @@ public class Flights {
    @Column
    private Float price;
 
-   public Flights() {}
+   public Flight() {}
 
-   public Flights(Long id, Long numberOfSeats, String airplane, String date, String time, String origin, String destination, String distance, Float price) {
+   public Flight(Long id, Long numberOfSeats, String airplane, String date, String time, String distance, Float price) {
       this.id = id;
       this.numberOfSeats = numberOfSeats;
       this.airplane = airplane;
       this.date = date;
       this.time = time;
-      this.origin = origin;
-      this.destination = destination;
       this.distance = distance;
       this.price = price;
    }
@@ -89,20 +104,20 @@ public class Flights {
       this.time = time;
    }
 
-   public String getOrigin() {
-      return origin;
+   public Airport getOriginAirport() {
+      return originAirport;
    }
 
-   public void setOrigin(String origin) {
-      this.origin = origin;
+   public void setOriginAirport(Airport originAirport) {
+      this.originAirport = originAirport;
    }
 
-   public String getDestination() {
-      return destination;
+   public Airport getDestinationAirport() {
+      return destinationAirport;
    }
 
-   public void setDestination(String destination) {
-      this.destination = destination;
+   public void setDestinationAirport(Airport destinationAirport) {
+      this.destinationAirport = destinationAirport;
    }
 
    public String getDistance() {
@@ -123,16 +138,16 @@ public class Flights {
 
    @Override
    public String toString() {
-      return "Flights{" +
+      return "Flight{" +
               "id=" + id +
               ", numberOfSeats=" + numberOfSeats +
               ", airplane='" + airplane + '\'' +
               ", date='" + date + '\'' +
               ", time='" + time + '\'' +
-              ", origin='" + origin + '\'' +
-              ", destination='" + destination + '\'' +
+              ", originAirport=" + originAirport +
+              ", destinationAirport=" + destinationAirport +
               ", distance='" + distance + '\'' +
-              ", price='" + price + '\'' +
+              ", price=" + price +
               '}';
    }
 }

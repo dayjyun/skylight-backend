@@ -1,11 +1,16 @@
 package com.skylight.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import javax.persistence.GenerationType;
+import java.util.List;
 
 @Entity
 @Table(name = "airports")
-public class Airports {
+public class Airport {
    @Column
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +34,19 @@ public class Airports {
    @Column
    private String longitude;
 
-   public Airports() {}
+   @OneToMany(mappedBy = "originAirport", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
+   @JsonIgnore
+   private List<Flight> flightsFromAirportList;
 
-   public Airports(Long id, String name, String airportCode, String city, String state, String latitude, String longitude) {
+   @OneToMany(mappedBy = "destinationAirport", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
+   @JsonIgnore
+   private List<Flight> flightsToAirportList;
+
+   public Airport() {}
+
+   public Airport(Long id, String name, String airportCode, String city, String state, String latitude, String longitude) {
       this.id = id;
       this.name = name;
       this.airportCode = airportCode;
@@ -97,9 +112,25 @@ public class Airports {
       this.longitude = longitude;
    }
 
+   public List<Flight> getFlightsFromAirportList() {
+      return flightsFromAirportList;
+   }
+
+   public void setFlightsFromAirportList(List<Flight> flightsFromAirportList) {
+      this.flightsFromAirportList = flightsFromAirportList;
+   }
+
+   public List<Flight> getFlightsToAirportList() {
+      return flightsToAirportList;
+   }
+
+   public void setFlightsToAirportList(List<Flight> flightsToAirportList) {
+      this.flightsToAirportList = flightsToAirportList;
+   }
+
    @Override
    public String toString() {
-      return "Airports{" +
+      return "Airport{" +
               "id=" + id +
               ", name='" + name + '\'' +
               ", airportCode='" + airportCode + '\'' +
@@ -107,6 +138,8 @@ public class Airports {
               ", state='" + state + '\'' +
               ", latitude='" + latitude + '\'' +
               ", longitude='" + longitude + '\'' +
+              ", flightsFromAirportList=" + flightsFromAirportList +
+              ", flightsToAirportList=" + flightsToAirportList +
               '}';
    }
 }

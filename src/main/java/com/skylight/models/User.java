@@ -1,11 +1,16 @@
 package com.skylight.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
-import javax.persistence.GenerationType;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
-public class Users {
+public class User {
    @Column
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -14,18 +19,31 @@ public class Users {
    @Column
    private String name;
 
-   @Column
+   @Column(unique = true)
    private String email;
 
    @Column
+   @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
    private String password;
 
+   // Only admins/pilots can create flights
    @Column
    private boolean isAdmin;
 
-   public Users() {}
+   // List of flights a pilot is schedule to fly
+   @OneToMany(mappedBy = "pilot", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
+   @JsonIgnore
+   private List<Flight> myFlightsList;
 
-   public Users(Long id, String name, String email, String password, boolean isAdmin) {
+   // List of flights a passenger is scheduled to board
+   @ManyToMany(mappedBy = "bookedFlightsList")
+   @JsonIgnore
+   private List<Flight> myBookedFlightsList;
+
+   public User() {}
+
+   public User(Long id, String name, String email, String password, boolean isAdmin) {
       this.id = id;
       this.name = name;
       this.email = email;
