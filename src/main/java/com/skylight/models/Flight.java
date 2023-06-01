@@ -136,6 +136,23 @@ public class Flight {
       this.price = price;
    }
 
+   // Relationships
+   public User getPilot() {
+      return pilot;
+   }
+
+   public void setPilot(User pilot) {
+      this.pilot = pilot;
+   }
+
+   public List<User> getBookedFlightsList() {
+      return bookedFlightsList;
+   }
+
+   public void setBookedFlightsList(List<User> bookedFlightsList) {
+      this.bookedFlightsList = bookedFlightsList;
+   }
+
    @Override
    public String toString() {
       return "Flight{" +
@@ -146,6 +163,8 @@ public class Flight {
               ", time='" + time + '\'' +
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
+              ", pilot=" + pilot +
+              ", bookedFlightsList=" + bookedFlightsList +
               ", distance='" + distance + '\'' +
               ", price=" + price +
               '}';

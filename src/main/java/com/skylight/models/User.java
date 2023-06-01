@@ -91,14 +91,33 @@ public class User {
       isAdmin = admin;
    }
 
+   // Relationships
+   public List<Flight> getMyFlightsList() {
+      return myFlightsList;
+   }
+
+   public void setMyFlightsList(List<Flight> myFlightsList) {
+      this.myFlightsList = myFlightsList;
+   }
+
+   public List<Flight> getMyBookedFlightsList() {
+      return myBookedFlightsList;
+   }
+
+   public void setMyBookedFlightsList(List<Flight> myBookedFlightsList) {
+      this.myBookedFlightsList = myBookedFlightsList;
+   }
+
    @Override
    public String toString() {
-      return "Users{" +
+      return "User{" +
               "id=" + id +
               ", name='" + name + '\'' +
               ", email='" + email + '\'' +
               ", password='" + password + '\'' +
               ", isAdmin=" + isAdmin +
+              ", myFlightsList=" + myFlightsList +
+              ", myBookedFlightsList=" + myBookedFlightsList +
               '}';
    }
 }
