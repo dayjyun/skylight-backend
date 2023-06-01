@@ -23,7 +23,7 @@ public class FlightController {
       return flightService.getAllFlights();
    }
 
-   // Functionality: Users create a new flight (Public | Private)
+   // Functionality: Admin creates a new flight (Public | Private)
    // Path: /api/flights
    @PostMapping(path = "")
    public Flight createFlight(@RequestBody Flight flight) {
@@ -37,26 +37,24 @@ public class FlightController {
       return flightService.getFlightById(flightId);
    }
 
-   // Functionality: Delete flight (Public | Private)
+   // Functionality: Admin deletes flight (Public | Private)
    // Path: /api/flights/{flightId}
    @DeleteMapping(path = "/{flightId})")
    public Optional<Flight> deleteFlightById(@PathVariable Long flightId) {
       return flightService.deleteFlightById(flightId);
    }
 
-   // Functionality: Get all tickets for flight (Public | Private)
+   // Functionality: Get all tickets available for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
    @GetMapping(path = "/{flightId}/tickets")
    public List<Ticket> getFlightTickets(@PathVariable Long flightId) {
       return flightService.getFlightTickets(flightId);
    }
 
-   // Functionality: Create tickets for flight (Public | Private)
+   // Functionality: Admin creates ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
-   // manually add individual amount of tickets?
-//   @PostMapping(path = "/{flightId}/tickets")
-//   public Flight purchaseTicketForFlight(@PathVariable Long flightId, @RequestBody User user) {
-//      return flightService.purchaseTicketForFlight(flightId, user);
-//   }
-
+   @PostMapping(path = "/{flightId}/tickets")
+   public Ticket createTicketForFlight(@PathVariable Long flightId, @RequestBody Ticket ticket) {
+      return flightService.createTicketForFlight(flightId, ticket);
+   }
 }

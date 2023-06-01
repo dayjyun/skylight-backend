@@ -109,8 +109,24 @@ public class FlightService {
       throw new NotFoundException("Flight " + flightId + " not found");
    }
 
-
-
    // Create tickets for flight
+   public Ticket createTicketForFlight(Long flightId, Ticket ticket) {
+      // Create an optional of a flight
+      Optional<Flight> flight = flightRepository.findById(flightId);
+      // Check you're the pilot
 
+      // Check if the flight is present
+      if(flight.isPresent()) {
+         // Add flight to ticket
+         ticket.setFlight(flight.get());
+         // Add the ticket to the flight
+//         flight.get().setListOfTickets(ticket);
+         // Save the flight
+         flightRepository.save(flight.get());
+         // Return the ticket
+         return ticket;
+      }
+      // Throw a NotFoundException if the flight is not found
+      throw new NotFoundException("Flight " + flightId + " not found");
+   }
 }

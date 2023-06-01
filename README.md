@@ -60,20 +60,20 @@
 [//]: # (| DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |)
 
 ## Flights
-| Request Type | URL                                        | Functionality                 | Access  |
-|--------------|--------------------------------------------|-------------------------------|---------|
-| GET          | /api/flights                               | Returns a list of all flights | Public  |
-| POST         | /api/flights                               | Users create a new flight     | Private |
-| GET          | /api/flights/{flightId}                    | Returns flight details        | Public  |
-| DELETE       | /api/flights/{flightId}                    | Delete flight                 | Private |
-| GET          | /api/flights/{flightId}/tickets            | Get all tickets for flight    | Private |
-| POST         | /api/flights/{flightId}/tickets            | Purchase ticket for flight    | Private |
+| Request Type | URL                                        | Functionality                        | Access  |
+|--------------|--------------------------------------------|--------------------------------------|---------|
+| GET          | /api/flights                               | Returns a list of all flights        | Public  |
+| POST         | /api/flights                               | Admin creates a new flight           | Private |
+| GET          | /api/flights/{flightId}                    | Returns flight details               | Public  |
+| DELETE       | /api/flights/{flightId}                    | Admin deletes flight                 | Private |
+| GET          | /api/flights/{flightId}/tickets            | Get all tickets available for flight | Private |
+| POST         | /api/flights/{flightId}/tickets            | Admin creates ticket  for flight     | Private |
 
 ## Tickets
 | Request Type | URL                     | Functionality          | Access  |
 |--------------|-------------------------|------------------------|---------|
 | GET          | /api/tickets/{ticketId} | Returns ticket details | Private |
-| DELETE       | /api/tickets/{ticketId} | Deletes ticket         | Private |
+| DELETE       | /api/tickets/{ticketId} | Deletes booked ticket  | Private |
 
 ## Airports
 | Request Type |            URL            |         Functionality         | Access |
