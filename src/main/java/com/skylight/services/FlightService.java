@@ -2,7 +2,6 @@ package com.skylight.services;
 
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.Flight;
-import com.skylight.models.User;
 import com.skylight.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
