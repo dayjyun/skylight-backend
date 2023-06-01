@@ -34,4 +34,4 @@
 |     GET      | /api/airport/{airportId} | Returns details of an airport | Public |
 
 # Diagram
-![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png)
+![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png) 
