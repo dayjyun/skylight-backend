@@ -2,7 +2,6 @@ package com.skylight.controllers;
 
 import com.skylight.models.Flight;
 import com.skylight.services.FlightService;
-import okhttp3.RequestBody;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,6 +20,13 @@ public class FlightController {
    @GetMapping(path = "")
    public List<Flight> getAllFlights() {
       return flightService.getAllFlights();
+   }
+
+   // Functionality: Users create a new flight (Public | Private)
+   // Path: /api/flights
+   @PostMapping(path = "")
+   public Flight createFlight(@RequestBody Flight flight) {
+      return flightService.createFlight(flight);
    }
 
    // Functionality: Returns flight details (Public)

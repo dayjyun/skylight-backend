@@ -36,6 +36,11 @@ public class FlightService {
       return allFlights;
    }
 
+   public Flight createFlight(Flight flight) {
+      // check that the date does not conflict with other dates
+      // check that the pilot is available at that time.
+   }
+
    /**
     * getFlightById returns a flight by its id
     * A NotFoundException is thrown if a flight is not found with the provided ID
