@@ -64,6 +64,12 @@
 | POST         | /api/flights/{flightId}/tickets            | Purchase ticket for flight    | Private |
 | DELETE       | /api/flights/{flightId}/tickets/{ticketId} | Delete ticket for flight      | Private |
 
+## Tickets
+| Request Type | URL                     | Functionality          | Access  |
+|--------------|-------------------------|------------------------|---------|
+| GET          | /api/tickets/{ticketId} | Returns ticket details | Private |
+| DELETE       | /api/tickets/{ticketId} | Deletes ticket         | Private |
+
 ## Airports
 | Request Type |            URL            |         Functionality         | Access |
 |:------------:|:-------------------------:|:-----------------------------:|:------:|
