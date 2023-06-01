@@ -1,6 +1,9 @@
 package com.skylight.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -42,18 +45,22 @@ public class Flight {
 
    // Pilot created flight / assigned to the flight
    @ManyToOne
-   @JoinColumn(name = "pilot_id")
+   @JoinColumn(name = "user_id")
    @JsonIgnore
    private User pilot;
 
    // List of flights a passenger is scheduled to board
-   @ManyToMany
-   @JoinTable(name = "tickets",
-               joinColumns = @JoinColumn(name = "flight_id"),
-               inverseJoinColumns = @JoinColumn(name = "user_id"))
+//   @ManyToMany
+//   @JoinTable(name = "tickets",
+//               joinColumns = @JoinColumn(name = "flight_id"),
+//               inverseJoinColumns = @JoinColumn(name = "user_id"))
+//   @JsonIgnore
+//   private List<User> bookedFlightsList;
+
+   @OneToMany(mappedBy = "flight", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
-   private List<User> bookedFlightsList;
-   // Ticket number?
+   private List<Ticket> listOfTickets;
 
    @Column
    private String distance;
@@ -174,12 +181,21 @@ public class Flight {
       this.pilot = pilot;
    }
 
-   public List<User> getBookedFlightsList() {
-      return bookedFlightsList;
+//   public List<User> getBookedFlightsList() {
+//      return bookedFlightsList;
+//   }
+//
+//   public void setBookedFlightsList(List<User> bookedFlightsList) {
+//      this.bookedFlightsList = bookedFlightsList;
+//   }
+
+
+   public List<Ticket> getListOfTickets() {
+      return listOfTickets;
    }
 
-   public void setBookedFlightsList(List<User> bookedFlightsList) {
-      this.bookedFlightsList = bookedFlightsList;
+   public void setListOfTickets(List<Ticket> listOfTickets) {
+      this.listOfTickets = listOfTickets;
    }
 
    @Override
@@ -194,7 +210,7 @@ public class Flight {
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
-              ", bookedFlightsList=" + bookedFlightsList +
+//              ", bookedFlightsList=" + bookedFlightsList +
               ", distance='" + distance + '\'' +
               ", price=" + price +
               '}';

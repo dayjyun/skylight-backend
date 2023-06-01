@@ -36,10 +36,16 @@ public class User {
    @JsonIgnore
    private List<Flight> myFlightsList;
 
-   // List of flights a passenger is scheduled to board
-   @ManyToMany(mappedBy = "bookedFlightsList")
+//   // List of flights a passenger is scheduled to board
+//   @ManyToMany(mappedBy = "bookedFlightsList")
+//   @JsonIgnore
+//   private List<Flight> myBookedFlightsList;
+
+   // List of tickets for flights a passenger booked
+   @OneToMany(mappedBy = "passenger", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
-   private List<Flight> myBookedFlightsList;
+   private List<Ticket> myTicketsList;
 
    public User() {}
 
@@ -100,12 +106,21 @@ public class User {
       this.myFlightsList = myFlightsList;
    }
 
-   public List<Flight> getMyBookedFlightsList() {
-      return myBookedFlightsList;
+//   public List<Flight> getMyBookedFlightsList() {
+//      return myBookedFlightsList;
+//   }
+//
+//   public void setMyBookedFlightsList(List<Flight> myBookedFlightsList) {
+//      this.myBookedFlightsList = myBookedFlightsList;
+//   }
+
+
+   public List<Ticket> getMyTicketsList() {
+      return myTicketsList;
    }
 
-   public void setMyBookedFlightsList(List<Flight> myBookedFlightsList) {
-      this.myBookedFlightsList = myBookedFlightsList;
+   public void setMyTicketsList(List<Ticket> myTicketsList) {
+      this.myTicketsList = myTicketsList;
    }
 
    @Override
@@ -117,7 +132,7 @@ public class User {
               ", password='" + password + '\'' +
               ", isAdmin=" + isAdmin +
               ", myFlightsList=" + myFlightsList +
-              ", myBookedFlightsList=" + myBookedFlightsList +
+//              ", myBookedFlightsList=" + myBookedFlightsList +
               '}';
    }
 }
