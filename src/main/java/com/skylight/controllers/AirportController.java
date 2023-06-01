@@ -18,11 +18,15 @@ public class AirportController {
    @Autowired
    private AirportService airportService;
 
+   // Functionality: Returns a list of airports	(Public)
+   // Path: /api/airports
    @GetMapping(path = "")
    public List<Airport> getAirports() {
       return airportService.getAllAirports();
    }
 
+   // Functionality: Returns details of an airport (Public)
+   // Path: /api/airports
    @GetMapping(path = "/{airportId}")
    public Optional<Airport> getAirportById(@PathVariable Long airportId) {
       return airportService.getAirportById(airportId);

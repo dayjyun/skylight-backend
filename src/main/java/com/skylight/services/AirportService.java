@@ -2,6 +2,7 @@ package com.skylight.services;
 
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.Airport;
+import com.skylight.models.Flight;
 import com.skylight.repositories.AirportRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,8 +38,8 @@ public class AirportService {
 
    /**
     * getAirportById returns an airport by its id
-    * A NotFoundException is thrown if no airport is found
-    * @param airportId is the airport to search
+    * A NotFoundException is thrown if an airport is not found with the provided ID
+    * @param airportId is the airport ID to search by
     * @return Airport
     */
    public Optional<Airport> getAirportById(Long airportId) {
