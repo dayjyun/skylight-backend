@@ -62,18 +62,64 @@ public class Data implements CommandLineRunner {
          Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
          Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
 
-         // Save airports
-         airportRepository.save(midwayAirport);
-         airportRepository.save(ohareAirport);
-         airportRepository.save(austinAirport);
-         airportRepository.save(phoenixAirport);
-
-
          // Create flights
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1100",  885);
          Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  978);
          Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1530",  1133);
+
+
+         // Set arrival array lists for airports
+         // Set departures array list for airports
+
+         // Flight 1
+         // Add origin flight to airport 1
+         ArrayList<Flight> originMDWAirport = new ArrayList<>();
+         originMDWAirport.add(flightFromMDWtoAUS);
+         midwayAirport.setDepartingFlightsList(originMDWAirport);
+
+         // Add destination flight to airport 3
+         ArrayList<Flight> destinationAUSAirport = new ArrayList<>();
+         destinationAUSAirport.add(flightFromAUStoORD);
+         austinAirport.setArrivingFlightsList(destinationAUSAirport);
+
+         // Flight 2
+         // Add origin flight to airport 4
+         ArrayList<Flight> originPHXAirport = new ArrayList<>();
+         originPHXAirport.add(flightFromPHXtoAUS);
+         phoenixAirport.setDepartingFlightsList(originPHXAirport);
+
+         // Add destination flight to airport 3
+         ArrayList<Flight> destinationORDAirport = new ArrayList<>();
+         destinationORDAirport.add(flightFromAUStoPHX);
+         ohareAirport.setArrivingFlightsList(destinationORDAirport);
+
+         //  Flight 3
+         // Add origin flight to airport 3
+         ArrayList<Flight> originAUSAirport = new ArrayList<>();
+         originAUSAirport.add(flightFromAUStoORD);
+         austinAirport.setDepartingFlightsList(originAUSAirport);
+
+         // Add destination flight to airport 4
+         ArrayList<Flight> destinationPHXAirport = new ArrayList<>();
+         destinationPHXAirport.add(flightFromAUStoPHX);
+         phoenixAirport.setArrivingFlightsList(destinationPHXAirport);
+
+         // Flight 4
+         // Add origin flight to airport 3
+         ArrayList<Flight> originORDAirport = new ArrayList<>();
+         originORDAirport.add(flightFromAUStoORD);
+         ohareAirport.setDepartingFlightsList(originORDAirport);
+
+         // Add destination flight to airport 4
+         destinationAUSAirport.add(flightFromAUStoPHX);
+         austinAirport.setArrivingFlightsList(destinationAUSAirport);
+
+         // Save flight details
+         flightRepository.save(flightFromMDWtoAUS);
+         flightRepository.save(flightFromPHXtoAUS);
+         flightRepository.save(flightFromAUStoORD);
+         flightRepository.save(flightFromAUStoPHX);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
@@ -135,57 +181,12 @@ public class Data implements CommandLineRunner {
          destinationPHX.add(flightFromAUStoPHX);
          kc.setMyFlightsList(destinationPHX);
 
-         // Set arrival array lists for airports
-         // Set departures array list for airports
+         // Save airports
+         airportRepository.save(midwayAirport);
+         airportRepository.save(ohareAirport);
+         airportRepository.save(austinAirport);
+         airportRepository.save(phoenixAirport);
 
-         // Flight 1
-         // Add origin flight to airport 1
-         ArrayList<Flight> originMDWAirport = new ArrayList<>();
-         originMDWAirport.add(flightFromMDWtoAUS);
-         midwayAirport.setDepartingFlightsList(originMDWAirport);
-
-         // Add destination flight to airport 3
-         ArrayList<Flight> destinationAUSAirport = new ArrayList<>();
-         destinationAUSAirport.add(flightFromAUStoORD);
-         austinAirport.setArrivingFlightsList(destinationAUSAirport);
-
-         // Flight 2
-         // Add origin flight to airport 4
-         ArrayList<Flight> originPHXAirport = new ArrayList<>();
-         originPHXAirport.add(flightFromPHXtoAUS);
-         phoenixAirport.setDepartingFlightsList(originPHXAirport);
-
-         // Add destination flight to airport 3
-         ArrayList<Flight> destinationORDAirport = new ArrayList<>();
-         destinationORDAirport.add(flightFromAUStoPHX);
-         ohareAirport.setArrivingFlightsList(destinationORDAirport);
-
-         //  Flight 3
-         // Add origin flight to airport 3
-         ArrayList<Flight> originAUSAirport = new ArrayList<>();
-         originAUSAirport.add(flightFromAUStoORD);
-         austinAirport.setDepartingFlightsList(originAUSAirport);
-
-         // Add destination flight to airport 4
-         ArrayList<Flight> destinationPHXAirport = new ArrayList<>();
-         destinationPHXAirport.add(flightFromAUStoPHX);
-         phoenixAirport.setArrivingFlightsList(destinationPHXAirport);
-
-         // Flight 4
-         // Add origin flight to airport 3
-         ArrayList<Flight> originORDAirport = new ArrayList<>();
-         originORDAirport.add(flightFromAUStoORD);
-         ohareAirport.setDepartingFlightsList(originORDAirport);
-
-         // Add destination flight to airport 4
-         destinationAUSAirport.add(flightFromAUStoPHX);
-         austinAirport.setArrivingFlightsList(destinationAUSAirport);
-
-         // Save flight details
-         flightRepository.save(flightFromMDWtoAUS);
-         flightRepository.save(flightFromPHXtoAUS);
-         flightRepository.save(flightFromAUStoORD);
-         flightRepository.save(flightFromAUStoPHX);
 
          // Create tickets
          Ticket oneT = new Ticket(1L,  flightFromMDWtoAUS, dominique);

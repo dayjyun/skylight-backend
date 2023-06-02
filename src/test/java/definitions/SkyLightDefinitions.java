@@ -52,7 +52,7 @@ public class SkyLightDefinitions {
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
 
-   @When("I search for a airports")
+   @When("I search for airports")
    public void iSearchForAAirports() {
       Assert.assertTrue(list.size() > 0);
    }
@@ -77,5 +77,21 @@ public class SkyLightDefinitions {
    @Then("I can see the airport details")
    public void iCanSeeTheAirportDetails() {
       Assert.assertEquals(200,  response.getStatusCode());
+   }
+   
+   @Given("I can see a list of arriving flights are available")
+   public void iCanSeeAListOfArrivingFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/1/arrivals", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for arriving flights")
+   public void iSearchForArrivingFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of arriving flights")
+   public void iCanSeeAListOfArrivingFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
 }

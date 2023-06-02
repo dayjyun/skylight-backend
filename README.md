@@ -68,12 +68,12 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 
 ## Airports
-| Request Type |            URL            |                   Functionality                    | Access |
-|:------------:|:-------------------------:|:--------------------------------------------------:|:------:|
-|     GET      |       /api/airports       |             Returns a list of airports             | Public |
-|     GET      | /api/airports/{airportId} |           Returns details of an airport            | Public |
-|     GET      |  /api/airports/arrivals   | Returns a list of arriving flights for an airport  | Public |
-|     GET      | /api/airports/departures  | Returns a list of departing flights for an airport | Public |
+| Request Type |                 URL                  |                   Functionality                    | Access |
+|:------------:|:------------------------------------:|:--------------------------------------------------:|:------:|
+|     GET      |            /api/airports             |             Returns a list of airports             | Public |
+|     GET      |      /api/airports/{airportId}       |           Returns details of an airport            | Public |
+|     GET      |  /api/airports/{airportId}/arrivals  | Returns a list of arriving flights for an airport  | Public |
+|     GET      | /api/airports/{airportId}/departures | Returns a list of departing flights for an airport | Public |
 
 
 ## Flights
