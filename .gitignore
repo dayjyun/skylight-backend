@@ -33,3 +33,4 @@ build/
 .vscode/
 
 src/main/java/api_keys
+.env
