@@ -89,9 +89,9 @@
 | GET          | /api/tickets/{ticketId} | Returns ticket details | Private |
 | DELETE       | /api/tickets/{ticketId} | Deletes booked ticket  | Private |
 
-# Future Features
 
-Set up a payment service
+# Future Features
+ - [ ] Set up a payment service
 ### Credit Cards
 | Request Type | URL            | Functionality                         | Access  |
 |--------------|----------------|---------------------------------------|---------|
@@ -99,5 +99,16 @@ Set up a payment service
 | POST         | /api/cc        | Create new credit card data           | Private |
 | PUT          | /api/cc/{ccId} | User updates credit card data         | Private |
 | DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |
+
+- [ ] Create a model for planes
+  - [ ] Airplane model/type
+  - [ ] Number of seats
+  - [ ] Belongs to pilot
+- [ ] Generate class type:
+  - [ ] First Class 
+  - [ ] Premium
+  - [ ] Business 
+  - [ ] Economy 
+- [ ] Calendar Integration
 
 # Acknowledgements
