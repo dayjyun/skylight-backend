@@ -35,26 +35,26 @@ public class Data implements CommandLineRunner {
 
          // Create Users
          // Users: Admins/Pilots
-         User aUser = new User(1L, "a", "a@email.com", "pw", true);
-         User bUser = new User(2L, "b", "b@email.com", "pw", true);
-         User cUser = new User(3L, "c", "c@email.com", "pw", true);
+         User kc = new User(1L, "KC", "kc@email.com", "pw", true);
+         User maksym = new User(2L, "Maksym", "maksym@email.com", "pw", true);
+         User anakin = new User(3L, "Anakin Skywalker", "as@email.com", "pw", true);
 
          // Users: Passengers
-         User dUser = new User(4L, "d", "d@email.com", "pw", false);
-         User eUser = new User(5L, "e", "e@email.com", "pw", false);
-         User fUser = new User(6L, "f", "f@email.com", "pw", false);
-         User gUser = new User(7L, "g", "g@email.com", "pw", false);
-         User hUser = new User(8L, "h", "h@email.com", "pw", false);
+         User dominique = new User(4L, "Dominique", "dominique@email.com", "pw", false);
+         User kim = new User(5L, "Kim", "kim@email.com", "pw", false);
+         User jay = new User(6L, "Jay", "jay@email.com", "pw", false);
+         User deShe = new User(7L, "DeShe", "deshe@email.com", "pw", false);
+         User jeff = new User(8L, "Jeff", "jeff@email.com", "pw", false);
 
          // Save users
-         userRepository.save(aUser);
-         userRepository.save(bUser);
-         userRepository.save(cUser);
-         userRepository.save(dUser);
-         userRepository.save(eUser);
-         userRepository.save(fUser);
-         userRepository.save(gUser);
-         userRepository.save(hUser);
+         userRepository.save(kc);
+         userRepository.save(maksym);
+         userRepository.save(anakin);
+         userRepository.save(dominique);
+         userRepository.save(kim);
+         userRepository.save(jay);
+         userRepository.save(deShe);
+         userRepository.save(jeff);
 
          // Create Airports
          Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
@@ -79,61 +79,61 @@ public class Data implements CommandLineRunner {
          // Assign pilot to flights
          flightFromMDWtoAUS.setOriginAirport(midwayAirport); // 1
          flightFromMDWtoAUS.setDestinationAirport(austinAirport); // 3
-         flightFromMDWtoAUS.setPilot(aUser); // 1
+         flightFromMDWtoAUS.setPilot(kc); // 1
          // Add flight to flight list for pilot 1
          ArrayList<Flight> originMDWtoAUS = new ArrayList<>();
          originMDWtoAUS.add(flightFromMDWtoAUS);
-         aUser.setMyFlightsList(originMDWtoAUS);
+         kc.setMyFlightsList(originMDWtoAUS);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
          flightFromPHXtoAUS.setOriginAirport(phoenixAirport); // 4
          flightFromPHXtoAUS.setDestinationAirport(austinAirport); // 3
-         flightFromPHXtoAUS.setPilot(bUser); // 2
+         flightFromPHXtoAUS.setPilot(maksym); // 2
          // Add flight to flight list for pilot 2
          ArrayList<Flight> originPHXtoAUS = new ArrayList<>();
          originPHXtoAUS.add(flightFromPHXtoAUS);
-         bUser.setMyFlightsList(originPHXtoAUS);
+         maksym.setMyFlightsList(originPHXtoAUS);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
          flightFromAUStoORD.setOriginAirport(austinAirport); // 3
          flightFromAUStoORD.setDestinationAirport(ohareAirport); // 2
-         flightFromAUStoORD.setPilot(cUser); // 3
+         flightFromAUStoORD.setPilot(anakin); // 3
          // Add flight to flight list for pilot 3
          ArrayList<Flight> originAUStoORD = new ArrayList<>();
          originAUStoORD.add(flightFromAUStoORD);
-         cUser.setMyFlightsList(originAUStoORD);
+         anakin.setMyFlightsList(originAUStoORD);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
          flightFromAUStoPHX.setOriginAirport(phoenixAirport); // 3
          flightFromAUStoPHX.setDestinationAirport(phoenixAirport); // 4
-         flightFromAUStoPHX.setPilot(aUser); // 1
+         flightFromAUStoPHX.setPilot(kc); // 1
          // Add flight to flight list for pilot 1
          ArrayList<Flight> originAUStoPHX = new ArrayList<>();
          originAUStoPHX.add(flightFromAUStoORD);
-         aUser.setMyFlightsList(originAUStoPHX);
+         kc.setMyFlightsList(originAUStoPHX);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
          flightFromAUStoORD.setOriginAirport(austinAirport); // 3
          flightFromAUStoORD.setDestinationAirport(ohareAirport); // 2
-         flightFromAUStoORD.setPilot(cUser); // 3
+         flightFromAUStoORD.setPilot(anakin); // 3
          // Add flight to flight list for pilot 3
          ArrayList<Flight> destinationAUS = new ArrayList<>();
          destinationAUS.add(flightFromAUStoORD);
-         cUser.setMyFlightsList(destinationAUS);
+         anakin.setMyFlightsList(destinationAUS);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
 //         flightFromAUStoPHX.setOriginAirport(phoenixAirport); // 3
          flightFromAUStoPHX.setDestinationAirport(phoenixAirport); // 4
-         flightFromAUStoPHX.setPilot(aUser); // 1
+         flightFromAUStoPHX.setPilot(kc); // 1
          // Add flight to flight list for pilot 1
          ArrayList<Flight> destinationPHX = new ArrayList<>();
          destinationPHX.add(flightFromAUStoPHX);
-         aUser.setMyFlightsList(destinationPHX);
+         kc.setMyFlightsList(destinationPHX);
 
          // Set arrival array lists for airports
          // Set departures array list for airports
@@ -188,10 +188,10 @@ public class Data implements CommandLineRunner {
          flightRepository.save(flightFromAUStoPHX);
 
          // Create tickets
-         Ticket oneT = new Ticket(1L,  flightFromMDWtoAUS, dUser);
-         Ticket twoT = new Ticket(2L, flightFromPHXtoAUS, eUser);
-         Ticket threeT = new Ticket(3L, flightFromAUStoORD, fUser);
-         Ticket fourT = new Ticket(4L, flightFromAUStoPHX, gUser);
+         Ticket oneT = new Ticket(1L,  flightFromMDWtoAUS, dominique);
+         Ticket twoT = new Ticket(2L, flightFromPHXtoAUS, kim);
+         Ticket threeT = new Ticket(3L, flightFromAUStoORD, jay);
+         Ticket fourT = new Ticket(4L, flightFromAUStoPHX, deShe);
 
          // Save ticket details
          ticketRepository.save(oneT);
@@ -217,21 +217,21 @@ public class Data implements CommandLineRunner {
          flightFromAUStoPHX.setListOfTickets(fourList);
 
          // Assign tickets to users / passengers
-         ArrayList<Ticket> dUserTickets = new ArrayList<>();
-         dUserTickets.add(oneT);
-         dUser.setMyTicketsList(dUserTickets);
+         ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
+         dominiqueTickets.add(oneT);
+         dominique.setMyTicketsList(dominiqueTickets);
 
-         ArrayList<Ticket> eUserTickets = new ArrayList<>();
-         eUserTickets.add(twoT);
-         eUser.setMyTicketsList(eUserTickets);
+         ArrayList<Ticket> kimTickets = new ArrayList<>();
+         kimTickets.add(twoT);
+         kim.setMyTicketsList(kimTickets);
 
-         ArrayList<Ticket> fUserTickets = new ArrayList<>();
-         fUserTickets.add(threeT);
-         fUser.setMyTicketsList(fUserTickets);
+         ArrayList<Ticket> jayTickets = new ArrayList<>();
+         jayTickets.add(threeT);
+         jay.setMyTicketsList(jayTickets);
 
-         ArrayList<Ticket> gUserTickets = new ArrayList<>();
-         gUserTickets.add(fourT);
-         gUser.setMyTicketsList(gUserTickets);
+         ArrayList<Ticket> deSheTickets = new ArrayList<>();
+         deSheTickets.add(fourT);
+         deShe.setMyTicketsList(deSheTickets);
 
 
       }

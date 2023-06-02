@@ -42,11 +42,12 @@ public class SkyLightDefinitions {
       return response.jsonPath().getString("message");
    }
 
+   /**
+    * Scenario: User is able to view a list of airports (Public)
+    * Path: GET /api/airports
+    */
    @Given("a list of airports are available")
    public void aListOfAirportsAreAvailable() {
-//      RestAssured.baseURI = BASE_URL;
-//      RequestSpecification request = RestAssured.given();
-//      response = request.get(BASE_URL + port+  "/api/airports");
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports", HttpMethod.GET, null, String.class);
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
@@ -59,5 +60,22 @@ public class SkyLightDefinitions {
    @Then("I can see a list of airports")
    public void iCanSeeAListOfAirports() {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
+
+   @Given("an airport is available")
+   public void anAirportIsAvailable() {
+      RestAssured.baseURI = BASE_URL;
+      RequestSpecification request = RestAssured.given();
+      response = request.get(BASE_URL + port + "/api/airports/1");
+   }
+
+   @When("I search by airport ID")
+   public void iSearchByAirportID() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the airport details")
+   public void iCanSeeTheAirportDetails() {
+      Assert.assertEquals(200,  response.getStatusCode());
    }
 }
