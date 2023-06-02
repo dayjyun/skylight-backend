@@ -33,10 +33,18 @@ public class AirportController {
       return airportService.getAirportById(airportId);
    }
 
-   // Return list of dDeparture flights
+   // Functionality: Returns list of arrivals for an airport (Public)
+   // Path: /api/airports/{airportId}/arrivals
+   @GetMapping(path = "/{airportId}/arrivals")
+   public List<Flight> getArrivals(@PathVariable Long airportId) {
+      return airportService.getArrivals(airportId);
+   }
+
+   // Functionality: Returns list of departures for an airport (Public)
+   // Path: /api/airports/{airportId}/departures
    @GetMapping(path = "/{airportId}/departures")
    public List<Flight> getDepartures(@PathVariable Long airportId) {
       return airportService.getDepartures(airportId);
    }
-   // Return list of arriving Flights
+
 }
