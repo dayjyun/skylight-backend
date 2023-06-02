@@ -45,6 +45,9 @@ public class SkyLightDefinitions {
    /**
     * Scenario: User is able to view a list of airports (Public)
     * Path: GET /api/airports
+    * aListOfAirportsAreAvailable returns the list of airports in the database
+    * iSearchForAAirports verifies the list of airports is not empty
+    * iCanSeeAListOfAirports verifies the return status code is OK
     */
    @Given("a list of airports are available")
    public void aListOfAirportsAreAvailable() {
@@ -62,6 +65,13 @@ public class SkyLightDefinitions {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
 
+   /**
+    * Scenario: User is able to view an airport (Public)
+    * Path: GET /api/airports/{airportId}
+    * anAirportIsAvailable returns the airport with the specified ID
+    * iSearchByAirportID verifies the airport is not null
+    * iCanSeeTheAirportDetails verifies the return status code is OK
+    */
    @Given("an airport is available")
    public void anAirportIsAvailable() {
       RestAssured.baseURI = BASE_URL;
@@ -78,7 +88,14 @@ public class SkyLightDefinitions {
    public void iCanSeeTheAirportDetails() {
       Assert.assertEquals(200,  response.getStatusCode());
    }
-   
+
+   /**
+    * Scenario: User is able to view a list of arriving flights
+    * Path: GET /api/airports/{airportId}/arrivals
+    * aListOfArrivingFlightsAreAvailable returns the list of arriving flights for the airport with the specified ID
+    * iSearchForArrivingFlights verifies the list of arriving flights is not empty
+    * iCanSeeAListOfArrivingFlights verifies the return status code is OK
+    */
    @Given("a list of arriving flights are available")
    public void iCanSeeAListOfArrivingFlightsAreAvailable() {
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/2/arrivals", HttpMethod.GET, null, String.class);
