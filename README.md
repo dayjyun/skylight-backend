@@ -48,6 +48,7 @@
 [Kanban Board](https://github.com/users/dayjyun/projects/8])
 
 # ERD
+Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 ![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png)
 
 # Endpoints
