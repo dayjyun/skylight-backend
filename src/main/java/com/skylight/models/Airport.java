@@ -34,11 +34,13 @@ public class Airport {
    @Column
    private String longitude;
 
+   // One airport Many origins flights
    @OneToMany(mappedBy = "originAirport", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
    private List<Flight> flightsFromAirportList;
 
+   // One airport Many departure flights
    @OneToMany(mappedBy = "destinationAirport", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore

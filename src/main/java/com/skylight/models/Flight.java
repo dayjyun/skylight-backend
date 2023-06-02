@@ -36,20 +36,24 @@ public class Flight {
    @Column
    private Double price;
 
+   // Many flights One origin airport
    @ManyToOne
    @JoinColumn(name = "origin_airport")
    private Airport originAirport;
 
+   // Many flights One destination airport
    @ManyToOne
    @JoinColumn(name = "destination_airport")
    private Airport destinationAirport;
 
    // Pilot created flight / assigned to the flight
+   // Many flights One pilot
    @ManyToOne
    @JoinColumn(name = "user_id")
    @JsonIgnore
    private User pilot;
 
+   // One flight Many passengers
    @OneToMany(mappedBy = "flight", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
@@ -185,7 +189,7 @@ public class Flight {
 //   public Integer getNumberOfSeats() {
 //      return numberOfSeats;
 //   }
-//
+
 //   public void setNumberOfSeats(Integer numberOfSeats) {
 //      this.numberOfSeats = numberOfSeats;
 //   }
@@ -193,7 +197,7 @@ public class Flight {
 //   public List<User> getBookedFlightsList() {
 //      return bookedFlightsList;
 //   }
-//
+
 //   public void setBookedFlightsList(List<User> bookedFlightsList) {
 //      this.bookedFlightsList = bookedFlightsList;
 //   }

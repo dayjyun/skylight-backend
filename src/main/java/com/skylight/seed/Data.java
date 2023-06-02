@@ -59,8 +59,22 @@ public class Data implements CommandLineRunner {
          airportRepository.save(austin);
 
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
+         Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
+         Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
+         Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1600",  1133);
+
+         flightFromMDWtoAUS.setOriginAirport(midway);
+         flightFromMDWtoAUS.setDestinationAirport(austin);
+         flightFromMDWtoAUS.setPilot(aUser);
+
+         flightFromPHXtoAUS.setOriginAirport(phoenix);
+         flightFromPHXtoAUS.setDestinationAirport(austin);
+         flightFromPHXtoAUS.setPilot(bUser);
 
          flightRepository.save(flightFromMDWtoAUS);
+         flightRepository.save(flightFromPHXtoAUS);
+         flightRepository.save(flightFromAUStoORD);
+         flightRepository.save(flightFromAUStoPHX);
       }
    }
 }
