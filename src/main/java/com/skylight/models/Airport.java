@@ -38,13 +38,13 @@ public class Airport {
    @OneToMany(mappedBy = "originAirport", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
-   private List<Flight> flightsFromAirportList;
+   private List<Flight> departingFlightsList;
 
    // One airport Many departure flights
    @OneToMany(mappedBy = "destinationAirport", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
-   private List<Flight> flightsToAirportList;
+   private List<Flight> arrivingFlightsList;
 
    public Airport() {}
 
@@ -114,20 +114,20 @@ public class Airport {
       this.longitude = longitude;
    }
 
-   public List<Flight> getFlightsFromAirportList() {
-      return flightsFromAirportList;
+   public List<Flight> getDepartingFlightsList() {
+      return departingFlightsList;
    }
 
-   public void setFlightsFromAirportList(List<Flight> flightsFromAirportList) {
-      this.flightsFromAirportList = flightsFromAirportList;
+   public void setDepartingFlightsList(List<Flight> departingFlightsList) {
+      this.departingFlightsList = departingFlightsList;
    }
 
-   public List<Flight> getFlightsToAirportList() {
-      return flightsToAirportList;
+   public List<Flight> getArrivingFlightsList() {
+      return arrivingFlightsList;
    }
 
-   public void setFlightsToAirportList(List<Flight> flightsToAirportList) {
-      this.flightsToAirportList = flightsToAirportList;
+   public void setArrivingFlightsList(List<Flight> arrivingFlightsList) {
+      this.arrivingFlightsList = arrivingFlightsList;
    }
 
    @Override
@@ -140,8 +140,8 @@ public class Airport {
               ", state='" + state + '\'' +
               ", latitude='" + latitude + '\'' +
               ", longitude='" + longitude + '\'' +
-              ", flightsFromAirportList=" + flightsFromAirportList +
-              ", flightsToAirportList=" + flightsToAirportList +
+              ", departingFlightsList=" + departingFlightsList +
+              ", arrivingFlightsList=" + arrivingFlightsList +
               '}';
    }
 }

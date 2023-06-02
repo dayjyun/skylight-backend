@@ -21,6 +21,12 @@ public class Ticket {
 
    public Ticket() {}
 
+   public Ticket(Long id, Flight flight, User passenger) {
+      this.id = id;
+      this.flight = flight;
+      this.passenger = passenger;
+   }
+
    public Ticket(Long id) {
       this.id = id;
    }
