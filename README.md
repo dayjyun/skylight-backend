@@ -53,14 +53,16 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 # Endpoints
 ## User
-| Request Type |                URL                |                  Functionality                   | Access  |
-|:------------:|:---------------------------------:|:------------------------------------------------:|:-------:|
-|     POST     |        /api/auth/register         |               User creates account               | Public  |
-|     POST     |          /api/auth/login          |              User logs into account              | Public  |
-|     GET      |          /api/myProfile           |         Returns logged-in user’s account         | Private |
-|     PUT      |          /api/myProfile           |                Edit user account                 | Private |
-|     GET      |      /api/myProfile/flights       |    Returns a list of flights the user booked     | Private |
-|     GET      |        /api/myProfile/air         | Returns a list of flight the admin has submitted | Private |
+| Request Type |          URL           |                  Functionality                   | Access  |
+|:------------:|:----------------------:|:------------------------------------------------:|:-------:|
+|     POST     |   /api/auth/register   |               User creates account               | Public  |
+|     POST     |    /api/auth/login     |              User logs into account              | Public  |
+|     GET      |     /api/myProfile     |         Returns logged-in user’s account         | Private |
+|     PUT      |     /api/myProfile     |                Edit user account                 | Private |
+|     GET      | /api/myProfile/flights |    Returns a list of flights the user booked     | Private |
+|     GET      |   /api/myProfile/air   | Returns a list of flight the admin has submitted | Private |
+
+[//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
 [//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights booked | Private |)
 
@@ -75,20 +77,21 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 
 ## Flights
-| Request Type | URL                                        | Functionality                        | Access  |
-|--------------|--------------------------------------------|--------------------------------------|---------|
-| GET          | /api/flights                               | Returns a list of all flights        | Public  |
-| POST         | /api/flights                               | Admin creates a new flight           | Private |
-| GET          | /api/flights/{flightId}                    | Returns flight details               | Public  |
-| DELETE       | /api/flights/{flightId}                    | Admin deletes flight                 | Private |
-| GET          | /api/flights/{flightId}/tickets            | Get all tickets available for flight | Private |
-| POST         | /api/flights/{flightId}/tickets            | Admin creates ticket  for flight     | Private |
+| Request Type | URL                             | Functionality                        | Access  |
+|--------------|---------------------------------|--------------------------------------|---------|
+| GET          | /api/flights                    | Returns a list of all flights        | Public  |
+| POST         | /api/flights                    | Admin creates a new flight           | Private |
+| GET          | /api/flights/{flightId}         | Returns flight details               | Public  |
+| DELETE       | /api/flights/{flightId}         | Admin deletes flight                 | Private |
+| GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Private |
+| POST         | /api/flights/{flightId}/tickets | Admin creates ticket  for flight     | Private |
 
 ## Tickets
-| Request Type | URL                     | Functionality          | Access  |
-|--------------|-------------------------|------------------------|---------|
-| GET          | /api/tickets/{ticketId} | Returns ticket details | Private |
-| DELETE       | /api/tickets/{ticketId} | Deletes booked ticket  | Private |
+| Request Type | URL                                | Functionality          | Access  |
+|--------------|------------------------------------|------------------------|---------|
+| GET          | /api/tickets/{ticketId}            | Returns ticket details | Private |
+| DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private |
+| POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private |
 
 
 # Future Features

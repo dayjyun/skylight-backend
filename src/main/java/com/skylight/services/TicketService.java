@@ -54,4 +54,7 @@ public class TicketService {
       // Throw a NotFoundException if the ticket is not found
       throw new NotFoundException("Ticket " + ticketId + " not found");
    }
+
+   // Functionality: User books ticket (Public | Private)
+   // Path: /api/tickets/{ticketId}/bookFlight
 }
