@@ -42,6 +42,7 @@ public class SkyLightDefinitions {
       return response.jsonPath().getString("message");
    }
 
+   // Airports
    /**
     * Scenario: User is able to view a list of airports (Public)
     * Path: GET /api/airports
@@ -132,6 +133,25 @@ public class SkyLightDefinitions {
 
    @Then("I can see a list of departing flights")
    public void iCanSeeAListOfDepartingFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
+
+
+   // Flights
+
+   @Given("a list of flights are available")
+   public void aListOfFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/flights", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for flights")
+   public void iSearchForFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of flights")
+   public void iCanSeeAListOfFlights() {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
 }

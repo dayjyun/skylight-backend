@@ -44,12 +44,12 @@ Feature: SkyLight API Functionalities
     When I search for departing flights
     Then I can see a list of departing flights
 
-#  # Flights
-#  # Public
-#  Scenario: User is able to view a list of flights
-#    Given a list of flights are available
-#    When I search for flight
-#    Then I can see a list of flights
+  # Flights
+  # Public
+  Scenario: User is able to view a list of flights
+    Given a list of flights are available
+    When I search for flights
+    Then I can see a list of flights
 #
 #  # Private
 #  Scenario: User is able to schedule a flight
