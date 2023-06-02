@@ -1,6 +1,7 @@
 package com.skylight.controllers;
 
 import com.skylight.models.Ticket;
+import com.skylight.models.User;
 import com.skylight.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -30,5 +31,7 @@ public class TicketController {
 
    // Functionality: User books ticket (Public | Private)
    // Path: /api/tickets/{ticketId}/bookFlight
-
+   public Ticket bookFlight(@PathVariable Long ticketId, @RequestBody User user) {
+      return ticketService.bookFlight(ticketId, user);
+   }
 }
