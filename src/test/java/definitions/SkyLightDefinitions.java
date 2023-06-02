@@ -35,17 +35,19 @@ public class SkyLightDefinitions {
    public String getSecurityKey() throws Exception {
       RequestSpecification request = RestAssured.given();
       JSONObject requestBody = new JSONObject();
-      requestBody.put("email", "e@email.com");
+      requestBody.put("email", "a@email.com");
       requestBody.put("password", "pw");
       request.header("Content-Type", "application/json");
-      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/users/login");
+      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/login");
       return response.jsonPath().getString("message");
    }
 
    @Given("a list of airports are available")
    public void aListOfAirportsAreAvailable() {
-      RestAssured.baseURI = BASE_URL;
-      RequestSpecification request = RestAssured.given();
-      response = request.get(BASE_URL + port+  "/api/airports");
+//      RestAssured.baseURI = BASE_URL;
+//      RequestSpecification request = RestAssured.given();
+//      response = request.get(BASE_URL + port+  "/api/airports");
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
 }

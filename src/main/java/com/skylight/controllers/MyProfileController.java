@@ -1,8 +1,25 @@
 package com.skylight.controllers;
 
+import com.skylight.models.User;
+import com.skylight.services.MyProfileService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping("/api/myProfile")
 public class MyProfileController {
+
+   @Autowired
+   private MyProfileService myProfileService;
+
    // Functionality: Returns logged-in user’s account	(Public | Private)
    // Path: /api/myProfile
+//   @GetMapping("")
+//   public User getMyProfile() {
+//      return myProfileService.getMyProfile();
+//   }
 
    // Functionality: Edit user account	(Public | Private)
    // Path: /api/myProfile
