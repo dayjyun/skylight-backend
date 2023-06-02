@@ -31,18 +31,19 @@ public class Data implements CommandLineRunner {
       if (airportRepository.count() == 0 && flightRepository.count() == 0 && ticketRepository.count() == 0 && userRepository.count() == 0) {
 
          // Create Users
-         // Admins/Pilots
+         // Users: Admins/Pilots
          User aUser = new User(1L, "a", "a@email.com", "pw", true);
          User bUser = new User(2L, "b", "b@email.com", "pw", true);
          User cUser = new User(3L, "c", "c@email.com", "pw", true);
 
-         // Passengers
+         // Users: Passengers
          User dUser = new User(4L, "d", "d@email.com", "pw", false);
          User eUser = new User(5L, "e", "e@email.com", "pw", false);
          User fUser = new User(6L, "f", "f@email.com", "pw", false);
          User gUser = new User(6L, "g", "g@email.com", "pw", false);
          User hUser = new User(6L, "h", "h@email.com", "pw", false);
 
+         // Save users
          userRepository.save(aUser);
          userRepository.save(bUser);
          userRepository.save(cUser);
@@ -53,23 +54,30 @@ public class Data implements CommandLineRunner {
          Airport phoenix = new Airport(3L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
          Airport austin =  new Airport(4L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
 
+         // Save airports
          airportRepository.save(midway);
          airportRepository.save(ohare);
          airportRepository.save(phoenix);
          airportRepository.save(austin);
 
+         // Create flights
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
          Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
          Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1600",  1133);
 
+         // Assign origin and destination airports to flights
+         // Assign pilot to flights
          flightFromMDWtoAUS.setOriginAirport(midway);
          flightFromMDWtoAUS.setDestinationAirport(austin);
          flightFromMDWtoAUS.setPilot(aUser);
 
+
          flightFromPHXtoAUS.setOriginAirport(phoenix);
          flightFromPHXtoAUS.setDestinationAirport(austin);
          flightFromPHXtoAUS.setPilot(bUser);
+
+
 
          flightRepository.save(flightFromMDWtoAUS);
          flightRepository.save(flightFromPHXtoAUS);
