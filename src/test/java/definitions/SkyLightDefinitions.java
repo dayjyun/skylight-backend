@@ -44,8 +44,8 @@ public class SkyLightDefinitions {
 
    // Airports
    /**
-    * Scenario: User is able to view a list of airports (Public)
-    * Path: GET /api/airports
+    * Scenario: User is able to view a list of airports
+    * (Public) Path: GET /api/airports
     * aListOfAirportsAreAvailable returns the list of airports in the database
     * iSearchForAAirports verifies the list of airports is not empty
     * iCanSeeAListOfAirports verifies the return status code is OK
@@ -67,8 +67,8 @@ public class SkyLightDefinitions {
    }
 
    /**
-    * Scenario: User is able to view an airport (Public)
-    * Path: GET /api/airports/{airportId}
+    * Scenario: User is able to view an airport
+    * (Public) Path: GET /api/airports/{airportId}
     * anAirportIsAvailable returns the airport with the specified ID
     * iSearchByAirportID verifies the airport is not null
     * iCanSeeTheAirportDetails verifies the return status code is OK
@@ -92,7 +92,7 @@ public class SkyLightDefinitions {
 
    /**
     * Scenario: User is able to view a list of arriving flights
-    * Path: GET /api/airports/{airportId}/arrivals
+    * (Public) Path: GET /api/airports/{airportId}/arrivals
     * aListOfArrivingFlightsAreAvailable returns the list of arriving flights for the airport with the specified ID
     * iSearchForArrivingFlights verifies the list of arriving flights is not empty
     * iCanSeeAListOfArrivingFlights verifies the return status code is OK
@@ -115,7 +115,7 @@ public class SkyLightDefinitions {
 
    /**
     * Scenario: User is able to view a list of departing flights
-    * Path: GET /api/airports/{airportId}/departures
+    * (Public) Path: GET /api/airports/{airportId}/departures
     * aListOfDepartingFlightsAreAvailable returns the list of departing flights for the airport with the specified ID
     * iSearchForDepartingFlights verifies the list of departing flights is not empty
     * iCanSeeAListOfDepartingFlights verifies the return status code is OK
@@ -138,7 +138,13 @@ public class SkyLightDefinitions {
 
 
    // Flights
-
+   /**
+    * Scenario: User is able to view a list of flights
+    * (Public) Path: GET /api/flights
+    * aListOfFlightsAreAvailable returns the list of flights in the database
+    * iSearchForFlights verifies the list of flights is not empty
+    * iCanSeeAListOfFlights verifies the return status code is OK
+    */
    @Given("a list of flights are available")
    public void aListOfFlightsAreAvailable() {
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/flights", HttpMethod.GET, null, String.class);
