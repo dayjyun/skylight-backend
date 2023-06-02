@@ -34,12 +34,12 @@ public class Data implements CommandLineRunner {
       if (airportRepository.count() == 0 && flightRepository.count() == 0 && ticketRepository.count() == 0 && userRepository.count() == 0) {
 
          // Create Users
-         // Users: Admins/Pilots
+         // Admins/Pilots
          User kc = new User(1L, "KC", "kc@email.com", "pw", true);
          User maksym = new User(2L, "Maksym", "maksym@email.com", "pw", true);
          User anakin = new User(3L, "Anakin Skywalker", "as@email.com", "pw", true);
 
-         // Users: Passengers
+         // Passengers
          User dominique = new User(4L, "Dominique", "dominique@email.com", "pw", false);
          User kim = new User(5L, "Kim", "kim@email.com", "pw", false);
          User jay = new User(6L, "Jay", "jay@email.com", "pw", false);
@@ -67,119 +67,94 @@ public class Data implements CommandLineRunner {
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1100",  885);
          Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  978);
          Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1530",  1133);
-         
+
          // Save airports
          airportRepository.save(midwayAirport);
          airportRepository.save(ohareAirport);
          airportRepository.save(austinAirport);
          airportRepository.save(phoenixAirport);
 
-         // Set arrival array lists for airports
-         // Set departures array list for airports
 
-         // Flight 1
-         // Add origin flight to airport 1
+         // Set origin flights
+         // Flight Midway to Austin
          ArrayList<Flight> originMDWAirport = new ArrayList<>();
-         originMDWAirport.add(flightFromMDWtoAUS);
+         originMDWAirport.add(flightFromMDWtoAUS); // Flight 1
          midwayAirport.setDepartingFlightsList(originMDWAirport);
-
-         // Add destination flight to airport 3
-         ArrayList<Flight> destinationAUSAirport = new ArrayList<>();
-         destinationAUSAirport.add(flightFromAUStoORD);
-         austinAirport.setArrivingFlightsList(destinationAUSAirport);
-
-         // Flight 2
-         // Add origin flight to airport 4
+         // Flight Phoenix to Austin
          ArrayList<Flight> originPHXAirport = new ArrayList<>();
-         originPHXAirport.add(flightFromPHXtoAUS);
+         originPHXAirport.add(flightFromPHXtoAUS); // Flight 2
          phoenixAirport.setDepartingFlightsList(originPHXAirport);
-
-         // Add destination flight to airport 3
-         ArrayList<Flight> destinationORDAirport = new ArrayList<>();
-         destinationORDAirport.add(flightFromAUStoPHX);
-         ohareAirport.setArrivingFlightsList(destinationORDAirport);
-
-         //  Flight 3
-         // Add origin flight to airport 3
+         // Flight Austin to Ohare
+         // Flight Austin to Phoenix
          ArrayList<Flight> originAUSAirport = new ArrayList<>();
-         originAUSAirport.add(flightFromAUStoORD);
+         originAUSAirport.add(flightFromAUStoORD); // Flight 3
+         originAUSAirport.add(flightFromAUStoPHX); // Flight 4
          austinAirport.setDepartingFlightsList(originAUSAirport);
 
-         // Add destination flight to airport 4
-         ArrayList<Flight> destinationPHXAirport = new ArrayList<>();
-         destinationPHXAirport.add(flightFromAUStoPHX);
-         phoenixAirport.setArrivingFlightsList(destinationPHXAirport);
 
-         // Flight 4
-         // Add origin flight to airport 3
-         ArrayList<Flight> originORDAirport = new ArrayList<>();
-         originORDAirport.add(flightFromAUStoORD);
-         ohareAirport.setDepartingFlightsList(originORDAirport);
-
-         // Add destination flight to airport 4
-         destinationAUSAirport.add(flightFromAUStoPHX);
+         // Set destination flights
+         // Flight Midway to Austin
+         // Flight Phoenix to Austin
+         ArrayList<Flight> destinationAUSAirport = new ArrayList<>();
+         destinationAUSAirport.add(flightFromMDWtoAUS); // Flight 1
+         destinationAUSAirport.add(flightFromPHXtoAUS); // Flight 2
          austinAirport.setArrivingFlightsList(destinationAUSAirport);
+
+         // Flight Austin to Ohare
+         ArrayList<Flight> destinationORDAirport = new ArrayList<>();
+         destinationORDAirport.add(flightFromAUStoORD); // Flight 3
+         ohareAirport.setArrivingFlightsList(destinationORDAirport);
+
+         // Flight Austin to Phoenix
+         ArrayList<Flight> destinationPHXAirport = new ArrayList<>();
+         destinationPHXAirport.add(flightFromAUStoPHX); // Flight 4
+         austinAirport.setArrivingFlightsList(destinationPHXAirport);
+
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
-         flightFromMDWtoAUS.setOriginAirport(midwayAirport); // 1
-         flightFromMDWtoAUS.setDestinationAirport(austinAirport); // 3
+
+         // Flight Midway to Austin
+         // Pilot kc
+         flightFromMDWtoAUS.setOriginAirport(midwayAirport);
+         flightFromMDWtoAUS.setDestinationAirport(austinAirport);
+         // Add flight to flight list for kc
          flightFromMDWtoAUS.setPilot(kc); // 1
-         // Add flight to flight list for pilot 1
          ArrayList<Flight> originMDWtoAUS = new ArrayList<>();
          originMDWtoAUS.add(flightFromMDWtoAUS);
          kc.setMyFlightsList(originMDWtoAUS);
 
-         // Assign origin and destination airports to flights
-         // Assign pilot to flights
-         flightFromPHXtoAUS.setOriginAirport(phoenixAirport); // 4
-         flightFromPHXtoAUS.setDestinationAirport(austinAirport); // 3
+         // Flight Phoenix to Austin
+         // Pilot maksym
+         flightFromPHXtoAUS.setOriginAirport(phoenixAirport);
+         flightFromPHXtoAUS.setDestinationAirport(austinAirport);
+         // Add flight to flight list for maksym
          flightFromPHXtoAUS.setPilot(maksym); // 2
-         // Add flight to flight list for pilot 2
          ArrayList<Flight> originPHXtoAUS = new ArrayList<>();
          originPHXtoAUS.add(flightFromPHXtoAUS);
          maksym.setMyFlightsList(originPHXtoAUS);
 
-         // Assign origin and destination airports to flights
-         // Assign pilot to flights
-         flightFromAUStoORD.setOriginAirport(austinAirport); // 3
-         flightFromAUStoORD.setDestinationAirport(ohareAirport); // 2
+         // Flight Austin to Ohare
+         // Pilot  anakin
+         flightFromAUStoORD.setOriginAirport(austinAirport);
+         flightFromAUStoORD.setDestinationAirport(ohareAirport);
+         // Add flight to flight list for anakin
          flightFromAUStoORD.setPilot(anakin); // 3
-         // Add flight to flight list for pilot 3
          ArrayList<Flight> originAUStoORD = new ArrayList<>();
          originAUStoORD.add(flightFromAUStoORD);
          anakin.setMyFlightsList(originAUStoORD);
 
-         // Assign origin and destination airports to flights
-         // Assign pilot to flights
-         flightFromAUStoPHX.setOriginAirport(phoenixAirport); // 3
-         flightFromAUStoPHX.setDestinationAirport(phoenixAirport); // 4
-         flightFromAUStoPHX.setPilot(kc); // 1
+         // Flight Austin to Phoenix
+         // Pilot kc
+         flightFromAUStoPHX.setOriginAirport(austinAirport);
+         flightFromAUStoPHX.setDestinationAirport(phoenixAirport);
          // Add flight to flight list for pilot 1
+         flightFromAUStoPHX.setPilot(kc); // 1
          ArrayList<Flight> originAUStoPHX = new ArrayList<>();
          originAUStoPHX.add(flightFromAUStoORD);
          kc.setMyFlightsList(originAUStoPHX);
 
-         // Assign origin and destination airports to flights
-         // Assign pilot to flights
-         flightFromAUStoORD.setOriginAirport(austinAirport); // 3
-         flightFromAUStoORD.setDestinationAirport(ohareAirport); // 2
-         flightFromAUStoORD.setPilot(anakin); // 3
-         // Add flight to flight list for pilot 3
-         ArrayList<Flight> destinationAUS = new ArrayList<>();
-         destinationAUS.add(flightFromAUStoORD);
-         anakin.setMyFlightsList(destinationAUS);
-
-         // Assign origin and destination airports to flights
-         // Assign pilot to flights
-//         flightFromAUStoPHX.setOriginAirport(phoenixAirport); // 3
-         flightFromAUStoPHX.setDestinationAirport(phoenixAirport); // 4
-         flightFromAUStoPHX.setPilot(kc); // 1
-         // Add flight to flight list for pilot 1
-         ArrayList<Flight> destinationPHX = new ArrayList<>();
-         destinationPHX.add(flightFromAUStoPHX);
-         kc.setMyFlightsList(destinationPHX);
-
+         
          // Save flight details
          flightRepository.save(flightFromMDWtoAUS);
          flightRepository.save(flightFromPHXtoAUS);
@@ -187,52 +162,52 @@ public class Data implements CommandLineRunner {
          flightRepository.save(flightFromAUStoPHX);
 
          // Create tickets
-         Ticket oneT = new Ticket(1L,  flightFromMDWtoAUS, dominique);
-         Ticket twoT = new Ticket(2L, flightFromPHXtoAUS, kim);
-         Ticket threeT = new Ticket(3L, flightFromAUStoORD, jay);
-         Ticket fourT = new Ticket(4L, flightFromAUStoPHX, deShe);
+         Ticket ticketFromMDWtoAUS = new Ticket(1L,  flightFromMDWtoAUS, dominique);
+         Ticket ticketFromPHXtoAUS = new Ticket(2L, flightFromPHXtoAUS, kim);
+         Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
+         Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
 
          // Save ticket details
-         ticketRepository.save(oneT);
-         ticketRepository.save(twoT);
-         ticketRepository.save(threeT);
-         ticketRepository.save(fourT);
+         ticketRepository.save(ticketFromMDWtoAUS);
+         ticketRepository.save(ticketFromPHXtoAUS);
+         ticketRepository.save(ticketFromAUStoORD);
+         ticketRepository.save(ticketFromAUStoPHX);
+
 
          // Assign tickets to flights
          ArrayList<Ticket> oneList = new ArrayList<>();
-         oneList.add(oneT);
+         oneList.add(ticketFromMDWtoAUS);
          flightFromMDWtoAUS.setListOfTickets(oneList);
 
          ArrayList<Ticket> twoList = new ArrayList<>();
-         twoList.add(twoT);
+         twoList.add(ticketFromPHXtoAUS);
          flightFromPHXtoAUS.setListOfTickets(twoList);
 
          ArrayList<Ticket> threeList = new ArrayList<>();
-         threeList.add(threeT);
+         threeList.add(ticketFromAUStoORD);
          flightFromAUStoORD.setListOfTickets(threeList);
 
          ArrayList<Ticket> fourList = new ArrayList<>();
-         fourList.add(fourT);
+         fourList.add(ticketFromAUStoPHX);
          flightFromAUStoPHX.setListOfTickets(fourList);
+
 
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
-         dominiqueTickets.add(oneT);
+         dominiqueTickets.add(ticketFromMDWtoAUS);
          dominique.setMyTicketsList(dominiqueTickets);
 
          ArrayList<Ticket> kimTickets = new ArrayList<>();
-         kimTickets.add(twoT);
+         kimTickets.add(ticketFromPHXtoAUS);
          kim.setMyTicketsList(kimTickets);
 
          ArrayList<Ticket> jayTickets = new ArrayList<>();
-         jayTickets.add(threeT);
+         jayTickets.add(ticketFromAUStoORD);
          jay.setMyTicketsList(jayTickets);
 
          ArrayList<Ticket> deSheTickets = new ArrayList<>();
-         deSheTickets.add(fourT);
+         deSheTickets.add(ticketFromAUStoPHX);
          deShe.setMyTicketsList(deSheTickets);
-
-
       }
    }
 }
