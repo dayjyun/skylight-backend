@@ -15,10 +15,6 @@ public class Flight {
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
 
-   // Number of seats/tickets available
-   @Column
-   private Long numberOfSeats;
-
    @Column
    private String airplane;
 
@@ -31,9 +27,14 @@ public class Flight {
    @Column
    private String arrivalTime;
 
-   // Waiting period preset for 60 minutes
    @Column
-   private int layoverTime = 60;
+   private Integer layoverTime;
+
+   @Column
+   private Integer distanceMiles;
+
+   @Column
+   private Double price;
 
    @ManyToOne
    @JoinColumn(name = "origin_airport")
@@ -49,39 +50,39 @@ public class Flight {
    @JsonIgnore
    private User pilot;
 
-   // List of flights a passenger is scheduled to board
-//   @ManyToMany
-//   @JoinTable(name = "tickets",
-//               joinColumns = @JoinColumn(name = "flight_id"),
-//               inverseJoinColumns = @JoinColumn(name = "user_id"))
-//   @JsonIgnore
-//   private List<User> bookedFlightsList;
-
    @OneToMany(mappedBy = "flight", orphanRemoval = true)
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
    private List<Ticket> listOfTickets;
 
-   @Column
-   private String distance;
+   // List of flights a passenger is scheduled to board
+   // @ManyToMany
+   // @JoinTable(name = "tickets",
+   // joinColumns = @JoinColumn(name = "flight_id"),
+   // inverseJoinColumns = @JoinColumn(name = "user_id"))
+   // @JsonIgnore
+   // private List<User> bookedFlightsList;
 
-   @Column
-   private Float price;
+   // Number of seats/tickets available
+   // @Column
+   // private Integer numberOfSeats;
 
    public Flight() {}
 
-   public Flight(Long id, Long numberOfSeats, String airplane, String date, String departureTime, int layoverTime, String arrivalTime,
-                 String time,
-                 String distance, Float price) {
+   public Flight(Long id, String airplane, String date, String departureTime, int layoverTime, String arrivalTime,
+                 Integer distanceMiles) {
       this.id = id;
-      this.numberOfSeats = numberOfSeats;
       this.airplane = airplane;
+      // MM-DD-YYYY
       this.date = date;
+      // 24-Hour format
       this.departureTime = departureTime;
       this.arrivalTime = arrivalTime;
-      this.layoverTime = layoverTime;
-      this.distance = distance;
-      this.price = price;
+      // Waiting period is 60 minutes minimum
+      this.layoverTime = layoverTime + 60;
+      this.distanceMiles = distanceMiles;
+      // Price is 30 cents per mile
+      this.price = distanceMiles * 0.30;
    }
 
    public Long getId() {
@@ -90,14 +91,6 @@ public class Flight {
 
    public void setId(Long id) {
       this.id = id;
-   }
-
-   public Long getNumberOfSeats() {
-      return numberOfSeats;
-   }
-
-   public void setNumberOfSeats(Long numberOfSeats) {
-      this.numberOfSeats = numberOfSeats;
    }
 
    public String getAirplane() {
@@ -156,19 +149,19 @@ public class Flight {
       this.destinationAirport = destinationAirport;
    }
 
-   public String getDistance() {
-      return distance;
+   public Integer getDistance() {
+      return distanceMiles;
    }
 
-   public void setDistance(String distance) {
-      this.distance = distance;
+   public void setDistance(Integer distance) {
+      this.distanceMiles = distance;
    }
 
-   public Float getPrice() {
+   public Double getPrice() {
       return price;
    }
 
-   public void setPrice(Float price) {
+   public void setPrice(Double price) {
       this.price = price;
    }
 
@@ -181,15 +174,6 @@ public class Flight {
       this.pilot = pilot;
    }
 
-//   public List<User> getBookedFlightsList() {
-//      return bookedFlightsList;
-//   }
-//
-//   public void setBookedFlightsList(List<User> bookedFlightsList) {
-//      this.bookedFlightsList = bookedFlightsList;
-//   }
-
-
    public List<Ticket> getListOfTickets() {
       return listOfTickets;
    }
@@ -198,11 +182,27 @@ public class Flight {
       this.listOfTickets = listOfTickets;
    }
 
+//   public Integer getNumberOfSeats() {
+//      return numberOfSeats;
+//   }
+//
+//   public void setNumberOfSeats(Integer numberOfSeats) {
+//      this.numberOfSeats = numberOfSeats;
+//   }
+
+//   public List<User> getBookedFlightsList() {
+//      return bookedFlightsList;
+//   }
+//
+//   public void setBookedFlightsList(List<User> bookedFlightsList) {
+//      this.bookedFlightsList = bookedFlightsList;
+//   }
+
    @Override
    public String toString() {
       return "Flight{" +
               "id=" + id +
-              ", numberOfSeats=" + numberOfSeats +
+//              ", numberOfSeats=" + numberOfSeats +
               ", airplane='" + airplane + '\'' +
               ", date='" + date + '\'' +
               ", departureTime='" + departureTime + '\'' +
@@ -211,7 +211,7 @@ public class Flight {
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
 //              ", bookedFlightsList=" + bookedFlightsList +
-              ", distance='" + distance + '\'' +
+              ", distanceMiles='" + distanceMiles + '\'' +
               ", price=" + price +
               '}';
    }
