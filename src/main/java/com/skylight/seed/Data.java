@@ -154,7 +154,7 @@ public class Data implements CommandLineRunner {
          originAUStoPHX.add(flightFromAUStoORD);
          kc.setMyFlightsList(originAUStoPHX);
 
-         
+
          // Save flight details
          flightRepository.save(flightFromMDWtoAUS);
          flightRepository.save(flightFromPHXtoAUS);

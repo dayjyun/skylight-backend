@@ -81,7 +81,7 @@ public class SkyLightDefinitions {
    
    @Given("I can see a list of arriving flights are available")
    public void iCanSeeAListOfArrivingFlightsAreAvailable() {
-      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/1/arrivals", HttpMethod.GET, null, String.class);
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/2/arrivals", HttpMethod.GET, null, String.class);
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
 
