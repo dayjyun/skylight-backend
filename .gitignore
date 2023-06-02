@@ -32,4 +32,4 @@ build/
 ### VS Code ###
 .vscode/
 
-APIKeys.java
+src/main/java/api_keys
