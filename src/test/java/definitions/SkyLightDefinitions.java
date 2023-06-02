@@ -112,6 +112,13 @@ public class SkyLightDefinitions {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
 
+   /**
+    * Scenario: User is able to view a list of departing flights
+    * Path: GET /api/airports/{airportId}/departures
+    * aListOfDepartingFlightsAreAvailable returns the list of departing flights for the airport with the specified ID
+    * iSearchForDepartingFlights verifies the list of departing flights is not empty
+    * iCanSeeAListOfDepartingFlights verifies the return status code is OK
+    */
    @Given("a list of departing flights are available")
    public void aListOfDepartingFlightsAreAvailable() {
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/1/departures", HttpMethod.GET, null, String.class);
