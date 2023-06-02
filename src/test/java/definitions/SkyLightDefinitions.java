@@ -111,4 +111,20 @@ public class SkyLightDefinitions {
    public void iCanSeeAListOfArrivingFlights() {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
+
+   @Given("a list of departing flights are available")
+   public void aListOfDepartingFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/1/departures", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for departing flights")
+   public void iSearchForDepartingFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of departing flights")
+   public void iCanSeeAListOfDepartingFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
 }

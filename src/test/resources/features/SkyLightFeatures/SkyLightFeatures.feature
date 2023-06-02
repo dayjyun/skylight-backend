@@ -38,12 +38,12 @@ Feature: SkyLight API Functionalities
     When I search for arriving flights
     Then I can see a list of arriving flights
 
-#  # Public
-#  Scenario: User is able to view a list of departure flights
-#    Given a list of departing flights are available
-#    When I search for departing flights
-#    Then I can see a list of departing flights
-#
+  # Public
+  Scenario: User is able to view a list of departure flights
+    Given a list of departing flights are available
+    When I search for departing flights
+    Then I can see a list of departing flights
+
 #  # Flights
 #  # Public
 #  Scenario: User is able to view a list of flights
