@@ -61,7 +61,7 @@ public class Data implements CommandLineRunner {
          Airport ohareAirport = new Airport(2L, "O'Hare", "OHX", "Chicago", "IL", "41.8781 N",  "87.6298 W");
          Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
          Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
-         
+
          // Save airports
          airportRepository.save(midwayAirport);
          airportRepository.save(ohareAirport);

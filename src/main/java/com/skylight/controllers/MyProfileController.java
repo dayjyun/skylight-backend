@@ -10,6 +10,6 @@ public class MyProfileController {
    // Functionality: Returns a list of flights the user booked	(Public | Private)
    // Path: /api/myProfile/flights
 
-   //  Functionality: Returns a list of flight the user has submitted	(Public | Private)
+   //  Functionality: Returns a list of flight the admin has submitted	(Public | Private)
    // Path: /api/myProfile/air
 }

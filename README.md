@@ -1,5 +1,17 @@
 # Table Of Contents
 - [SkyLight](#skylight)
+- [Technologies](#technologies)
+- [Features](#features)
+- [Run Application](#run-application)
+- [Approach](#approach)
+- [Entity-Relationship Diagram](#erd)
+- [Endpoints](#endpoints)
+    - [User](#user)
+    - [Airports](#airports)
+    - [Flights](#flights)
+    - [Tickets](#tickets)
+- [Future Features](#future-features)
+- [Acknowledgements](#acknowledgements)
 
 # SkyLight
 
@@ -30,34 +42,34 @@
 - [jjwt-jackson](https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson)
 </details>
 
+# Approach
+(User Stories)[https://github.com/dayjyun/skylight-backend/wiki/SkyLight]
+
+(Kanban Board)[https://github.com/users/dayjyun/projects/8]
+
+# ERD
+![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png)
+
 # Endpoints
 ## User
-| Request Type |                URL                |                  Functionality                  | Access  |
-|:------------:|:---------------------------------:|:-----------------------------------------------:|:-------:|
-|     POST     |        /api/auth/register         |              User creates account               | Public  |
-|     POST     |          /api/auth/login          |             User logs into account              | Public  |
-|     GET      |          /api/myProfile           |        Returns logged-in user’s account         | Private |
-|     PUT      |          /api/myProfile           |                Edit user account                | Private |
-|     GET      |      /api/myProfile/flights       |    Returns a list of flights the user booked    | Private |
-|     GET      |        /api/myProfile/air         | Returns a list of flight the user has submitted | Private |
+| Request Type |                URL                |                  Functionality                   | Access  |
+|:------------:|:---------------------------------:|:------------------------------------------------:|:-------:|
+|     POST     |        /api/auth/register         |               User creates account               | Public  |
+|     POST     |          /api/auth/login          |              User logs into account              | Public  |
+|     GET      |          /api/myProfile           |         Returns logged-in user’s account         | Private |
+|     PUT      |          /api/myProfile           |                Edit user account                 | Private |
+|     GET      |      /api/myProfile/flights       |    Returns a list of flights the user booked     | Private |
+|     GET      |        /api/myProfile/air         | Returns a list of flight the admin has submitted | Private |
 
-[//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights purchased | Private |)
+[//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights booked | Private |)
 
-[//]: # (|    DELETE    | /api/myProfile/flights/{flightId} |      Delete flight from list of flights purchased      | Private |)
 
-[//]: # (## Credit Cards)
+## Airports
+| Request Type |            URL            |         Functionality         | Access |
+|:------------:|:-------------------------:|:-----------------------------:|:------:|
+|     GET      |       /api/airports       |  Returns a list of airports   | Public |
+|     GET      | /api/airports/{airportId} | Returns details of an airport | Public |
 
-[//]: # (| Request Type | URL            | Functionality                         | Access  |)
-
-[//]: # (|--------------|----------------|---------------------------------------|---------|)
-
-[//]: # (| GET          | /api/cc        | Gets Credit Card details for the user | Private |)
-
-[//]: # (| POST         | /api/cc        | Create new credit card data           | Private |)
-
-[//]: # (| PUT          | /api/cc/{ccId} | User updates credit card data         | Private |)
-
-[//]: # (| DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |)
 
 ## Flights
 | Request Type | URL                                        | Functionality                        | Access  |
@@ -75,11 +87,15 @@
 | GET          | /api/tickets/{ticketId} | Returns ticket details | Private |
 | DELETE       | /api/tickets/{ticketId} | Deletes booked ticket  | Private |
 
-## Airports
-| Request Type |            URL            |         Functionality         | Access |
-|:------------:|:-------------------------:|:-----------------------------:|:------:|
-|     GET      |       /api/airports       |  Returns a list of airports   | Public |
-|     GET      | /api/airports/{airportId} | Returns details of an airport | Public |
+# Future Features
 
-# Diagram
-![](https://skylight-project.s3.amazonaws.com/SkyLight_Diagram.png) 
+Set up a payment service
+### Credit Cards
+| Request Type | URL            | Functionality                         | Access  |
+|--------------|----------------|---------------------------------------|---------|
+| GET          | /api/cc        | Gets Credit Card details for the user | Private |
+| POST         | /api/cc        | Create new credit card data           | Private |
+| PUT          | /api/cc/{ccId} | User updates credit card data         | Private |
+| DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |
+
+# Acknowledgements
