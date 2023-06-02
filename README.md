@@ -44,6 +44,7 @@
 
 # Approach
 [User Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight)
+
 [Kanban Board](https://github.com/users/dayjyun/projects/8])
 
 # ERD
@@ -64,10 +65,12 @@
 
 
 ## Airports
-| Request Type |            URL            |         Functionality         | Access |
-|:------------:|:-------------------------:|:-----------------------------:|:------:|
-|     GET      |       /api/airports       |  Returns a list of airports   | Public |
-|     GET      | /api/airports/{airportId} | Returns details of an airport | Public |
+| Request Type |            URL            |                   Functionality                    | Access |
+|:------------:|:-------------------------:|:--------------------------------------------------:|:------:|
+|     GET      |       /api/airports       |             Returns a list of airports             | Public |
+|     GET      | /api/airports/{airportId} |           Returns details of an airport            | Public |
+|     GET      |  /api/airports/arrivals   | Returns a list of arriving flights for an airport  | Public |
+|     GET      | /api/airports/departures  | Returns a list of departing flights for an airport | Public |
 
 
 ## Flights
