@@ -50,4 +50,14 @@ public class SkyLightDefinitions {
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports", HttpMethod.GET, null, String.class);
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
+
+   @When("I search for a airports")
+   public void iSearchForAAirports() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of airports")
+   public void iCanSeeAListOfAirports() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
 }
