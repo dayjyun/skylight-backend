@@ -1,6 +1,7 @@
 package com.skylight.controllers;
 
 import com.skylight.models.Airport;
+import com.skylight.models.Flight;
 import com.skylight.services.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,6 +33,10 @@ public class AirportController {
       return airportService.getAirportById(airportId);
    }
 
-   // Departure flights
-   // Arriving Flights
+   // Return list of dDeparture flights
+   @GetMapping(path = "/{airportId}/departures")
+   public List<Flight> getDepartures(@PathVariable Long airportId) {
+      return airportService.getDepartures(airportId);
+   }
+   // Return list of arriving Flights
 }

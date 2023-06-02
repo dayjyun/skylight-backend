@@ -53,4 +53,23 @@ public class AirportService {
       // Throw an error if the airport is found
       throw new NotFoundException("No airport found");
    }
+
+   /**
+    * getArrivals returns a list of all arriving flights for an airport
+    * A NotFoundException is thrown if an airport is not found with the provided ID
+    * @param airportId is the airport ID to search by
+    * @return list of flights
+    */
+   public List<Flight> getDepartures(Long airportId) {
+      // Create an optional of an airport
+      Optional<Airport> airport = airportRepository.findById(airportId);
+      // Check if the airport is present
+      if(airport.isPresent()) {
+         // Return the airport data
+         return airport.get().getDepartingFlightsList();
+      }
+      // Throw an error if the airport is found
+      throw new NotFoundException("No airport found");
+   }
+   // Return list of arriving Flights
 }
