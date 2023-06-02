@@ -44,7 +44,6 @@
 
 # Approach
 [User Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight)
-
 [Kanban Board](https://github.com/users/dayjyun/projects/8])
 
 # ERD
