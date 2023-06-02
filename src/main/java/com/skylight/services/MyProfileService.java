@@ -1,5 +1,8 @@
 package com.skylight.services;
 
+import org.springframework.stereotype.Service;
+
+@Service
 public class MyProfileService {
    // Functionality: Returns logged-in user’s account	(Public | Private)
 
