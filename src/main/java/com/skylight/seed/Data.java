@@ -67,7 +67,12 @@ public class Data implements CommandLineRunner {
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1100",  885);
          Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  978);
          Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1530",  1133);
-
+         
+         // Save airports
+         airportRepository.save(midwayAirport);
+         airportRepository.save(ohareAirport);
+         airportRepository.save(austinAirport);
+         airportRepository.save(phoenixAirport);
 
          // Set arrival array lists for airports
          // Set departures array list for airports
@@ -114,12 +119,6 @@ public class Data implements CommandLineRunner {
          // Add destination flight to airport 4
          destinationAUSAirport.add(flightFromAUStoPHX);
          austinAirport.setArrivingFlightsList(destinationAUSAirport);
-
-         // Save flight details
-         flightRepository.save(flightFromMDWtoAUS);
-         flightRepository.save(flightFromPHXtoAUS);
-         flightRepository.save(flightFromAUStoORD);
-         flightRepository.save(flightFromAUStoPHX);
 
          // Assign origin and destination airports to flights
          // Assign pilot to flights
@@ -181,12 +180,11 @@ public class Data implements CommandLineRunner {
          destinationPHX.add(flightFromAUStoPHX);
          kc.setMyFlightsList(destinationPHX);
 
-         // Save airports
-         airportRepository.save(midwayAirport);
-         airportRepository.save(ohareAirport);
-         airportRepository.save(austinAirport);
-         airportRepository.save(phoenixAirport);
-
+         // Save flight details
+         flightRepository.save(flightFromMDWtoAUS);
+         flightRepository.save(flightFromPHXtoAUS);
+         flightRepository.save(flightFromAUStoORD);
+         flightRepository.save(flightFromAUStoPHX);
 
          // Create tickets
          Ticket oneT = new Ticket(1L,  flightFromMDWtoAUS, dominique);
