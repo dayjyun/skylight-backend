@@ -53,14 +53,14 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 # Endpoints
 ## User
-| Request Type |          URL           |                  Functionality                   | Access  |
-|:------------:|:----------------------:|:------------------------------------------------:|:-------:|
-|     POST     |   /api/auth/register   |               User creates account               | Public  |
-|     POST     |    /api/auth/login     |              User logs into account              | Public  |
-|     GET      |     /api/myProfile     |         Returns logged-in user’s account         | Private |
-|     PUT      |     /api/myProfile     |                Edit user account                 | Private |
-|     GET      | /api/myProfile/flights |    Returns a list of flights the user booked     | Private |
-|     GET      |   /api/myProfile/air   | Returns a list of flight the admin has submitted | Private |
+| Request Type |           URL            |                  Functionality                   | Access  |
+|:------------:|:------------------------:|:------------------------------------------------:|:-------:|
+|     POST     |    /api/auth/register    |               User creates account               | Public  |
+|     POST     |     /api/auth/login      |              User logs into account              | Public  |
+|     GET      |      /api/myProfile      |         Returns logged-in user’s account         | Private |
+|     PUT      |      /api/myProfile      |                Edit user account                 | Private |
+|     GET      | /api/myProfile/myTickets |    Returns a list of flights the user booked     | Private |
+|     GET      |    /api/myProfile/air    | Returns a list of flight the admin has submitted | Private |
 
 [//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
@@ -89,7 +89,7 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 ## Tickets
 | Request Type | URL                                | Functionality          | Access  |
 |--------------|------------------------------------|------------------------|---------|
-| GET          | /api/tickets/{ticketId}            | Returns ticket details | Private |
+| GET          | /api/tickets/{ticketId}            | Returns ticket details | Public  |
 | DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private |
 | POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private |
 

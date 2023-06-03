@@ -74,6 +74,11 @@ public class TicketService {
          // Throw an AlreadyExistsException if the user is already booked on the flight
          throw new AlreadyExistsException("User " + user.getId() + " is already booked on flight " + ticketId);
       }
+
+      // Check passenger is null.
+      // If passenger is null || empty, users can view ticket
+      // else unauthorized
+
       // Check if the ticket is present
       if(ticket.isPresent()) {
          // Add user as the owner of the ticket
