@@ -8,10 +8,10 @@ Feature: SkyLight API Functionalities
     Then I can see my account details
 
 #  # Private
-#  Scenario: User is able to see a list of flights they booked
-#    Given a list of flights are booked
-#    When I search for the list of flights I booked
-#    Then I can see the list of flights I booked
+  Scenario: User is able to see a list of flights they booked
+    Given a list of flights are booked
+    When I search for the flights I booked
+    Then I can see the flights I booked
 
 #  # PRIVATE
 #  Scenario: User is able to edit their account details

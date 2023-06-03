@@ -68,6 +68,30 @@ public class SkyLightDefinitions {
       Assert.assertEquals(200,  response.getStatusCode());
    }
 
+   /**
+    * aListOfUsersAreAvailable returns the list of flights in the database
+    * @throws Exception
+    */
+   @Given("a list of flights are booked")
+   public void aListOfFlightsAreBooked() throws Exception {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setBearerAuth(getSecurityKey());
+      HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/myFlights", HttpMethod.GET, entity, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for the flights I booked")
+   public void iSearchForTheFlightsIBooked() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see the flights I booked")
+   public void iCanSeeTheFlightsIBooked() {
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
+   }
+
    // Airports
    /**
     * Scenario: User is able to view a list of airports
@@ -212,4 +236,7 @@ public class SkyLightDefinitions {
    }
 
 
+
 }
+
+
