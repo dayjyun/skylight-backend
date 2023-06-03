@@ -54,28 +54,10 @@ public class Data implements CommandLineRunner {
 
          // Save users
 
-//         List<User> usersList = new ArrayList<>(Arrays.asList(kc, maksym, anakin, dominique, kim, jay, deShe, jeff));
-//         for(User user : usersList) {
-//            userService.createUser(user);
-//
-//         }
-         userService.createUser(kc);
-         userService.createUser(maksym);
-         userService.createUser(anakin);
-         userService.createUser(dominique);
-         userService.createUser(kim);
-         userService.createUser(jay);
-         userService.createUser(deShe);
-         userService.createUser(jeff);
-         System.out.println(kc);
-//         userRepository.save(kc);
-//         userRepository.save(maksym);
-//         userRepository.save(anakin);
-//         userRepository.save(dominique);
-//         userRepository.save(kim);
-//         userRepository.save(jay);
-//         userRepository.save(deShe);
-//         userRepository.save(jeff);
+         List<User> usersList = new ArrayList<>(Arrays.asList(kc, maksym, anakin, dominique, kim, jay, deShe, jeff));
+         for(User user : usersList) {
+            userService.createUser(user);
+         }
 
          // Create Airports
          Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
