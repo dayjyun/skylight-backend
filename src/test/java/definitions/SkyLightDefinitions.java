@@ -43,6 +43,14 @@ public class SkyLightDefinitions {
    }
 
    // Users
+   /**
+    * Scenario: User is able to view their account details
+    * (Private) Path: GET /api/myProfile
+    * myAccountIsAvailable returns the logged-in user's profile
+    * iSearchForMyAccount verifies the user's profile is not null
+    * iCanSeeMyAccountDetails verifies the return status code is OK
+    * @throws Exception if the user is not logged in
+    */
    @Given("my account is available")
    public void myAccountIsAvailable() throws Exception {
       RestAssured.baseURI = BASE_URL;
