@@ -102,6 +102,7 @@ Feature: SkyLight API Functionalities
 #    When I delete the flight
 #    Then I can see the details of the deleted flight
 
+  # Edit
   # Private
   Scenario: User is able to edit their account details
     Given my account is available

@@ -82,6 +82,8 @@ public class SkyLightDefinitions {
     * Scenario: User is able to see a list of flights they booked
     * (Private) Path: GET /api/myProfile/myFlights
     * aListOfUsersAreAvailable returns the list of flights in the database
+    * iSearchForUsers verifies the list of flights is not empty
+    * iCanSeeAListOfUsers verifies the return status code is OK
     * @throws Exception if the user is not logged in
     */
    @Given("a list of flights are booked")
@@ -133,7 +135,7 @@ public class SkyLightDefinitions {
     * (Public) Path: GET /api/airports/{airportId}
     * anAirportIsAvailable returns the airport with the specified ID
     * iSearchByAirportID verifies the airport is not null
-    * iCanSeeTheAirportDetails verifies the return status code is OK
+    * iCanSeeTheAirportDetails verifies the return status code is 200
     */
    @Given("an airport is available")
    public void anAirportIsAvailable() {
@@ -156,8 +158,9 @@ public class SkyLightDefinitions {
    /**
     * Scenario: User is able to search an airport by its code
     * (Public) Path: GET /api/airports/code/{airportCode}
-    * Borrows: anAirportIsAvailable returns the airport with the specified ID
-    * iSearchByAirportCode
+    * theAirportIsAvailable returns the airport with the specified code
+    * iSearchByAirportCode verifies the airport is not null
+    * iCanSeeTheAirportDetails verifies the return status code is 200
     */
    @Given("there is an airport is available")
    public void thereIsAnAirportIsAvailable() {
@@ -252,6 +255,8 @@ public class SkyLightDefinitions {
     * Scenario: User is able to edit their account details
     * (Private) Path: PUT /api/myProfile
     * Borrows: myAccountIsAvailable returns the logged-in user's profile
+    * iEditMyProfile updates the user's profile
+    * iSeeMyProfileIsUpdated verifies the return status code is 200
     */
    @When("I edit my profile")
    public void iEditMyProfile() throws Exception {
