@@ -35,17 +35,129 @@ public class SkyLightDefinitions {
    public String getSecurityKey() throws Exception {
       RequestSpecification request = RestAssured.given();
       JSONObject requestBody = new JSONObject();
-      requestBody.put("email", "e@email.com");
+      requestBody.put("email", "a@email.com");
       requestBody.put("password", "pw");
       request.header("Content-Type", "application/json");
-      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/users/login");
+      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/login");
       return response.jsonPath().getString("message");
    }
 
+   // Airports
+   /**
+    * Scenario: User is able to view a list of airports
+    * (Public) Path: GET /api/airports
+    * aListOfAirportsAreAvailable returns the list of airports in the database
+    * iSearchForAAirports verifies the list of airports is not empty
+    * iCanSeeAListOfAirports verifies the return status code is OK
+    */
    @Given("a list of airports are available")
    public void aListOfAirportsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for airports")
+   public void iSearchForAAirports() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of airports")
+   public void iCanSeeAListOfAirports() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
+
+   /**
+    * Scenario: User is able to view an airport
+    * (Public) Path: GET /api/airports/{airportId}
+    * anAirportIsAvailable returns the airport with the specified ID
+    * iSearchByAirportID verifies the airport is not null
+    * iCanSeeTheAirportDetails verifies the return status code is OK
+    */
+   @Given("an airport is available")
+   public void anAirportIsAvailable() {
       RestAssured.baseURI = BASE_URL;
       RequestSpecification request = RestAssured.given();
-      response = request.get(BASE_URL + port+  "/api/airports");
+      response = request.get(BASE_URL + port + "/api/airports/1");
+   }
+
+   @When("I search by airport ID")
+   public void iSearchByAirportID() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the airport details")
+   public void iCanSeeTheAirportDetails() {
+      Assert.assertEquals(200,  response.getStatusCode());
+   }
+
+   /**
+    * Scenario: User is able to view a list of arriving flights
+    * (Public) Path: GET /api/airports/{airportId}/arrivals
+    * aListOfArrivingFlightsAreAvailable returns the list of arriving flights for the airport with the specified ID
+    * iSearchForArrivingFlights verifies the list of arriving flights is not empty
+    * iCanSeeAListOfArrivingFlights verifies the return status code is OK
+    */
+   @Given("a list of arriving flights are available")
+   public void iCanSeeAListOfArrivingFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/2/arrivals", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for arriving flights")
+   public void iSearchForArrivingFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of arriving flights")
+   public void iCanSeeAListOfArrivingFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
+
+   /**
+    * Scenario: User is able to view a list of departing flights
+    * (Public) Path: GET /api/airports/{airportId}/departures
+    * aListOfDepartingFlightsAreAvailable returns the list of departing flights for the airport with the specified ID
+    * iSearchForDepartingFlights verifies the list of departing flights is not empty
+    * iCanSeeAListOfDepartingFlights verifies the return status code is OK
+    */
+   @Given("a list of departing flights are available")
+   public void aListOfDepartingFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/airports/1/departures", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for departing flights")
+   public void iSearchForDepartingFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of departing flights")
+   public void iCanSeeAListOfDepartingFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+   }
+
+
+   // Flights
+   /**
+    * Scenario: User is able to view a list of flights
+    * (Public) Path: GET /api/flights
+    * aListOfFlightsAreAvailable returns the list of flights in the database
+    * iSearchForFlights verifies the list of flights is not empty
+    * iCanSeeAListOfFlights verifies the return status code is OK
+    */
+   @Given("a list of flights are available")
+   public void aListOfFlightsAreAvailable() {
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/flights", HttpMethod.GET, null, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for flights")
+   public void iSearchForFlights() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Then("I can see a list of flights")
+   public void iCanSeeAListOfFlights() {
+      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
 }
