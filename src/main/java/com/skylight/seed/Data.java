@@ -35,7 +35,7 @@ public class Data implements CommandLineRunner {
 
          // Create Users
          // Admins/Pilots
-         User kc = new User(1L, "KC", "kc@email.com", "pw", true);
+         User kc = new User(1L, "KC", "k@email.com", "pw", true);
          User maksym = new User(2L, "Maksym", "maksym@email.com", "pw", true);
          User anakin = new User(3L, "Anakin Skywalker", "as@email.com", "pw", true);
 
