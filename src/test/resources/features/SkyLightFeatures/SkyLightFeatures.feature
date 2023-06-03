@@ -2,10 +2,10 @@ Feature: SkyLight API Functionalities
 
   # Users
   # PRIVATE
-#  Scenario: User is able to view their account details
-#    Given my account is available
-#    When I go to my profile
-#    Then I can see my account details
+  Scenario: User is able to view their account details
+    Given my account is available
+    When I go to my profile
+    Then I can see my account details
 
 #  # Private
 #  Scenario: User is able to see a list of flights they booked

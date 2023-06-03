@@ -35,11 +35,29 @@ public class SkyLightDefinitions {
    public String getSecurityKey() throws Exception {
       RequestSpecification request = RestAssured.given();
       JSONObject requestBody = new JSONObject();
-      requestBody.put("email", "a@email.com");
+      requestBody.put("email", "k@email.com");
       requestBody.put("password", "pw");
       request.header("Content-Type", "application/json");
       response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/login");
       return response.jsonPath().getString("message");
+   }
+
+   // Users
+   @Given("my account is available")
+   public void myAccountIsAvailable() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKey());
+      response = request.get(BASE_URL + port + "/api/myProfile");
+   }
+
+   @When("I go to my profile")
+   public void iSearchForMyAccount() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see my account details")
+   public void iCanSeeMyAccountDetails() {
+      Assert.assertEquals(200,  response.getStatusCode());
    }
 
    // Airports
@@ -184,5 +202,6 @@ public class SkyLightDefinitions {
    public void iCanSeeAListOfFlights() {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
+
 
 }
