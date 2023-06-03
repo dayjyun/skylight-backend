@@ -100,6 +100,7 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | PUT          | /api/cc/{ccId} | User updates credit card data         | Private |
 | DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |
 
+- [ ] Create miniature banking application for Credit Cards
 - [ ] Create a model for planes
   - [ ] Airplane model/type
   - [ ] Number of seats

@@ -56,7 +56,7 @@ Feature: SkyLight API Functionalities
     Given a list of flights are available
     When I search for flights
     Then I can see a list of flights
-#
+
 #  # Private
 #  Scenario: User is able to schedule a flight
 #    Given I am an admin
