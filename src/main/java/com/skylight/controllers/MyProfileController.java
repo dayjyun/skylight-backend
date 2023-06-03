@@ -33,8 +33,8 @@ public class MyProfileController {
       return myProfileService.updateMyProfile(updateBody);
    }
 
-//    Functionality: Returns a list of flights the user booked	(Private)
-//    Path: /api/myProfile/myTickets
+   // Functionality: Returns a list of flights the user booked	(Private)
+   // Path: /api/myProfile/myTickets
    @GetMapping("/myTickets")
    public List<Ticket> getMyTickets() {
       return myProfileService.getMyTickets();
@@ -42,7 +42,7 @@ public class MyProfileController {
 
    // Endpoint to become a pilot
    // Functionality: User becomes a pilot (Private)
-   // Path: /api/myProfile/iAmAPilot
+   // Path: /api/myProfile/flyTheSkies
 //   @PostMapping("/becomePilot")
 //   public User becomePilot() {
 //      return myProfileService.becomePilot();

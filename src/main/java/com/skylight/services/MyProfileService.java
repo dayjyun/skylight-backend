@@ -33,8 +33,8 @@ public class MyProfileService {
    }
 
    /**
-    * getLoggedInUser retrieves currently logged-in user's data. If there is no user data, an
-    * UnauthorizedException is thrown
+    * getLoggedInUser retrieves currently logged-in user's data.
+    * @throws UnauthorizedException is thrown if there is no user data
     * @return Logged-in user's data
     */
    @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -49,9 +49,11 @@ public class MyProfileService {
       return userDetails.getUser();
    }
 
-   // Functionality: Returns logged-in user’s account	(Public | Private)
-
-   // Functionality: Edit user account	(Public | Private)
+   /**
+    * updateMyProfile updates the logged-in user's data
+    * @param updateBody is the updated information for the logged-in user
+    * @return updated user data
+    */
    public User updateMyProfile(User updateBody) {
       // Create an optional of the logged-in user
       Optional<User> myProfile = userRepository.findById(getLoggedInUser().getId());
@@ -80,19 +82,26 @@ public class MyProfileService {
       }
    }
 
-
    /**
-    *
-    * @return
+    * getMyTickets retrieves a list of tickets the user has booked
+    * @throws NotFoundException if the user has not booked any tickets
+    * @return List of tickets the user has booked
     */
    public List<Ticket> getMyTickets() {
+      // Create an optional of the logged-in user
       Optional<User> myProfile = userRepository.findById(getLoggedInUser().getId());
+      // Check there is data for the logged-in user
       List<Ticket> myTickets = myProfile.get().getMyTicketsList();
+      // Check that the user has booked any tickets
       if(myTickets.isEmpty()) {
+         // Return an error if the user has not booked any tickets
          throw new NotFoundException("No tickets found");
       }
+      // Return the list of tickets the user has booked
       return myTickets;
    }
+
+   // Functionality: User becomes a pilot (Private)
 
    //  Functionality: Returns a list of flight the user has submitted	(Public | Private)
 }
