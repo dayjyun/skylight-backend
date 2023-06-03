@@ -66,15 +66,14 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 [//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights booked | Private |)
 
-
 ## Airports
-| Request Type |                 URL                  |                   Functionality                    | Access |
-|:------------:|:------------------------------------:|:--------------------------------------------------:|:------:|
-|     GET      |            /api/airports             |             Returns a list of airports             | Public |
-|     GET      |      /api/airports/{airportId}       |           Returns details of an airport            | Public |
-|     GET      |  /api/airports/{airportId}/arrivals  | Returns a list of arriving flights for an airport  | Public |
-|     GET      | /api/airports/{airportId}/departures | Returns a list of departing flights for an airport | Public |
-
+| Request Type |                 URL                  |                        Functionality                         | Access |
+|:------------:|:------------------------------------:|:------------------------------------------------------------:|:------:|
+|     GET      |            /api/airports             |                  Returns a list of airports                  | Public |
+|     GET      |      /api/airports/{airportId}       |                Returns details of an airport                 | Public |
+|     GET      |   /api/airports/code/{airportCode}   | Returns details of an airport by searching with airport code | Public |
+|     GET      |  /api/airports/{airportId}/arrivals  |      Returns a list of arriving flights for an airport       | Public |
+|     GET      | /api/airports/{airportId}/departures |      Returns a list of departing flights for an airport      | Public |
 
 ## Flights
 | Request Type | URL                             | Functionality                        | Access  |
@@ -92,7 +91,6 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | GET          | /api/tickets/{ticketId}            | Returns ticket details | Public  |
 | DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private |
 | POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private |
-
 
 # Future Features
  - [ ] Set up a payment service
