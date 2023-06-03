@@ -3,7 +3,7 @@ Feature: SkyLight API Functionalities
   # Users
   # Private
   Scenario: User is able to view their account details
-    Given my account is available
+    Given I am logged in
     When I go to my profile
     Then I can see my account details
 
@@ -13,6 +13,11 @@ Feature: SkyLight API Functionalities
     When I search for the flights I booked
     Then I can see the flights I booked
 
+    # Private
+  Scenario: User is able to submit request to become a pilot
+    Given I am logged in
+    When I submit a request to become a pilot
+    Then I am a pilot
 
   # Airports
   # Public
