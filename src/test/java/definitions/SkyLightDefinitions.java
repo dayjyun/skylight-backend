@@ -52,7 +52,7 @@ public class SkyLightDefinitions {
       return response.jsonPath().getString("message");
    }
 
-   // Users
+   // My Profile
 
    /**
     * Scenario: User is able to view their account details (Private)
@@ -127,6 +127,27 @@ public class SkyLightDefinitions {
    @Then("I am a pilot")
    public void iAmAPilot() {
       Assert.assertEquals(200, response.getStatusCode());
+   }
+
+
+   @When("I search for the flights I scheduled")
+   public void iSearchForTheFlightsIScheduled() {
+      Assert.assertTrue(list.size() > 0);
+   }
+
+   @Given("I have a list of flights scheduled")
+   public void iHaveAListOfFlightsScheduled() throws Exception {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setBearerAuth(getSecurityKeyAdmin());
+      HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/myProfile/air", HttpMethod.GET, entity, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @Then("I can see the flights I scheduled")
+   public void iCanSeeTheFlightsIScheduled() {
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
    // Airports
@@ -295,6 +316,7 @@ public class SkyLightDefinitions {
    public void iSeeMyProfileIsUpdated() {
       Assert.assertEquals(200, response.getStatusCode());
    }
+
 
 }
 
