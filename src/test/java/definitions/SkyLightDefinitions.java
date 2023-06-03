@@ -82,7 +82,7 @@ public class SkyLightDefinitions {
     * Scenario: User is able to see a list of flights they booked
     * (Private) Path: GET /api/myProfile/myFlights
     * aListOfUsersAreAvailable returns the list of flights in the database
-    * @throws Exception
+    * @throws Exception if the user is not logged in
     */
    @Given("a list of flights are booked")
    public void aListOfFlightsAreBooked() throws Exception {
@@ -248,7 +248,26 @@ public class SkyLightDefinitions {
    }
 
 
+   /**
+    * Scenario: User is able to edit their account details
+    * (Private) Path: PUT /api/myProfile
+    * Borrows: myAccountIsAvailable returns the logged-in user's profile
+    */
+   @When("I edit my profile")
+   public void iEditMyProfile() throws Exception {
+      JSONObject requestBody = new JSONObject();
+      requestBody.put("name", "Updated name");
+      requestBody.put("email", "Updated email");
+      requestBody.put("password", "Updated pw");
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer", getSecurityKeyAdmin());
+      response = request.body(requestBody.toString()).put(BASE_URL + port + "/api/myProfile");
+   }
 
+   @Then("I see my profile is updated")
+   public void iSeeMyProfileIsUpdated() {
+      Assert.assertEquals(200, response.getStatusCode());
+   }
 }
 
 

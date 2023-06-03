@@ -1,23 +1,18 @@
 Feature: SkyLight API Functionalities
 
   # Users
-  # PRIVATE
+  # Private
   Scenario: User is able to view their account details
     Given my account is available
     When I go to my profile
     Then I can see my account details
 
-#  # Private
+  # Private
   Scenario: User is able to see a list of flights they booked
     Given a list of flights are booked
     When I search for the flights I booked
     Then I can see the flights I booked
 
-#  # PRIVATE
-#  Scenario: User is able to edit their account details
-#    Given my account is available
-#    When I edit my profile
-#    Then I see my profile is updated
 
   # Airports
   # Public
@@ -106,3 +101,9 @@ Feature: SkyLight API Functionalities
 #    Given I have admin access to the flight
 #    When I delete the flight
 #    Then I can see the details of the deleted flight
+
+  # Private
+  Scenario: User is able to edit their account details
+    Given my account is available
+    When I edit my profile
+    Then I see my profile is updated

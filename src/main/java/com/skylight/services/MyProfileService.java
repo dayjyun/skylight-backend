@@ -1,5 +1,6 @@
 package com.skylight.services;
 
+import com.skylight.exceptions.BadRequestException;
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.exceptions.UnauthorizedException;
 import com.skylight.models.Flight;
@@ -32,8 +33,8 @@ public class MyProfileService {
    }
 
    /**
-    * Retrieves currently logged-in user's data. If there is no data (Example: After account deletion), an Unauthorized error message is
-    * thrown.
+    * getLoggedInUser retrieves currently logged-in user's data. If there is no user data, an
+    * UnauthorizedException is thrown
     * @return Logged-in user's data
     */
    @ResponseStatus(HttpStatus.UNAUTHORIZED)
@@ -51,7 +52,39 @@ public class MyProfileService {
    // Functionality: Returns logged-in user’s account	(Public | Private)
 
    // Functionality: Edit user account	(Public | Private)
+   public User updateMyProfile(User updateBody) {
+      // Create an optional of the logged-in user
+      Optional<User> myProfile = userRepository.findById(getLoggedInUser().getId());
+      // Check there is data for the logged-in user
+      if (myProfile.isPresent()) {
+         // check that the email does not already in the database, and it's not the same as current email
+         if (userRepository.existsByEmail(updateBody.getEmail()) && !myProfile.get().getEmail().equals(updateBody.getEmail())) {
+            throw new BadRequestException("Email already in use");
+         }
+         // Check that the password field is not empty when updating the password
+         if (updateBody.getPassword() != null && !updateBody.getPassword().isEmpty()) {
+            myProfile.get().setPassword(passwordEncoder.encode(updateBody.getPassword()));
+         }
+         // Check that the name field is not empty when updating the name
+         if (updateBody.getName() != null && !updateBody.getName().isEmpty()) {
+            myProfile.get().setName(updateBody.getName());
+         }
+         // Check that the email field is not empty when updating the email
+         if (updateBody.getEmail() != null && !updateBody.getEmail().isEmpty()) {
+            myProfile.get().setEmail(updateBody.getEmail());
+         }
+         // Save the updated data for the logged-in user
+         return userRepository.save(myProfile.get());
+      } else {
+         return null;
+      }
+   }
 
+
+   /**
+    *
+    * @return
+    */
    public List<Ticket> getMyTickets() {
       Optional<User> myProfile = userRepository.findById(getLoggedInUser().getId());
       List<Ticket> myTickets = myProfile.get().getMyTicketsList();
