@@ -25,7 +25,7 @@ public class MyProfileController {
 
    // Functionality: Edit user account (Private)
    // Path: /api/myProfile
-   @GetMapping("")
+   @PostMapping("")
    public User editMyProfile(@RequestBody User updateBody) {
       return myProfileService.updateMyProfile(updateBody);
    }
@@ -44,6 +44,10 @@ public class MyProfileController {
       return myProfileService.flyTheSkies(user);
    }
 
-   //  Functionality: Returns a list of flight the admin has submitted	(Public | Private)
+   //  Functionality: Returns a list of flight the admin has submitted	(Private)
    // Path: /api/myProfile/air
+   @GetMapping("/air")
+   public List<Flight> getScheduledFlights() {
+      return myProfileService.getScheduledFlights();
+   }
 }

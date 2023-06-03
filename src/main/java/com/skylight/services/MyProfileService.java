@@ -15,6 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import javax.swing.text.html.Option;
 import java.util.List;
 import java.util.Optional;
 
@@ -78,6 +79,7 @@ public class MyProfileService {
          // Save the updated data for the logged-in user
          return userRepository.save(myProfile.get());
       } else {
+         // Return null if there is no user data
          return null;
       }
    }
@@ -101,15 +103,46 @@ public class MyProfileService {
       return myTickets;
    }
 
-   // Functionality: User becomes a pilot (Private)
+   /**
+    * getMyFlights retrieves a list of flights the user has booked
+    * @throws NotFoundException if the user has not booked any flights
+    * @return List of flights the user has booked
+    */
    public User flyTheSkies(User user) {
+      // Create an optional of the logged-in user
       Optional<User> loggedInUser = userRepository.findById(getLoggedInUser().getId());
+      // Check there is data for the logged-in user
       if (loggedInUser.isPresent()) {
+         // set the user as an admin
          user.setAdmin(true);
+         // Save the updated use
          return userRepository.save(user);
       }
+      // Return null if there is no user data
       return null;
    }
 
-   //  Functionality: Returns a list of flight the user has submitted	(Public | Private)
+   /**
+    * getScheduledFlights retrieves a list of flights the user has scheduled
+    * @throws NotFoundException if the user has not scheduled any flights
+    * @return List of flights the user has scheduled
+    */
+   public List<Flight> getScheduledFlights() {
+      // Create an optional of the logged-in user
+      Optional<User> loggedInUser = userRepository.findById(getLoggedInUser().getId());
+      // Check there is data for the logged-in user
+      if (loggedInUser.isPresent()) {
+         // Create a  list of flights the user has scheduled
+         List<Flight> flights = loggedInUser.get().getMyFlightsList();
+         // Check that the user has scheduled any flights
+         if(flights.size() > 0) {
+            // Return the list of flights the user has scheduled
+            return flights;
+         }
+         // Return an error if the user has not scheduled any flights
+         throw new NotFoundException("No flights found");
+      }
+      // Return null if there is no user data
+      return null;
+   }
 }

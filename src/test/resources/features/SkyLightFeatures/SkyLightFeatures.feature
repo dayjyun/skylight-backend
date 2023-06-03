@@ -19,6 +19,11 @@ Feature: SkyLight API Functionalities
     When I submit a request to become a pilot
     Then I am a pilot
 
+    Scenario: Admin is able to see a list of flights they scheduled
+      Given I am an admin
+      When I search for the flights I scheduled
+      Then I can see the flights I scheduled
+
   # Airports
   # Public
   Scenario: User is able to view a list of airports
