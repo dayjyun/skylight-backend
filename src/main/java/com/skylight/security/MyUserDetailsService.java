@@ -2,7 +2,6 @@ package com.skylight.security;
 
 import com.skylight.models.User;
 import com.skylight.services.UserService;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

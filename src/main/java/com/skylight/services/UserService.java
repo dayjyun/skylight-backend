@@ -1,6 +1,7 @@
 package com.skylight.services;
 
 import com.skylight.exceptions.AlreadyExistsException;
+import com.skylight.exceptions.BadRequestException;
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.User;
 import com.skylight.models.login.LoginRequest;
@@ -8,9 +9,6 @@ import com.skylight.models.login.LoginResponse;
 import com.skylight.repositories.UserRepository;
 import com.skylight.security.JWTUtils;
 import com.skylight.security.MyUserDetails;
-import org.springframework.stereotype.Service;
-
-import com.skylight.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.http.HttpStatus;
@@ -19,10 +17,8 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import java.util.Objects;
 import java.util.Optional;
 
@@ -52,7 +48,6 @@ public class UserService {
     * createUser registers a new user to the database. There are field checkers in place to make sure that the required sections that must
     * be filled out are not left empty. If the email address already exists in the database, the user data will not be added to the
     * database
-    *
     * @param userObject is the data for the user being registered
     * @return the data for the newly registered user
     */
@@ -88,7 +83,6 @@ public class UserService {
    /**
     * loginUser will log in a user that exists in the database as long as their credentials (email, password) match, and generates a new JTW
     * key
-    *
     * @param loginRequest user credentials (email, password)
     * @return JWT key
     */
@@ -113,7 +107,6 @@ public class UserService {
 
    /**
     * getUserById retrieves the user by the user id, if the user id exists. If the user id does not exist, we throw the NotFoundException
-    *
     * @param userId is what we're searching by
     * @return the optional of the user
     */

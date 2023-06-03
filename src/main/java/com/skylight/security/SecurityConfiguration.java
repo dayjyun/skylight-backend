@@ -67,6 +67,7 @@ public class SecurityConfiguration {
                   "/api/airports/{airportId}",
                   "/api/airports/{airportId}/arrivals",
                   "/api/airports/{airportId}/departures",
+                  "/api/airports/code/{airportCode}",
                   "/api/flights",
                   "/api/flights/{flightId}",
                   "/api/tickets/{ticketId}"

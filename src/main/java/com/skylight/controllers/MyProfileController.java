@@ -16,10 +16,10 @@ public class MyProfileController {
 
    // Functionality: Returns logged-in user’s account	(Public | Private)
    // Path: /api/myProfile
-//   @GetMapping("")
-//   public User getMyProfile() {
-//      return myProfileService.getMyProfile();
-//   }
+   @GetMapping("")
+   public User getMyProfile() {
+      return myProfileService.getLoggedInUser();
+   }
 
    // Functionality: Edit user account	(Public | Private)
    // Path: /api/myProfile

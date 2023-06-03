@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping("/api/auth")
 public class UserController {
@@ -19,7 +21,7 @@ public class UserController {
    // Functionality: User creates account (Public)
    // Path: /api/auth/register
    @PostMapping(path = "/register")
-   public User createUser(@RequestBody User user) {
+   public User createUser(@RequestBody @Valid User user) {
       return userService.createUser(user);
    }
 

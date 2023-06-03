@@ -5,11 +5,14 @@ import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.models.User;
 import com.skylight.repositories.*;
+import com.skylight.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class Data implements CommandLineRunner {
@@ -24,6 +27,9 @@ public class Data implements CommandLineRunner {
 
    @Autowired
    UserRepository userRepository;
+
+   @Autowired
+   UserService userService;
 
    @Override
    public void run(String... args) throws Exception {
@@ -47,18 +53,33 @@ public class Data implements CommandLineRunner {
          User jeff = new User(8L, "Jeff", "jeff@email.com", "pw", false);
 
          // Save users
-         userRepository.save(kc);
-         userRepository.save(maksym);
-         userRepository.save(anakin);
-         userRepository.save(dominique);
-         userRepository.save(kim);
-         userRepository.save(jay);
-         userRepository.save(deShe);
-         userRepository.save(jeff);
+
+//         List<User> usersList = new ArrayList<>(Arrays.asList(kc, maksym, anakin, dominique, kim, jay, deShe, jeff));
+//         for(User user : usersList) {
+//            userService.createUser(user);
+//
+//         }
+         userService.createUser(kc);
+         userService.createUser(maksym);
+         userService.createUser(anakin);
+         userService.createUser(dominique);
+         userService.createUser(kim);
+         userService.createUser(jay);
+         userService.createUser(deShe);
+         userService.createUser(jeff);
+         System.out.println(kc);
+//         userRepository.save(kc);
+//         userRepository.save(maksym);
+//         userRepository.save(anakin);
+//         userRepository.save(dominique);
+//         userRepository.save(kim);
+//         userRepository.save(jay);
+//         userRepository.save(deShe);
+//         userRepository.save(jeff);
 
          // Create Airports
          Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
-         Airport ohareAirport = new Airport(2L, "O'Hare", "OHX", "Chicago", "IL", "41.8781 N",  "87.6298 W");
+         Airport ohareAirport = new Airport(2L, "O'Hare", "ORD", "Chicago", "IL", "41.8781 N",  "87.6298 W");
          Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
          Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
 

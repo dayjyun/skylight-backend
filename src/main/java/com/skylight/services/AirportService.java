@@ -60,6 +60,18 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
+   public Optional<Airport> getAirportByCode(String airportCode) {
+      // Create an optional of an airport
+      Optional<Airport> airport = airportRepository.findAirportByAirportCode(airportCode.toLowerCase());
+      // Check if the airport is present
+      if(airport.isPresent()) {
+         // Return the airport data
+         return airport;
+      }
+      // Throw an error if the airport is found
+      throw new NotFoundException("No airport found");
+   }
+
    /**
     * getArrivals returns a list of all arriving flights for an airport
     * A NotFoundException is thrown if an airport is not found with the provided ID
