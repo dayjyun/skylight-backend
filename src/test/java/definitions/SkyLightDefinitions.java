@@ -32,10 +32,20 @@ public class SkyLightDefinitions {
    @LocalServerPort
    String port;
 
-   public String getSecurityKey() throws Exception {
+   public String getSecurityKeyAdmin() throws Exception {
       RequestSpecification request = RestAssured.given();
       JSONObject requestBody = new JSONObject();
       requestBody.put("email", "k@email.com");
+      requestBody.put("password", "pw");
+      request.header("Content-Type", "application/json");
+      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/login");
+      return response.jsonPath().getString("message");
+   }
+
+   public String getSecurityKeyPassenger() throws Exception {
+      RequestSpecification request = RestAssured.given();
+      JSONObject requestBody = new JSONObject();
+      requestBody.put("email", "dominique@email.com");
       requestBody.put("password", "pw");
       request.header("Content-Type", "application/json");
       response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/login");
@@ -54,7 +64,7 @@ public class SkyLightDefinitions {
    @Given("my account is available")
    public void myAccountIsAvailable() throws Exception {
       RestAssured.baseURI = BASE_URL;
-      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKey());
+      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyAdmin());
       response = request.get(BASE_URL + port + "/api/myProfile");
    }
 
@@ -69,16 +79,18 @@ public class SkyLightDefinitions {
    }
 
    /**
+    * Scenario: User is able to see a list of flights they booked
+    * (Private) Path: GET /api/myProfile/myFlights
     * aListOfUsersAreAvailable returns the list of flights in the database
     * @throws Exception
     */
    @Given("a list of flights are booked")
    public void aListOfFlightsAreBooked() throws Exception {
       HttpHeaders headers = new HttpHeaders();
-      headers.setBearerAuth(getSecurityKey());
+      headers.setBearerAuth(getSecurityKeyPassenger());
       HttpEntity<String> entity = new HttpEntity<>(null, headers);
 
-      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/myFlights", HttpMethod.GET, entity, String.class);
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/myProfile/myTickets", HttpMethod.GET, entity, String.class);
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
 
