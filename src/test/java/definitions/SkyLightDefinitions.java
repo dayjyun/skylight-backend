@@ -90,6 +90,30 @@ public class SkyLightDefinitions {
       Assert.assertEquals(200,  response.getStatusCode());
    }
 
+
+   /**
+    * Scenario: User is able to search an airport by its code
+    * (Public) Path: GET /api/airports/code/{airportCode}
+    * Borrows: anAirportIsAvailable returns the airport with the specified ID
+    * iSearchByAirportCode
+    */
+   @Given("there is an airport is available")
+   public void thereIsAnAirportIsAvailable() {
+      RestAssured.baseURI = BASE_URL;
+      RequestSpecification request = RestAssured.given();
+      response = request.get(BASE_URL + port + "/api/airports/code/MDW");
+   }
+
+   @When("I search by airport code")
+   public void iSearchByAirportCode() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the details for the airport")
+   public void iCanSeeTheDetailsForTheAirport() {
+      Assert.assertEquals(200,  response.getStatusCode());
+   }
+
    /**
     * Scenario: User is able to view a list of arriving flights
     * (Public) Path: GET /api/airports/{airportId}/arrivals
@@ -160,4 +184,5 @@ public class SkyLightDefinitions {
    public void iCanSeeAListOfFlights() {
       Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
    }
+
 }

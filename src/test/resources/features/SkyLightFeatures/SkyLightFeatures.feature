@@ -33,6 +33,12 @@ Feature: SkyLight API Functionalities
     Then I can see the airport details
 
   # Public
+  Scenario: User is able to search an airport by its code
+    Given there is an airport is available
+    When I search by airport code
+    Then I can see the details for the airport
+
+  # Public
   Scenario: User is able to view a list of arriving flights
     Given a list of arriving flights are available
     When I search for arriving flights

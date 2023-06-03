@@ -64,8 +64,6 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 [//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
-[//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights booked | Private |)
-
 ## Airports
 | Request Type |                 URL                  |                        Functionality                         | Access |
 |:------------:|:------------------------------------:|:------------------------------------------------------------:|:------:|
