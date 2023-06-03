@@ -102,6 +102,14 @@ public class MyProfileService {
    }
 
    // Functionality: User becomes a pilot (Private)
+   public User flyTheSkies(User user) {
+      Optional<User> loggedInUser = userRepository.findById(getLoggedInUser().getId());
+      if (loggedInUser.isPresent()) {
+         user.setAdmin(true);
+         return userRepository.save(user);
+      }
+      return null;
+   }
 
    //  Functionality: Returns a list of flight the user has submitted	(Public | Private)
 }

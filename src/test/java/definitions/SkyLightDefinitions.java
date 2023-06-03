@@ -53,12 +53,12 @@ public class SkyLightDefinitions {
    }
 
    // Users
+
    /**
-    * Scenario: User is able to view their account details
-    * (Private) Path: GET /api/myProfile
-    * myAccountIsAvailable returns the logged-in user's profile
-    * iSearchForMyAccount verifies the user's profile is not null
-    * iCanSeeMyAccountDetails verifies the return status code is OK
+    * Scenario: User is able to view their account details (Private) Path: GET /api/myProfile myAccountIsAvailable returns the logged-in
+    * user's profile iSearchForMyAccount verifies the user's profile is not null iCanSeeMyAccountDetails verifies the return status code is
+    * OK
+    *
     * @throws Exception if the user is not logged in
     */
    @Given("my account is available")
@@ -75,15 +75,14 @@ public class SkyLightDefinitions {
 
    @Then("I can see my account details")
    public void iCanSeeMyAccountDetails() {
-      Assert.assertEquals(200,  response.getStatusCode());
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
    /**
-    * Scenario: User is able to see a list of flights they booked
-    * (Private) Path: GET /api/myProfile/myFlights
-    * aListOfUsersAreAvailable returns the list of flights in the database
-    * iSearchForUsers verifies the list of flights is not empty
-    * iCanSeeAListOfUsers verifies the return status code is OK
+    * Scenario: User is able to see a list of flights they booked (Private) Path: GET /api/myProfile/myFlights aListOfUsersAreAvailable
+    * returns the list of flights in the database iSearchForUsers verifies the list of flights is not empty iCanSeeAListOfUsers verifies the
+    * return status code is OK
+    *
     * @throws Exception if the user is not logged in
     */
    @Given("a list of flights are booked")
@@ -107,12 +106,11 @@ public class SkyLightDefinitions {
    }
 
    // Airports
+
    /**
-    * Scenario: User is able to view a list of airports
-    * (Public) Path: GET /api/airports
-    * aListOfAirportsAreAvailable returns the list of airports in the database
-    * iSearchForAAirports verifies the list of airports is not empty
-    * iCanSeeAListOfAirports verifies the return status code is OK
+    * Scenario: User is able to view a list of airports (Public) Path: GET /api/airports aListOfAirportsAreAvailable returns the list of
+    * airports in the database iSearchForAAirports verifies the list of airports is not empty iCanSeeAListOfAirports verifies the return
+    * status code is OK
     */
    @Given("a list of airports are available")
    public void aListOfAirportsAreAvailable() {
@@ -127,15 +125,12 @@ public class SkyLightDefinitions {
 
    @Then("I can see a list of airports")
    public void iCanSeeAListOfAirports() {
-      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
    /**
-    * Scenario: User is able to view an airport
-    * (Public) Path: GET /api/airports/{airportId}
-    * anAirportIsAvailable returns the airport with the specified ID
-    * iSearchByAirportID verifies the airport is not null
-    * iCanSeeTheAirportDetails verifies the return status code is 200
+    * Scenario: User is able to view an airport (Public) Path: GET /api/airports/{airportId} anAirportIsAvailable returns the airport with
+    * the specified ID iSearchByAirportID verifies the airport is not null iCanSeeTheAirportDetails verifies the return status code is 200
     */
    @Given("an airport is available")
    public void anAirportIsAvailable() {
@@ -151,16 +146,13 @@ public class SkyLightDefinitions {
 
    @Then("I can see the airport details")
    public void iCanSeeTheAirportDetails() {
-      Assert.assertEquals(200,  response.getStatusCode());
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
-
    /**
-    * Scenario: User is able to search an airport by its code
-    * (Public) Path: GET /api/airports/code/{airportCode}
-    * theAirportIsAvailable returns the airport with the specified code
-    * iSearchByAirportCode verifies the airport is not null
-    * iCanSeeTheAirportDetails verifies the return status code is 200
+    * Scenario: User is able to search an airport by its code (Public) Path: GET /api/airports/code/{airportCode} theAirportIsAvailable
+    * returns the airport with the specified code iSearchByAirportCode verifies the airport is not null iCanSeeTheAirportDetails verifies
+    * the return status code is 200
     */
    @Given("there is an airport is available")
    public void thereIsAnAirportIsAvailable() {
@@ -176,15 +168,14 @@ public class SkyLightDefinitions {
 
    @Then("I can see the details for the airport")
    public void iCanSeeTheDetailsForTheAirport() {
-      Assert.assertEquals(200,  response.getStatusCode());
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
    /**
-    * Scenario: User is able to view a list of arriving flights
-    * (Public) Path: GET /api/airports/{airportId}/arrivals
+    * Scenario: User is able to view a list of arriving flights (Public) Path: GET /api/airports/{airportId}/arrivals
     * aListOfArrivingFlightsAreAvailable returns the list of arriving flights for the airport with the specified ID
-    * iSearchForArrivingFlights verifies the list of arriving flights is not empty
-    * iCanSeeAListOfArrivingFlights verifies the return status code is OK
+    * iSearchForArrivingFlights verifies the list of arriving flights is not empty iCanSeeAListOfArrivingFlights verifies the return status
+    * code is OK
     */
    @Given("a list of arriving flights are available")
    public void iCanSeeAListOfArrivingFlightsAreAvailable() {
@@ -199,15 +190,14 @@ public class SkyLightDefinitions {
 
    @Then("I can see a list of arriving flights")
    public void iCanSeeAListOfArrivingFlights() {
-      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
    /**
-    * Scenario: User is able to view a list of departing flights
-    * (Public) Path: GET /api/airports/{airportId}/departures
+    * Scenario: User is able to view a list of departing flights (Public) Path: GET /api/airports/{airportId}/departures
     * aListOfDepartingFlightsAreAvailable returns the list of departing flights for the airport with the specified ID
-    * iSearchForDepartingFlights verifies the list of departing flights is not empty
-    * iCanSeeAListOfDepartingFlights verifies the return status code is OK
+    * iSearchForDepartingFlights verifies the list of departing flights is not empty iCanSeeAListOfDepartingFlights verifies the return
+    * status code is OK
     */
    @Given("a list of departing flights are available")
    public void aListOfDepartingFlightsAreAvailable() {
@@ -222,17 +212,15 @@ public class SkyLightDefinitions {
 
    @Then("I can see a list of departing flights")
    public void iCanSeeAListOfDepartingFlights() {
-      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
-
    // Flights
+
    /**
-    * Scenario: User is able to view a list of flights
-    * (Public) Path: GET /api/flights
-    * aListOfFlightsAreAvailable returns the list of flights in the database
-    * iSearchForFlights verifies the list of flights is not empty
-    * iCanSeeAListOfFlights verifies the return status code is OK
+    * Scenario: User is able to view a list of flights (Public) Path: GET /api/flights aListOfFlightsAreAvailable returns the list of
+    * flights in the database iSearchForFlights verifies the list of flights is not empty iCanSeeAListOfFlights verifies the return status
+    * code is OK
     */
    @Given("a list of flights are available")
    public void aListOfFlightsAreAvailable() {
@@ -247,16 +235,12 @@ public class SkyLightDefinitions {
 
    @Then("I can see a list of flights")
    public void iCanSeeAListOfFlights() {
-      Assert.assertEquals(HttpStatus.OK,  responseEntity.getStatusCode());
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
-
    /**
-    * Scenario: User is able to edit their account details
-    * (Private) Path: PUT /api/myProfile
-    * Borrows: myAccountIsAvailable returns the logged-in user's profile
-    * iEditMyProfile updates the user's profile
-    * iSeeMyProfileIsUpdated verifies the return status code is 200
+    * Scenario: User is able to edit their account details (Private) Path: PUT /api/myProfile Borrows: myAccountIsAvailable returns the
+    * logged-in user's profile iEditMyProfile updates the user's profile iSeeMyProfileIsUpdated verifies the return status code is 200
     */
    @When("I edit my profile")
    public void iEditMyProfile() throws Exception {
