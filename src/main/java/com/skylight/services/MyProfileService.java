@@ -1,6 +1,9 @@
 package com.skylight.services;
 
+import com.skylight.exceptions.NotFoundException;
 import com.skylight.exceptions.UnauthorizedException;
+import com.skylight.models.Flight;
+import com.skylight.models.Ticket;
 import com.skylight.models.User;
 import com.skylight.repositories.UserRepository;
 import com.skylight.security.MyUserDetails;
@@ -10,6 +13,9 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ResponseStatus;
+
+import java.util.List;
+import java.util.Optional;
 
 @Service
 public class MyProfileService {
@@ -46,7 +52,14 @@ public class MyProfileService {
 
    // Functionality: Edit user account	(Public | Private)
 
-   // Functionality: Returns a list of flights the user booked	(Public | Private)
+   public List<Ticket> getMyTickets() {
+      Optional<User> myProfile = userRepository.findById(getLoggedInUser().getId());
+      List<Ticket> myTickets = myProfile.get().getMyTicketsList();
+      if(myTickets.isEmpty()) {
+         throw new NotFoundException("No tickets found");
+      }
+      return myTickets;
+   }
 
    //  Functionality: Returns a list of flight the user has submitted	(Public | Private)
 }
