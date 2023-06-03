@@ -129,12 +129,12 @@ public class SkyLightDefinitions {
       Assert.assertEquals(200, response.getStatusCode());
    }
 
-
-   @When("I search for the flights I scheduled")
-   public void iSearchForTheFlightsIScheduled() {
-      Assert.assertTrue(list.size() > 0);
-   }
-
+   /**
+    * iHaveAListOfFlightsScheduled verifies the list of flights is not empty and that the logged-in user is an admin
+    * iSearchForTheFlightsIScheduled verifies the list of flights is not empty
+    * iCanSeeAListOfFlights verifies the return status code is OK
+    * @throws Exception if the user is not logged in
+    */
    @Given("I have a list of flights scheduled")
    public void iHaveAListOfFlightsScheduled() throws Exception {
       HttpHeaders headers = new HttpHeaders();
@@ -143,6 +143,11 @@ public class SkyLightDefinitions {
 
       responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/myProfile/air", HttpMethod.GET, entity, String.class);
       list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
+   }
+
+   @When("I search for the flights I scheduled")
+   public void iSearchForTheFlightsIScheduled() {
+      Assert.assertTrue(list.size() > 0);
    }
 
    @Then("I can see the flights I scheduled")
@@ -297,7 +302,7 @@ public class SkyLightDefinitions {
    /**
     * Scenario: User is able to edit their account details (Private)
     * Path: PUT /api/myProfile
-    * Borrows: myAccountIsAvailable returns the logged-in user's profile
+    * Borrows: iAmLoggedIn returns the logged-in user's profile
     * iEditMyProfile updates the user's profile
     * iSeeMyProfileIsUpdated verifies the return status code is 200
     */

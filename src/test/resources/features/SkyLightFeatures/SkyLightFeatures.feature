@@ -115,6 +115,6 @@ Feature: SkyLight API Functionalities
   # Edit
   # Private
   Scenario: User is able to edit their account details
-    Given my account is available
+    Given I am logged in
     When I edit my profile
     Then I see my profile is updated
