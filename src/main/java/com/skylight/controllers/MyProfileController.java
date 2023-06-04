@@ -26,7 +26,7 @@ public class MyProfileController {
 
    // Functionality: Edit user account (Private)
    // Path: /api/myProfile
-   @PostMapping("")
+   @PutMapping("")
    public User updateMyProfile(@RequestBody @Valid User updateBody) {
       return myProfileService.updateMyProfile(updateBody);
    }

@@ -114,7 +114,7 @@ public class MyProfileService {
       if (loggedInUser.isPresent()) {
          // set the user as an admin
          loggedInUser.get().setAdmin(true);
-         // Save the updated use
+         // Return the user data
          return loggedInUser.get();
       }
       // Return null if there is no user data
