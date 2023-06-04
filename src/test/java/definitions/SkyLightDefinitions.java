@@ -297,19 +297,26 @@ public class SkyLightDefinitions {
       Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
+//
+//   User is able to schedule a flight
+//
+
 
    @Given("a flight is available")
    public void aFlightIsAvailable() {
-
+      RestAssured.baseURI = BASE_URL;
+      RequestSpecification request = RestAssured.given();
+      response = request.get(BASE_URL + port + "/api/flights/1");
    }
 
    @When("I search by flight ID")
    public void iSearchByFlightID() {
-
+      Assert.assertNotNull(String.valueOf(response));
    }
 
    @Then("I can see the flight details")
    public void iCanSeeTheFlightDetails() {
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
 
