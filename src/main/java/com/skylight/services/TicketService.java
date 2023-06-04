@@ -21,7 +21,9 @@ public class TicketService {
    }
 
    /**
-    * getTicketById returns a ticket by its ID
+    * getTicketById returns a ticket by its ID only if you're the ticket holder, you're the pilot for the given flight, or if the ticket is
+    * still
+    * available
     * A NotFoundException is thrown if the ticket is not found with the provided ID
     * @param ticketId is the ticket ID to search by
     * @return a ticket
@@ -41,6 +43,12 @@ public class TicketService {
             // Return the ticket data
             return ticket;
          }
+         // Return the ticket data if the ticket belongs to a flight created by the user
+         if(Objects.equals(ticket.get().getFlight().getPilot().getId(), MyProfileService.getLoggedInUser().getId())) {
+            // Return the ticket data
+            return ticket;
+         }
+
          // Return the ticket data
          throw new NotFoundException("Ticket " + ticketId + " not found");
       }
@@ -54,7 +62,7 @@ public class TicketService {
     * @param ticketId is the ticket ID to search by
     * @return the deleted ticket data
     */
-   public Optional<Ticket> deleteTicket(Long ticketId) {
+   public Optional<Ticket> deleteTicketAdmin(Long ticketId) {
       // Create an optional for a ticket
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
       // Check if the ticket is present
@@ -69,13 +77,14 @@ public class TicketService {
    }
 
    /**
-    * bookFlight allows the user to book a flight by searching the ticket number
+    * bookFlight allows the logged-in user to book a flight by searching the ticket number
     * An AlreadyExistsException is thrown if the user is already booked on the flight
     * A NotFoundException is thrown if the ticket is not found with the provided ID
     * @param ticketId is the ticket ID to search by
     * @param user is the user to book the flight for
     * @return the booked ticket data
     */
+   // Checked that you're logged in. Only logged-in users can book a flight
    public Ticket bookFlight(Long ticketId, User user) {
       // Create an optional for a ticket
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
