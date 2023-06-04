@@ -406,7 +406,11 @@ public class SkyLightDefinitions {
    }
 
    /**
-    *
+    * Scenario: User is able to book a flight (Public)
+    * Path: PUT /api/tickets/{ticketId}/bookFlight
+    * aTicketIsAvailable returns the ticket with the specified ID. Requires any user to be logged in to book a ticket
+    * iBookTheTicket verifies the response value is not null
+    * iCanSeeTheDetailsOfTheTicket verifies the return status code is 200
     */
    @Given("a ticket is available")
    public void aTicketIsAvailable() throws Exception {

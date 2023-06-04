@@ -99,7 +99,7 @@ Feature: SkyLight API Functionalities
 
   # Tickets
 
-  # Private
+  # Public
   Scenario: User is able to book a flight
     Given a ticket is available
     When I book the ticket
