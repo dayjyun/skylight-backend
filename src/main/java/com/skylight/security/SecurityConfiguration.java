@@ -70,6 +70,7 @@ public class SecurityConfiguration {
                   "/api/airports/code/{airportCode}",
                   "/api/flights",
                   "/api/flights/{flightId}",
+                  "/api/flights/{flightId}/tickets",
                   "/api/tickets/{ticketId}"
           ).permitAll()// these are all public urls
           .anyRequest().authenticated() // other urls need authentication

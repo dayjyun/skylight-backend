@@ -81,7 +81,7 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | POST         | /api/flights                    | Admin creates a new flight           | Private |
 | GET          | /api/flights/{flightId}         | Returns flight details               | Public  |
 | DELETE       | /api/flights/{flightId}         | Admin deletes flight                 | Private |
-| GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Private |
+| GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Public  |
 | POST         | /api/flights/{flightId}/tickets | Admin creates ticket  for flight     | Private |
 
 ## Tickets
