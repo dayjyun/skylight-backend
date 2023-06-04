@@ -86,7 +86,7 @@ Feature: SkyLight API Functionalities
     Then I can see the flight details
 
   # Private
-  Scenario: User is able to view all tickets for flight
+  Scenario: Admin is able to view all tickets for flight
     Given a flight has a list of tickets
     When I search for the list of tickets for the flight
     Then I can see the list of tickets for the flight

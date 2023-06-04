@@ -327,17 +327,23 @@ public class SkyLightDefinitions {
 
 
    @Given("a flight has a list of tickets")
-   public void aFlightHasAListOfTickets() {
-      
+   public void aFlightHasAListOfTickets() throws Exception {
+      HttpHeaders headers = new HttpHeaders();
+      headers.setBearerAuth(getSecurityKeyAdmin());
+      HttpEntity<String> entity = new HttpEntity<>(null, headers);
+
+      responseEntity = new RestTemplate().exchange(BASE_URL + port + "/api/flights/1/tickets", HttpMethod.GET, entity, String.class);
+      list = JsonPath.from(String.valueOf(responseEntity.getBody())).get();
    }
 
    @When("I search for the list of tickets for the flight")
    public void iSearchForTheListOfTicketsForTheFlight() {
-
+      Assert.assertTrue(list.size() > 0);
    }
 
    @Then("I can see the list of tickets for the flight")
    public void iCanSeeTheListOfTicketsForTheFlight() {
+      Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
    // Delete

@@ -91,8 +91,6 @@ public class FlightService {
    public List<Ticket> getFlightTickets(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
-
-
       // Check if the flight is present
       if(flight.isPresent()) {
          //  Get the list of tickets for the flight
