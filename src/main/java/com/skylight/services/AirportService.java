@@ -68,7 +68,7 @@ public class AirportService {
     */
    public Optional<Airport> getAirportByCode(String airportCode) {
       // Create an optional of an airport
-      Optional<Airport> airport = airportRepository.findAirportByAirportCode(airportCode.toLowerCase());
+      Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
       // Check if the airport is present
       if(airport.isPresent()) {
          // Return the airport data
