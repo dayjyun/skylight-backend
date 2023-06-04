@@ -1,7 +1,6 @@
 package com.skylight.controllers;
 
 import com.skylight.models.Ticket;
-import com.skylight.models.User;
 import com.skylight.services.TicketService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -29,9 +28,10 @@ public class TicketController {
       return ticketService.deleteTicketAdmin(ticketId);
    }
 
-   // Functionality: User books ticket (Public | Private)
+   // Functionality: User books ticket (Public)
    // Path: /api/tickets/{ticketId}/bookFlight
-   public Ticket bookFlight(@PathVariable Long ticketId, @RequestBody User user) {
-      return ticketService.bookFlight(ticketId, user);
+   @PutMapping(path = "/{ticketId}/bookFlight")
+   public Optional<Ticket> bookFlight(@PathVariable Long ticketId) {
+      return ticketService.bookFlight(ticketId);
    }
 }
