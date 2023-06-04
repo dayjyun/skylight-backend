@@ -325,7 +325,14 @@ public class SkyLightDefinitions {
       Assert.assertEquals(200, response.getStatusCode());
    }
 
-
+   /**
+    * Scenario: User is able to view a list of tickets for a flight (Public)
+    * Path: GET /api/flights/{flightId}/tickets
+    * aListOfTicketsAreAvailable returns the list of tickets for the flight with the specified ID
+    * iSearchForTickets verifies the list of tickets is not empty
+    * iCanSeeTheListOfTickets verifies the return status code is OK
+    * @throws Exception is thrown if the user is not logged in
+    */
    @Given("a flight has a list of tickets")
    public void aFlightHasAListOfTickets() throws Exception {
       HttpHeaders headers = new HttpHeaders();
