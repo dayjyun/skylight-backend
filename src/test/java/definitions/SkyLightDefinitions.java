@@ -373,7 +373,7 @@ public class SkyLightDefinitions {
     * Borrows: aFlightIsAvailable returns the flight with the specified ID
     * iDeleteTheFlight deletes the flight
     * iCanSeeTheDetailsOfTheDeletedFlight verifies the return status code is 200
-    * @throws Exception
+    * @throws Exception is thrown if the user is not logged in
     */
    @When("I delete the flight")
    public void iDeleteTheFlight() throws Exception {

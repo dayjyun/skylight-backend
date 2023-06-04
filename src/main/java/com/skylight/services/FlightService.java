@@ -122,8 +122,8 @@ public class FlightService {
    /**
     * createTicketForFlight creates a new ticket for an existing flight that belongs to the logged-in user
     * A NotFoundException is thrown if the flight is not found with the provided ID
-    * @param flightId
-    * @return
+    * @param flightId is the flight ID to search by
+    * @return newly created ticket
     */
    public Ticket createTicketForFlight(Long flightId) {
       // Create an optional of a flight
