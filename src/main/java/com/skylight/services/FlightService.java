@@ -4,6 +4,7 @@ import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.repositories.FlightRepository;
+import com.skylight.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +14,16 @@ import java.util.Optional;
 @Service
 public class FlightService {
    private FlightRepository flightRepository;
+   private TicketRepository ticketRepository;
 
    @Autowired
    public void setFlightRepository(FlightRepository flightRepository) {
       this.flightRepository = flightRepository;
+   }
+
+   @Autowired
+   public void setTicketRepository(TicketRepository ticketRepository) {
+      this.ticketRepository = ticketRepository;
    }
 
    /**
@@ -99,7 +106,7 @@ public class FlightService {
       // Check if the flight is present
       if(flight.isPresent()) {
          //  Get the list of tickets for the flight
-         List<Ticket> tickets = flight.get().getListOfTickets();
+         List<Ticket> tickets = ticketRepository.findTicketByFlightId(flightId);
          // Check if the list of tickets is empty
          if(tickets.isEmpty()) {
             // Throw a NotFoundException if no tickets are found

@@ -6,6 +6,7 @@ import com.skylight.exceptions.UnauthorizedException;
 import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.models.User;
+import com.skylight.repositories.FlightRepository;
 import com.skylight.repositories.UserRepository;
 import com.skylight.security.MyUserDetails;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +26,9 @@ public class MyProfileService {
    @Autowired
    private UserRepository userRepository;
 
+   @Autowired
+   private FlightRepository flightRepository;;
+
    private final PasswordEncoder passwordEncoder;
 
    // Purpose is to encrypt password when updating profile
@@ -43,7 +47,7 @@ public class MyProfileService {
       MyUserDetails userDetails = (MyUserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
       // Check that there is a logged-in user
       if (userDetails.getUser() == null || userDetails.getUsername().isEmpty() || userDetails.getUsername() == null) {
-         // Return an error if the user is not found
+         // Return an UnauthorizedException if the user is not found
          throw new UnauthorizedException("Unauthorized");
       }
       // Return the data for the logged-in user
@@ -99,7 +103,7 @@ public class MyProfileService {
          // Return the list of tickets the user has booked
          return myTickets;
       }
-      // Return an error if the user has not booked any tickets
+      // Return a NotFoundException if the user has not booked any tickets
       throw new NotFoundException("No tickets found");
    }
 
@@ -129,19 +133,19 @@ public class MyProfileService {
    public List<Flight> getScheduledFlights() {
       // Create an optional of the logged-in user
       Optional<User> loggedInUser = userRepository.findById(getLoggedInUser().getId());
-      // Check there is data for the logged-in user
-      if (loggedInUser.isPresent()) {
+      // Check there is data for the logged-in user and the logged-in user is an admin
+      if (loggedInUser.get().isAdmin()) {
          // Create a  list of flights the user has scheduled
-         List<Flight> flights = loggedInUser.get().getMyFlightsList();
+         List<Flight> flights = flightRepository.findAllByPilotId(getLoggedInUser().getId());
          // Check that the user has scheduled any flights
          if(flights.size() > 0) {
             // Return the list of flights the user has scheduled
             return flights;
          }
-         // Return an error if the user has not scheduled any flights
+         // Return a NotFoundException if the user has not scheduled any flights
          throw new NotFoundException("No flights found");
       }
-      // Return null if there is no user data
-      return null;
+      //  Return an UnauthorizedExceptions if the user is not an admin
+      throw new UnauthorizedException("Unauthorized");
    }
 }
