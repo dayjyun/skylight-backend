@@ -74,6 +74,7 @@ public class FlightService {
    public Optional<Flight> deleteFlightById(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
+
       // Check if the flight belongs to logged-in user
 
       // Check if the flight is present
@@ -87,7 +88,13 @@ public class FlightService {
       throw new NotFoundException("Flight " + flightId + " not found");
    }
 
-   //   getAllTickets
+   /**
+    * getFlightTickets returns a list of tickets for a flight
+    * A NotFoundException is thrown if the flight is not found with the provided ID
+    * A NotFoundException is thrown if no tickets are found for the flight
+    * @param flightId is the flight ID to search by
+    * @return a list of tickets
+    */
    public List<Ticket> getFlightTickets(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
