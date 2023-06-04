@@ -41,7 +41,7 @@ public class FlightController {
    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin deletes flight (Public | Private)
    // Path: /api/flights/{flightId}
-   @DeleteMapping(path = "/{flightId})")
+   @DeleteMapping(path = "/{flightId}")
    public Optional<Flight> deleteFlightById(@PathVariable Long flightId) {
       return flightService.deleteFlightById(flightId);
    }

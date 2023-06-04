@@ -75,10 +75,7 @@ public class FlightService {
    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    public Optional<Flight> deleteFlightById(Long flightId) {
       // Create an optional of a flight
-      Optional<Flight> flight = flightRepository.findById(flightId);
-
-      // Check if the flight belongs to logged-in user
-
+      Optional<Flight> flight = flightRepository.findFlightByIdAndPilotId(flightId, MyProfileService.getLoggedInUser().getId());
       // Check if the flight is present
       if(flight.isPresent()) {
          // Delete the flight
