@@ -23,6 +23,7 @@ public class FlightController {
       return flightService.getAllFlights();
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin creates a new flight (Public | Private)
    // Path: /api/flights
    @PostMapping(path = "")
@@ -37,6 +38,7 @@ public class FlightController {
       return flightService.getFlightById(flightId);
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin deletes flight (Public | Private)
    // Path: /api/flights/{flightId}
    @DeleteMapping(path = "/{flightId})")
@@ -51,6 +53,7 @@ public class FlightController {
       return flightService.getFlightTickets(flightId);
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin creates ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
    @PostMapping(path = "/{flightId}/tickets")

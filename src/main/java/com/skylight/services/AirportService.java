@@ -115,7 +115,7 @@ public class AirportService {
       // Check if the airport is present
       if(airport.isPresent()) {
          // Create a list of departure flights
-         List<Flight> departuresList = airport.get().getDepartingFlightsList();
+         List<Flight> departuresList = flightRepository.findFlightByOriginAirportId(airportId);
          // Check if the list of departure flights is empty
          if(departuresList.isEmpty()) {
             // Throw an error if no flights are found

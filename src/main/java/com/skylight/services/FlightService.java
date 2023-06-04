@@ -36,6 +36,7 @@ public class FlightService {
       return allFlights;
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    public Flight createFlight(Flight flight) {
       // check that the date does not conflict with other dates
       // check that the pilot is available at that time.
@@ -71,6 +72,7 @@ public class FlightService {
     * @param flightId is the flight ID to search by
     * @return the deleted flight data
     */
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    public Optional<Flight> deleteFlightById(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
@@ -114,6 +116,7 @@ public class FlightService {
       throw new NotFoundException("Flight " + flightId + " not found");
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Create tickets for flight
    public Ticket createTicketForFlight(Long flightId, Ticket ticket) {
       // Create an optional of a flight
