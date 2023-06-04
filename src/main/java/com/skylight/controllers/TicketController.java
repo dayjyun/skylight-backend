@@ -15,14 +15,14 @@ public class TicketController {
    @Autowired
    private TicketService ticketService;
 
-   // Functionality: Returns ticket details (Public | Private)
+   // Functionality: Returns ticket details (Public/Private)
    // Path: /api/tickets/{ticketId}
    @GetMapping(path = "/{ticketId}")
    public Optional<Ticket> getTicketById(@PathVariable Long ticketId) {
       return ticketService.getTicketById(ticketId);
    }
 
-   // Functionality: Admin deletes ticket (Public/Private)
+   // Functionality: Admin deletes ticket (Private)
    // Path: /api/tickets/{ticketId}
    @DeleteMapping(path = "/{ticketId}")
    public Optional<Ticket> deleteTicketAdmin(@PathVariable Long ticketId) {

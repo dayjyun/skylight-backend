@@ -354,6 +354,14 @@ public class SkyLightDefinitions {
    }
 
 
+   /**
+    * Scenario: User is able to create tickets for a flight (Private
+    * Path: POST /api/flights/{flightId}
+    * Borrows: aFlightIsAvailable returns the flight with the specified ID
+    * iCreateATicket creates a new ticket for the flight
+    * iCanSeeTheDetailsOfTheNewlyCreatedTicket verifies the return status code is 201
+    * @throws Exception is thrown if the user is not logged in or admin of the flight
+    */
    @When("I create a ticket")
    public void iCreateATicket() throws Exception {
       RestAssured.baseURI = BASE_URL;
@@ -372,18 +380,29 @@ public class SkyLightDefinitions {
 
    // Tickets
 
+   /**
+    * Scenario: User is able to view a ticket (Public/Private)
+    * Path: GET /api/tickets/{ticketId}
+    * aTicketIsAvailable returns the ticket with the specified ID
+    * iSearchForATicket verifies the ticket is not null
+    * iCanSeeTheDetailsOfTheTicket verifies the return status code is 200
+    * @throws Exception is thrown if the user is not the owner of the ticket or flight admin
+    */
    @Given("I have booked a ticket")
-   public void iHaveBookedATicket() {
-
+   public void iHaveBookedATicket() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyPassenger());
+      response = request.get(BASE_URL + port + "/api/tickets/4");
    }
 
    @When("I search for the ticket")
    public void iSearchForTheTicket() {
-
+      Assert.assertNotNull(String.valueOf(response));
    }
 
    @Then("I can see the details for that ticket")
    public void iCanSeeTheDetailsForThatTicket() {
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
 

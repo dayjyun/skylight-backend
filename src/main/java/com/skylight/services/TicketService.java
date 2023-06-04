@@ -22,8 +22,7 @@ public class TicketService {
 
    /**
     * getTicketById returns a ticket by its ID only if you're the ticket holder, you're the pilot for the given flight, or if the ticket is
-    * still
-    * available
+    * still available
     * A NotFoundException is thrown if the ticket is not found with the provided ID
     * @param ticketId is the ticket ID to search by
     * @return a ticket

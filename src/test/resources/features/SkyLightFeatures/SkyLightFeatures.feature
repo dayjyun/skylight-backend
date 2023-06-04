@@ -93,7 +93,7 @@ Feature: SkyLight API Functionalities
 
 #  #Private
   Scenario: User is able to create tickets for a flight
-    Given a flight belongs to the logged-in user
+    Given a flight is available
     When I create a ticket
     Then I can see the details of the newly created ticket
 
