@@ -355,12 +355,19 @@ public class SkyLightDefinitions {
 
 
    @When("I create a ticket")
-   public void iCreateATicket() {
-
+   public void iCreateATicket() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given();
+      JSONObject newTicket = new JSONObject();
+      newTicket.put("flightId", 1);
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer " + getSecurityKeyAdmin());
+      response = request.body(newTicket.toString()).post(BASE_URL + port + "/api/flights/1/tickets");
    }
 
    @Then("I can see the details of the newly created ticket")
    public void iCanSeeTheDetailsOfTheNewlyCreatedTicket() {
+      Assert.assertEquals(201, response.getStatusCode());
    }
 
    // Tickets
@@ -415,6 +422,10 @@ public class SkyLightDefinitions {
    public void iSeeMyProfileIsUpdated() {
       Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(200, response.getStatusCode());
+   }
+
+   @Given("a flight belongs to the logged-in user")
+   public void aFlightBelongsToTheLoggedInUser() {
    }
 }
 

@@ -4,6 +4,7 @@ import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -55,7 +56,7 @@ public class FlightController {
    // Functionality: Admin creates ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
    @PostMapping(path = "/{flightId}/tickets")
-   public Ticket createTicketForFlight(@PathVariable Long flightId) {
+   public ResponseEntity<Ticket> createTicketForFlight(@PathVariable Long flightId) {
       return flightService.createTicketForFlight(flightId);
    }
 }

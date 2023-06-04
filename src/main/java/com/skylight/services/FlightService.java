@@ -6,7 +6,10 @@ import com.skylight.models.Ticket;
 import com.skylight.repositories.FlightRepository;
 import com.skylight.repositories.TicketRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -125,11 +128,11 @@ public class FlightService {
     * @param flightId is the flight ID to search by
     * @return newly created ticket
     */
-   public Ticket createTicketForFlight(Long flightId) {
+   public ResponseEntity<Ticket> createTicketForFlight(Long flightId) {
       // Create an optional of a flight
-      Optional<Flight> flight = flightRepository.findFlightByIdAndPilotId(flightId,  MyProfileService.getLoggedInUser().getId());
+      Optional<Flight> flight = flightRepository.findFlightByIdAndPilotId(flightId, MyProfileService.getLoggedInUser().getId());
       // Check if the flight is present
-      if(flight.isPresent()) {
+      if (flight.isPresent()) {
          // Create a new ticket
          Ticket ticket = new Ticket();
          // Add flight to ticket
@@ -138,8 +141,8 @@ public class FlightService {
          flight.get().getListOfTickets().add(ticket);
          // Save ticket to ticket repository
          ticketRepository.save(ticket);
-         // Return the ticket
-         return ticket;
+         // Return the ticket with a 201 status code
+         return ResponseEntity.status(HttpStatus.CREATED).body(ticket);
       }
       // Throw a NotFoundException if the flight is not found
       throw new NotFoundException("Flight " + flightId + " not found");
