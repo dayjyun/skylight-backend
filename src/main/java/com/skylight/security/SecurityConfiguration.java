@@ -31,17 +31,18 @@ public class SecurityConfiguration {
    }
 
    /**
-    * authJwtRequestFilter creates a new instance of the JWTRequestFilter,
-    * so we can validate the jwt token.
+    * authJwtRequestFilter creates a new instance of the JWTRequestFilter, so we can validate the jwt token.
+    *
     * @return a new JWTRequestFilter instance
     */
    @Bean
-   public JWTRequestFilter authJwtRequestFilter(){
+   public JWTRequestFilter authJwtRequestFilter() {
       return new JWTRequestFilter();
    }
+
    /**
-    * passwordEncoder creates a new instance of the BCryptPasswordEncoder,
-    * so we can salt and hash the user's password.
+    * passwordEncoder creates a new instance of the BCryptPasswordEncoder, so we can salt and hash the user's password.
+    *
     * @return a new BCryptPasswordEncoder instance
     */
    @Bean
@@ -50,18 +51,23 @@ public class SecurityConfiguration {
    }
 
    /**
-    * filterChain creates a SecurityFilterChain bean (object) that filters all HTTP requests to the server.
-    * This method allows us to keep certain endpoints private and others public.
+    * filterChain creates a SecurityFilterChain bean (object) that filters all HTTP requests to the server. This method allows us to keep
+    * certain endpoints private and others public.
+    *
     * @param http is the incoming HTTP request from a user
     * @return a new SecurityFilterChain object
     * @throws Exception if the filter chain has an error
     */
    @Bean
-   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception{ // accepts a http server request
-      http.authorizeRequests().antMatchers(HttpMethod.POST,
+   public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { // accepts a http server request
+      http.authorizeRequests()
+          .antMatchers(HttpMethod.POST,
                   "/api/auth/register",
-                  "/api/auth/login").permitAll()
-
+                  "/api/auth/login"
+          ).permitAll()
+          .antMatchers(HttpMethod.PUT,
+                  "/api/tickets/{ticketId}/bookFlight")
+          .permitAll()
           .antMatchers(HttpMethod.GET,
                   "/api/airports",
                   "/api/airports/{airportId}",
@@ -74,19 +80,20 @@ public class SecurityConfiguration {
                   "/api/tickets/{ticketId}"
           ).permitAll()// these are all public urls
           .anyRequest().authenticated() // other urls need authentication
-          .and().sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS) // when you log into a server, you need to maintain a session. add this session so that our java springboot knows we're logged in
+          .and().sessionManagement()
+          .sessionCreationPolicy(SessionCreationPolicy.STATELESS) // when you log into a server, you need to maintain a session. add this
+          // session so that our java springboot knows we're logged in
           .and().csrf().disable(); // connects front/back end if they're on different servers
       http.addFilterBefore(authJwtRequestFilter(), UsernamePasswordAuthenticationFilter.class); // added for JWT login
       return http.build();
    }
 
    /**
-    * authenticationManager takes in an AuthenticationConfiguration object,
-    * and returns an AuthenticationManager instance.
-    * An AuthenticationManager can do one of 3 things in its authenticate() method:
-    * 1. Return an Authentication (normally with authenticated=true) if it can verify that the input represents a valid principal
-    * 2. Throw an AuthenticationException if it believes that the input represents an invalid principal
-    * 3. Return null if it cannot decide
+    * authenticationManager takes in an AuthenticationConfiguration object, and returns an AuthenticationManager instance. An
+    * AuthenticationManager can do one of 3 things in its authenticate() method: 1. Return an Authentication (normally with
+    * authenticated=true) if it can verify that the input represents a valid principal 2. Throw an AuthenticationException if it believes
+    * that the input represents an invalid principal 3. Return null if it cannot decide
+    *
     * @param authConfig tells us how to create the AuthenticationManager
     * @return an AuthenticationManager instance
     * @throws Exception if AuthenticationConfiguration object has an error
@@ -97,9 +104,9 @@ public class SecurityConfiguration {
    }
 
    /**
-    * authenticationProvider uses myUserDetailsService and passwordEncoder
-    * to return an instance of the DaoAuthenticationProvider.
-    * The DaoAuthenticationProvider uses the custom myUserDetailsService service to get the user information from the database.
+    * authenticationProvider uses myUserDetailsService and passwordEncoder to return an instance of the DaoAuthenticationProvider. The
+    * DaoAuthenticationProvider uses the custom myUserDetailsService service to get the user information from the database.
+    *
     * @return an authentication object that will contain the fully populated object including the authorization details
     */
    @Bean
@@ -112,6 +119,7 @@ public class SecurityConfiguration {
 
    /**
     * myUserDetails returns the current logged-in user's details as an object.
+    *
     * @return the user's details as a MyUserDetails object.
     */
    @Bean
