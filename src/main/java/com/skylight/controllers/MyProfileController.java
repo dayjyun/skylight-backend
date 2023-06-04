@@ -40,9 +40,9 @@ public class MyProfileController {
 
    // Functionality: User submits request to become a pilot (Private)
    // Path: /api/myProfile/flyTheSkies
-   @PostMapping("/flyTheSkies")
-   public User flyTheSkies(@RequestBody User user) {
-      return myProfileService.flyTheSkies(user);
+   @PutMapping("/flyTheSkies")
+   public User flyTheSkies() {
+      return myProfileService.flyTheSkies();
    }
 
    //  Functionality: Returns a list of flight the admin has submitted	(Private)

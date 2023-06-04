@@ -107,15 +107,15 @@ public class MyProfileService {
     * flyTheSkies upgrades the logged-in user to an admin role
     * @return updated user data
     */
-   public User flyTheSkies(User user) {
+   public User flyTheSkies() {
       // Create an optional of the logged-in user
       Optional<User> loggedInUser = userRepository.findById(getLoggedInUser().getId());
       // Check there is data for the logged-in user
       if (loggedInUser.isPresent()) {
          // set the user as an admin
-         user.setAdmin(true);
+         loggedInUser.get().setAdmin(true);
          // Save the updated use
-         return userRepository.save(user);
+         return loggedInUser.get();
       }
       // Return null if there is no user data
       return null;

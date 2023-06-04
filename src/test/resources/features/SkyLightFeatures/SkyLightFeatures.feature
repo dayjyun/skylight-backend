@@ -66,6 +66,7 @@ Feature: SkyLight API Functionalities
     Then I can see a list of departing flights
 
   # Flights
+
   # Public
   Scenario: User is able to view a list of flights
     Given a list of flights are available
@@ -96,7 +97,8 @@ Feature: SkyLight API Functionalities
 #    When I create a ticket
 #    Then I can see the details of the newly created ticket
 
-#  # Tickets
+  # Tickets
+
 #  # Private
 #  Scenario: User is able to book a flight
 #    Given a ticket is available
@@ -123,7 +125,7 @@ Feature: SkyLight API Functionalities
 #    Then I can see the details of the deleted flight
 
   # Edit
-  # Private
+  # Private My Profile
   Scenario: User is able to edit their account details
     Given I am logged in
     When I edit my profile

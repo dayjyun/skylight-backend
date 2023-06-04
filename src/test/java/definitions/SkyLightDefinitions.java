@@ -119,7 +119,7 @@ public class SkyLightDefinitions {
       requestBody.put("isAdmin", true);
       request.header("Content-Type", "application/json");
       request.header("Authorization", "Bearer", getSecurityKeyAdmin());
-      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/myProfile");
+      response = request.body(requestBody.toString()).put(BASE_URL + port + "/api/myProfile/flyTheSkies");
    }
 
    @Then("I am a pilot")

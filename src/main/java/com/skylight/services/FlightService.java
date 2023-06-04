@@ -91,7 +91,7 @@ public class FlightService {
    public List<Ticket> getFlightTickets(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findById(flightId);
-      // Check you're the pilot
+
 
       // Check if the flight is present
       if(flight.isPresent()) {
@@ -101,6 +101,8 @@ public class FlightService {
          if(tickets.isEmpty()) {
             // Throw a NotFoundException if no tickets are found
             throw new NotFoundException("No tickets found");
+            // another if to check that the ticket does not belong to a passenger (passenger == null) return null or NotFoundException
+
          }
          // Return the list of tickets for the flight
          return tickets;
