@@ -95,12 +95,12 @@ public class MyProfileService {
       // Check there is data for the logged-in user
       List<Ticket> myTickets = myProfile.get().getMyTicketsList();
       // Check that the user has booked any tickets
-      if(myTickets.isEmpty()) {
-         // Return an error if the user has not booked any tickets
-         throw new NotFoundException("No tickets found");
+      if(myTickets.size() > 0) {
+         // Return the list of tickets the user has booked
+         return myTickets;
       }
-      // Return the list of tickets the user has booked
-      return myTickets;
+      // Return an error if the user has not booked any tickets
+      throw new NotFoundException("No tickets found");
    }
 
    /**
