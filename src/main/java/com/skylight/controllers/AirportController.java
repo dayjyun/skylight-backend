@@ -22,7 +22,7 @@ public class AirportController {
    // Functionality: Returns a list of airports	(Public)
    // Path: /api/airports
    @GetMapping(path = "")
-   public List<Airport> getAirports() {
+   public List<Airport> getAllAirports() {
       return airportService.getAllAirports();
    }
 
