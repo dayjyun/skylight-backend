@@ -372,6 +372,21 @@ public class SkyLightDefinitions {
 
    // Tickets
 
+   @Given("I have booked a ticket")
+   public void iHaveBookedATicket() {
+
+   }
+
+   @When("I search for the ticket")
+   public void iSearchForTheTicket() {
+
+   }
+
+   @Then("I can see the details for that ticket")
+   public void iCanSeeTheDetailsForThatTicket() {
+   }
+
+
    // Delete
 
    /**
@@ -427,6 +442,7 @@ public class SkyLightDefinitions {
    @Given("a flight belongs to the logged-in user")
    public void aFlightBelongsToTheLoggedInUser() {
    }
+
 }
 
 

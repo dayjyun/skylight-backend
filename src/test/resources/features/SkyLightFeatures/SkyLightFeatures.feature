@@ -106,10 +106,10 @@ Feature: SkyLight API Functionalities
 #    Then I can see the details of the ticket I booked
 
 #  # Private
-#  Scenario: User is able to see ticket details
-#    Given I have booked a ticket
-#    When I search for the ticket
-#    Then I can see the details for that ticket
+  Scenario: User is able to see ticket details
+    Given I have booked a ticket
+    When I search for the ticket
+    Then I can see the details for that ticket
 
 #  # Delete
 #  # Private Ticket

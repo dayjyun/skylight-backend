@@ -34,25 +34,18 @@ public class TicketService {
       // Check if the ticket is present
       if(ticket.isPresent()) {
          //  Check if the ticket has a passenger
-         if(ticket.get().getPassenger() == null) {
-            // Return the ticket data if the ticket belongs to no passenger
-            return ticket;
-         }
-         // Return the ticket data if the ticket belongs to the current user
-         if(Objects.equals(ticket.get().getPassenger().getId(), MyProfileService.getLoggedInUser().getId())) {
+         if(ticket.get().getPassenger() == null ||
+                 // Check if the ticket belongs to the logged-in user
+                 Objects.equals(ticket.get().getPassenger().getId(), MyProfileService.getLoggedInUser().getId()) ||
+                 // Check if the ticket belongs to a flight created by the logged-in user
+                 Objects.equals(ticket.get().getFlight().getPilot().getId(), MyProfileService.getLoggedInUser().getId())
+         ) {
             // Return the ticket data
             return ticket;
          }
-         // Return the ticket data if the ticket belongs to a flight created by the user
-         if(Objects.equals(ticket.get().getFlight().getPilot().getId(), MyProfileService.getLoggedInUser().getId())) {
-            // Return the ticket data
-            return ticket;
-         }
-         // Return the ticket data
-         throw new NotFoundException("Ticket " + ticketId + " not found");
       }
       // Throw a NotFoundException if the ticket is not found
-      throw new NotFoundException("Ticket not found");
+      throw new NotFoundException("Ticket " + ticketId + " not found");
    }
 
    /**
