@@ -392,7 +392,7 @@ public class SkyLightDefinitions {
    public void iHaveBookedATicket() throws Exception {
       RestAssured.baseURI = BASE_URL;
       request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyPassenger());
-      response = request.get(BASE_URL + port + "/api/tickets/4");
+      response = request.get(BASE_URL + port + "/api/tickets/1");
    }
 
    @When("I search for the ticket")
@@ -402,6 +402,30 @@ public class SkyLightDefinitions {
 
    @Then("I can see the details for that ticket")
    public void iCanSeeTheDetailsForThatTicket() {
+      Assert.assertEquals(200, response.getStatusCode());
+   }
+
+   /**
+    *
+    */
+   @Given("a ticket is available")
+   public void aTicketIsAvailable() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyPassenger());
+      JSONObject requestBody = new JSONObject();
+      requestBody.put("passenger", "Passenger ID, passenger name, passenger email");
+      request.header("Content-Type", "application/json");
+      response = request.body(requestBody.toString()).put(BASE_URL + port + "/api/tickets/5/bookFlight");
+   }
+
+   @When("I book the ticket")
+   public void iBookTheTicket() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the details of the ticket I booked")
+   public void iCanSeeTheDetailsOfTheTicketIBooked() {
+      System.out.println(response.prettyPeek());
       Assert.assertEquals(200, response.getStatusCode());
    }
 

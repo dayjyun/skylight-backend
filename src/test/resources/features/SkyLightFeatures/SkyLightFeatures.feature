@@ -99,11 +99,11 @@ Feature: SkyLight API Functionalities
 
   # Tickets
 
-#  # Private
-#  Scenario: User is able to book a flight
-#    Given a ticket is available
-#    When I book the ticket
-#    Then I can see the details of the ticket I booked
+  # Private
+  Scenario: User is able to book a flight
+    Given a ticket is available
+    When I book the ticket
+    Then I can see the details of the ticket I booked
 
 #  # Private
   Scenario: User is able to see ticket details

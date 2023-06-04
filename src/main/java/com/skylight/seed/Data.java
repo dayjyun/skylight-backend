@@ -169,17 +169,20 @@ public class Data implements CommandLineRunner {
          Ticket ticketFromPHXtoAUS = new Ticket(2L, flightFromPHXtoAUS, kim);
          Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
          Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
+         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, null);
 
          // Save ticket details
          ticketRepository.save(ticketFromMDWtoAUS);
          ticketRepository.save(ticketFromPHXtoAUS);
          ticketRepository.save(ticketFromAUStoORD);
          ticketRepository.save(ticketFromAUStoPHX);
+         ticketRepository.save(ticketFromMDWtoAUS2);
 
 
          // Assign tickets to flights
          ArrayList<Ticket> oneList = new ArrayList<>();
          oneList.add(ticketFromMDWtoAUS);
+         oneList.add(ticketFromMDWtoAUS2);
          flightFromMDWtoAUS.setListOfTickets(oneList);
 
          ArrayList<Ticket> twoList = new ArrayList<>();
@@ -193,7 +196,6 @@ public class Data implements CommandLineRunner {
          ArrayList<Ticket> fourList = new ArrayList<>();
          fourList.add(ticketFromAUStoPHX);
          flightFromAUStoPHX.setListOfTickets(fourList);
-
 
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
