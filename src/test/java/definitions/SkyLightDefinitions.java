@@ -366,6 +366,7 @@ public class SkyLightDefinitions {
 
    @Then("I see my profile is updated")
    public void iSeeMyProfileIsUpdated() {
+      Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(200, response.getStatusCode());
    }
 
