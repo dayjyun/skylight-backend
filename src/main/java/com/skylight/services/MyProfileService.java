@@ -104,9 +104,8 @@ public class MyProfileService {
    }
 
    /**
-    * getMyFlights retrieves a list of flights the user has booked
-    * @throws NotFoundException if the user has not booked any flights
-    * @return List of flights the user has booked
+    * flyTheSkies upgrades the logged-in user to an admin role
+    * @return updated user data
     */
    public User flyTheSkies(User user) {
       // Create an optional of the logged-in user

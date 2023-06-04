@@ -326,7 +326,19 @@ public class SkyLightDefinitions {
    }
 
 
+   @Given("a flight has a list of tickets")
+   public void aFlightHasAListOfTickets() {
 
+   }
+
+   @When("I search for the list of tickets for the flight")
+   public void iSearchForTheListOfTicketsForTheFlight() {
+
+   }
+
+   @Then("I can see the list of tickets for the flight")
+   public void iCanSeeTheListOfTicketsForTheFlight() {
+   }
 
    // Delete
 

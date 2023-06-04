@@ -7,6 +7,7 @@ import com.skylight.services.MyProfileService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -19,14 +20,14 @@ public class MyProfileController {
    // Functionality: Returns logged-in user’s account (Private)
    // Path: /api/myProfile
    @GetMapping("")
-   public User getMyProfile() {
+   public User getLoggedInUser() {
       return MyProfileService.getLoggedInUser();
    }
 
    // Functionality: Edit user account (Private)
    // Path: /api/myProfile
    @PostMapping("")
-   public User editMyProfile(@RequestBody User updateBody) {
+   public User updateMyProfile(@RequestBody @Valid User updateBody) {
       return myProfileService.updateMyProfile(updateBody);
    }
 
