@@ -32,6 +32,7 @@ public class UserController {
       return userService.loginUser(loginRequest);
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: User logs out of account (Public)
    // Path: /api/auth/logout
 }

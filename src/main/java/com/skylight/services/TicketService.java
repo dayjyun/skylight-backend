@@ -48,7 +48,6 @@ public class TicketService {
             // Return the ticket data
             return ticket;
          }
-
          // Return the ticket data
          throw new NotFoundException("Ticket " + ticketId + " not found");
       }
