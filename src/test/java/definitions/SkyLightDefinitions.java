@@ -353,6 +353,18 @@ public class SkyLightDefinitions {
       Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
+
+   @When("I create a ticket")
+   public void iCreateATicket() {
+
+   }
+
+   @Then("I can see the details of the newly created ticket")
+   public void iCanSeeTheDetailsOfTheNewlyCreatedTicket() {
+   }
+
+   // Tickets
+
    // Delete
 
    /**
@@ -404,7 +416,6 @@ public class SkyLightDefinitions {
       Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(200, response.getStatusCode());
    }
-
 }
 
 

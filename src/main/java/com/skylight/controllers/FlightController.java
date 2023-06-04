@@ -52,11 +52,10 @@ public class FlightController {
       return flightService.getFlightTickets(flightId);
    }
 
-   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin creates ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
    @PostMapping(path = "/{flightId}/tickets")
-   public Ticket createTicketForFlight(@PathVariable Long flightId, @RequestBody Ticket ticket) {
-      return flightService.createTicketForFlight(flightId, ticket);
+   public Ticket createTicketForFlight(@PathVariable Long flightId) {
+      return flightService.createTicketForFlight(flightId);
    }
 }

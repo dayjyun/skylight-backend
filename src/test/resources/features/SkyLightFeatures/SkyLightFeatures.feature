@@ -92,10 +92,10 @@ Feature: SkyLight API Functionalities
     Then I can see the list of tickets for the flight
 
 #  #Private
-#  Scenario: User is able to create tickets for a flight
-#    Given I am an admin
-#    When I create a ticket
-#    Then I can see the details of the newly created ticket
+  Scenario: User is able to create tickets for a flight
+    Given a flight is available
+    When I create a ticket
+    Then I can see the details of the newly created ticket
 
   # Tickets
 
