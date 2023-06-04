@@ -119,10 +119,10 @@ Feature: SkyLight API Functionalities
 #    Then I can see the details of the deleted ticket
 
 #    # Private Flight
-#  Scenario: User is able to delete a flight they created
-#    Given I have admin access to the flight
-#    When I delete the flight
-#    Then I can see the details of the deleted flight
+  Scenario: User is able to delete a flight they created
+    Given a flight is available
+    When I delete the flight
+    Then I can see the details of the deleted flight
 
   # Edit
   # Private My Profile

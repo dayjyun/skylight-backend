@@ -356,6 +356,21 @@ public class SkyLightDefinitions {
    // Delete
 
 
+   @When("I delete the flight")
+   public void iDeleteTheFlight() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      RequestSpecification request = RestAssured.given();
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer " + getSecurityKeyAdmin());
+      response = request.delete(BASE_URL + port + "/api/flights/1");
+      System.out.println(response.prettyPeek());
+   }
+
+   @Then("I can see the details of the deleted flight")
+   public void iCanSeeTheDetailsOfTheDeletedFlight() {
+      Assert.assertEquals(200, response.getStatusCode());
+   }
+
 
    // Edit
 
@@ -382,8 +397,6 @@ public class SkyLightDefinitions {
       Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(200, response.getStatusCode());
    }
-
-
 
 }
 
