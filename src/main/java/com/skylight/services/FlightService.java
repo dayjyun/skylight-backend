@@ -72,7 +72,6 @@ public class FlightService {
     * @param flightId is the flight ID to search by
     * @return the deleted flight data
     */
-   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    public Optional<Flight> deleteFlightById(Long flightId) {
       // Create an optional of a flight
       Optional<Flight> flight = flightRepository.findFlightByIdAndPilotId(flightId, MyProfileService.getLoggedInUser().getId());
