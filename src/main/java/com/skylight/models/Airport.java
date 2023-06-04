@@ -51,7 +51,7 @@ public class Airport {
    public Airport(Long id, String name, String airportCode, String city, String state, String latitude, String longitude) {
       this.id = id;
       this.name = name;
-      this.airportCode = airportCode.toLowerCase();
+      this.airportCode = airportCode;
       this.city = city;
       this.state = state;
       this.latitude = latitude;
