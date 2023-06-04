@@ -31,8 +31,18 @@ public class TicketService {
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
       // Check if the ticket is present
       if(ticket.isPresent()) {
+         //  Check if the ticket has a passenger
+         if(ticket.get().getPassenger() == null) {
+            // Return the ticket data if the ticket belongs to no passenger
+            return ticket;
+         }
+         // Return the ticket data if the ticket belongs to the current user
+         if(Objects.equals(ticket.get().getPassenger().getId(), MyProfileService.getLoggedInUser().getId())) {
+            // Return the ticket data
+            return ticket;
+         }
          // Return the ticket data
-         return ticket;
+         throw new NotFoundException("Ticket " + ticketId + " not found");
       }
       // Throw a NotFoundException if the ticket is not found
       throw new NotFoundException("Ticket not found");

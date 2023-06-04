@@ -85,11 +85,11 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | POST         | /api/flights/{flightId}/tickets | Admin creates ticket  for flight     | Private |
 
 ## Tickets
-| Request Type | URL                                | Functionality          | Access  |
-|--------------|------------------------------------|------------------------|---------|
-| GET          | /api/tickets/{ticketId}            | Returns ticket details | Public  |
-| DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private |
-| POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private |
+| Request Type | URL                                | Functionality          | Access         |
+|--------------|------------------------------------|------------------------|----------------|
+| GET          | /api/tickets/{ticketId}            | Returns ticket details | Public/Private |
+| DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private        |
+| POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private        |
 
 # Future Features
  - [ ] Set up a payment service

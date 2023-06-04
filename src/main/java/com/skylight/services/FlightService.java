@@ -101,8 +101,6 @@ public class FlightService {
          if(tickets.isEmpty()) {
             // Throw a NotFoundException if no tickets are found
             throw new NotFoundException("No tickets found");
-            // another if to check that the ticket does not belong to a passenger (passenger == null) return null or NotFoundException
-
          }
          // Return the list of tickets for the flight
          return tickets;

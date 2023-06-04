@@ -22,7 +22,7 @@ public class TicketController {
       return ticketService.getTicketById(ticketId);
    }
 
-   // Functionality: Deletes ticket (Public | Private)
+   // Functionality: Deletes ticket (Public/Private)
    // Path: /api/tickets/{ticketId}
    @DeleteMapping(path = "/{ticketId}")
    public Optional<Ticket> deleteTicket(@PathVariable Long ticketId) {

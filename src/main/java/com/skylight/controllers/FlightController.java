@@ -44,7 +44,7 @@ public class FlightController {
       return flightService.deleteFlightById(flightId);
    }
 
-   // Functionality: Get all tickets available for flight (Public !!!)
+   // Functionality: Get all tickets available for flight (Public)
    // Path: /api/flights/{flightId}/tickets
    @GetMapping(path = "/{flightId}/tickets")
    public List<Ticket> getFlightTickets(@PathVariable Long flightId) {
