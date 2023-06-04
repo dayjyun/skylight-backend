@@ -301,7 +301,13 @@ public class SkyLightDefinitions {
 //   User is able to schedule a flight
 //
 
-
+   /**
+    * Scenario: User is able to view a flight (Public)
+    * Path: GET /api/flights/{flightId}
+    * aFlightIsAvailable returns the flight with the specified ID
+    * iSearchByFlightID verifies the flight is not null
+    * iCanSeeTheFlightDetails verifies the return status code is 200
+    */
    @Given("a flight is available")
    public void aFlightIsAvailable() {
       RestAssured.baseURI = BASE_URL;
