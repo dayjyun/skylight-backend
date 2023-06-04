@@ -120,7 +120,8 @@ public class FlightService {
    }
 
    /**
-    *
+    * createTicketForFlight creates a new ticket for an existing flight that belongs to the logged-in user
+    * A NotFoundException is thrown if the flight is not found with the provided ID
     * @param flightId
     * @return
     */
@@ -135,8 +136,7 @@ public class FlightService {
          ticket.setFlight(flight.get());
          // Add the ticket to the flight
          flight.get().getListOfTickets().add(ticket);
-         // Save the flight
-         flightRepository.save(flight.get());
+         // Save ticket to ticket repository
          ticketRepository.save(ticket);
          // Return the ticket
          return ticket;
