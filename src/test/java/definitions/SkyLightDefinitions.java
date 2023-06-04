@@ -297,6 +297,30 @@ public class SkyLightDefinitions {
       Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
 
+
+   @Given("a flight is available")
+   public void aFlightIsAvailable() {
+
+   }
+
+   @When("I search by flight ID")
+   public void iSearchByFlightID() {
+
+   }
+
+   @Then("I can see the flight details")
+   public void iCanSeeTheFlightDetails() {
+   }
+
+
+
+
+   // Delete
+
+
+
+   // Edit
+
    /**
     * Scenario: User is able to edit their account details (Private)
     * Path: PUT /api/myProfile
@@ -319,6 +343,7 @@ public class SkyLightDefinitions {
    public void iSeeMyProfileIsUpdated() {
       Assert.assertEquals(200, response.getStatusCode());
    }
+
 
 
 }

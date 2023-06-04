@@ -1,6 +1,11 @@
 Feature: SkyLight API Functionalities
 
   # My Profile
+
+  # Login
+
+  # Register
+
   # Private
   Scenario: User is able to view their account details
     Given I am logged in
@@ -19,10 +24,11 @@ Feature: SkyLight API Functionalities
     When I submit a request to become a pilot
     Then I am a pilot
 
-    Scenario: Admin is able to see a list of flights they scheduled
-      Given I have a list of flights scheduled
-      When I search for the flights I scheduled
-      Then I can see the flights I scheduled
+  # Private
+  Scenario: Admin is able to see a list of flights they scheduled
+    Given I have a list of flights scheduled
+    When I search for the flights I scheduled
+    Then I can see the flights I scheduled
 
   # Airports
   # Public
@@ -69,10 +75,10 @@ Feature: SkyLight API Functionalities
 #    Then I can see the details of the flight created
 
 #  # Public
-#  Scenario: User is able to view details of a flight
-#    Given a flight is available
-#    When I search by flight ID
-#    Then I can see the flight details
+  Scenario: User is able to view details of a flight
+    Given a flight is available
+    When I search by flight ID
+    Then I can see the flight details
 
 #  # Private
 #  Scenario: User is able to view all tickets for flight
