@@ -55,7 +55,7 @@ public class TicketService {
    public Optional<Ticket> deleteTicketAdmin(Long ticketId) {
       // Create an optional for a ticket
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
-      // Check if the ticket is present and belongs to current user
+      // Check if the ticket is present and check ticket belongs to the flight made by the logged-in user
       if (ticket.isPresent() && Objects.equals(ticket.get().getFlight().getPilot().getId(), MyProfileService.getLoggedInUser().getId())) {
          // Delete the ticket data
          ticketRepository.deleteById(ticketId);

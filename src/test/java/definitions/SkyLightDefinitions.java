@@ -381,31 +381,6 @@ public class SkyLightDefinitions {
    // Tickets
 
    /**
-    * Scenario: User is able to view a ticket (Public/Private)
-    * Path: GET /api/tickets/{ticketId}
-    * aTicketIsAvailable returns the ticket with the specified ID
-    * iSearchForATicket verifies the ticket is not null
-    * iCanSeeTheDetailsOfTheTicket verifies the return status code is 200
-    * @throws Exception is thrown if the user is not the owner of the ticket or flight admin
-    */
-   @Given("I have booked a ticket")
-   public void iHaveBookedATicket() throws Exception {
-      RestAssured.baseURI = BASE_URL;
-      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyPassenger());
-      response = request.get(BASE_URL + port + "/api/tickets/1");
-   }
-
-   @When("I search for the ticket")
-   public void iSearchForTheTicket() {
-      Assert.assertNotNull(String.valueOf(response));
-   }
-
-   @Then("I can see the details for that ticket")
-   public void iCanSeeTheDetailsForThatTicket() {
-      Assert.assertEquals(200, response.getStatusCode());
-   }
-
-   /**
     * Scenario: User is able to book a flight (Public)
     * Path: PUT /api/tickets/{ticketId}/bookFlight
     * aTicketIsAvailable returns the ticket with the specified ID. Requires any user to be logged in to book a ticket
@@ -433,8 +408,51 @@ public class SkyLightDefinitions {
       Assert.assertEquals(200, response.getStatusCode());
    }
 
+   /**
+    * Scenario: User is able to see ticket details (Public/Private)
+    * Path: GET /api/tickets/{ticketId}
+    * aTicketIsAvailable returns the ticket with the specified ID
+    * iSearchForATicket verifies the ticket is not null
+    * iCanSeeTheDetailsOfTheTicket verifies the return status code is 200
+    * @throws Exception is thrown if the user is not the owner of the ticket or flight admin
+    */
+   @Given("I have booked a ticket")
+   public void iHaveBookedATicket() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given().header("Authorization", "Bearer " + getSecurityKeyPassenger());
+      response = request.get(BASE_URL + port + "/api/tickets/1");
+   }
+
+   @When("I search for the ticket")
+   public void iSearchForTheTicket() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the details for that ticket")
+   public void iCanSeeTheDetailsForThatTicket() {
+      Assert.assertEquals(200, response.getStatusCode());
+   }
 
    // Delete
+
+   /**
+    * Scenario: Admin is able to delete a ticket (Private)
+    * Path: DELETE /api/tickets/{ticketId}
+    */
+   @When("I delete the ticket")
+   public void iDeleteTheTicket() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given();
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer " + getSecurityKeyAdmin());
+      response = request.delete(BASE_URL + port + "/api/tickets/1");
+   }
+
+   @Then("I can see the details of the deleted ticket")
+   public void iCanSeeTheDetailsOfTheDeletedTicket() {
+      Assert.assertNotNull(String.valueOf(response));
+      Assert.assertEquals(200, response.getStatusCode());
+   }
 
    /**
     * Scenario: User is able to delete a flight (Private)
@@ -489,7 +507,6 @@ public class SkyLightDefinitions {
    @Given("a flight belongs to the logged-in user")
    public void aFlightBelongsToTheLoggedInUser() {
    }
-
 }
 
 
