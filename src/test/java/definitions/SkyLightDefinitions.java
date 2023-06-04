@@ -355,7 +355,14 @@ public class SkyLightDefinitions {
 
    // Delete
 
-
+   /**
+    * Scenario: User is able to delete a flight (Private)
+    * Path: DELETE /api/flights/{flightId}
+    * Borrows: aFlightIsAvailable returns the flight with the specified ID
+    * iDeleteTheFlight deletes the flight
+    * iCanSeeTheDetailsOfTheDeletedFlight verifies the return status code is 200
+    * @throws Exception
+    */
    @When("I delete the flight")
    public void iDeleteTheFlight() throws Exception {
       RestAssured.baseURI = BASE_URL;
