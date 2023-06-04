@@ -122,7 +122,7 @@ public class AirportService {
             throw new NotFoundException("No departure flights found");
          }
          // Return the airport data
-         return airport.get().getDepartingFlightsList();
+         return departuresList;
       }
       // Throw an error if the airport is found
       throw new NotFoundException("No airport found");
