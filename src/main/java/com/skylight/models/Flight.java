@@ -65,12 +65,15 @@ public class Flight {
 
    public Flight() {}
 
-   public Flight(Long id, String airplane, String date, String departureTime, int layoverTime, String arrivalTime,
+   public Flight(Long id, String airplane, String date, Airport destinationAirport, String departureTime,
+                 Integer layoverTime,
+                 String arrivalTime,
                  Integer distanceMiles) {
       this.id = id;
       this.airplane = airplane;
       // MM-DD-YYYY
       this.date = date;
+      this.destinationAirport = destinationAirport;
       // 24-Hour format
       this.departureTime = departureTime;
       this.arrivalTime = arrivalTime;
