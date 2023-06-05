@@ -5,11 +5,14 @@ import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.models.User;
 import com.skylight.repositories.*;
+import com.skylight.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 @Component
 public class Data implements CommandLineRunner {
@@ -25,6 +28,9 @@ public class Data implements CommandLineRunner {
    @Autowired
    UserRepository userRepository;
 
+   @Autowired
+   UserService userService;
+
    @Override
    public void run(String... args) throws Exception {
       loadSeedData();
@@ -35,7 +41,7 @@ public class Data implements CommandLineRunner {
 
          // Create Users
          // Admins/Pilots
-         User kc = new User(1L, "KC", "kc@email.com", "pw", true);
+         User kc = new User(1L, "KC", "k@email.com", "pw", true);
          User maksym = new User(2L, "Maksym", "maksym@email.com", "pw", true);
          User anakin = new User(3L, "Anakin Skywalker", "as@email.com", "pw", true);
 
@@ -47,18 +53,15 @@ public class Data implements CommandLineRunner {
          User jeff = new User(8L, "Jeff", "jeff@email.com", "pw", false);
 
          // Save users
-         userRepository.save(kc);
-         userRepository.save(maksym);
-         userRepository.save(anakin);
-         userRepository.save(dominique);
-         userRepository.save(kim);
-         userRepository.save(jay);
-         userRepository.save(deShe);
-         userRepository.save(jeff);
+
+         List<User> usersList = new ArrayList<>(Arrays.asList(kc, maksym, anakin, dominique, kim, jay, deShe, jeff));
+         for(User user : usersList) {
+            userService.createUser(user);
+         }
 
          // Create Airports
          Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
-         Airport ohareAirport = new Airport(2L, "O'Hare", "OHX", "Chicago", "IL", "41.8781 N",  "87.6298 W");
+         Airport ohareAirport = new Airport(2L, "O'Hare", "ORD", "Chicago", "IL", "41.8781 N",  "87.6298 W");
          Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
          Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
 
@@ -166,17 +169,20 @@ public class Data implements CommandLineRunner {
          Ticket ticketFromPHXtoAUS = new Ticket(2L, flightFromPHXtoAUS, kim);
          Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
          Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
+         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, null);
 
          // Save ticket details
          ticketRepository.save(ticketFromMDWtoAUS);
          ticketRepository.save(ticketFromPHXtoAUS);
          ticketRepository.save(ticketFromAUStoORD);
          ticketRepository.save(ticketFromAUStoPHX);
+         ticketRepository.save(ticketFromMDWtoAUS2);
 
 
          // Assign tickets to flights
          ArrayList<Ticket> oneList = new ArrayList<>();
          oneList.add(ticketFromMDWtoAUS);
+         oneList.add(ticketFromMDWtoAUS2);
          flightFromMDWtoAUS.setListOfTickets(oneList);
 
          ArrayList<Ticket> twoList = new ArrayList<>();
@@ -190,7 +196,6 @@ public class Data implements CommandLineRunner {
          ArrayList<Ticket> fourList = new ArrayList<>();
          fourList.add(ticketFromAUStoPHX);
          flightFromAUStoPHX.setListOfTickets(fourList);
-
 
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();

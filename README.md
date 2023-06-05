@@ -53,28 +53,26 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 
 # Endpoints
 ## User
-| Request Type |           URL            |                  Functionality                   | Access  |
-|:------------:|:------------------------:|:------------------------------------------------:|:-------:|
-|     POST     |    /api/auth/register    |               User creates account               | Public  |
-|     POST     |     /api/auth/login      |              User logs into account              | Public  |
-|     GET      |      /api/myProfile      |         Returns logged-in user’s account         | Private |
-|     PUT      |      /api/myProfile      |                Edit user account                 | Private |
-|     GET      | /api/myProfile/myTickets |    Returns a list of flights the user booked     | Private |
-|     GET      |    /api/myProfile/air    | Returns a list of flight the admin has submitted | Private |
+| Request Type |               URL               |                  Functionality                   | Access  |
+|:------------:|:-------------------------------:|:------------------------------------------------:|:-------:|
+|     POST     |       /api/auth/register        |               User creates account               | Public  |
+|     POST     |         /api/auth/login         |              User logs into account              | Public  |
+|     GET      |         /api/myProfile          |         Returns logged-in user’s account         | Private |
+|     PUT      |         /api/myProfile          |                Edit user account                 | Private |
+|     GET      |    /api/myProfile/myTickets     |    Returns a list of flights the user booked     | Private |
+|     GET      |       /api/myProfile/air        | Returns a list of flight the admin has submitted | Private |
+|     POST     |   /api/myProfile/flyTheSkies    |         User requests to become a pilot          | Private |
 
 [//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
-[//]: # (|     GET      | /api/myProfile/flights/{flightId} | Get details of a flight from list of flights booked | Private |)
-
-
 ## Airports
-| Request Type |                 URL                  |                   Functionality                    | Access |
-|:------------:|:------------------------------------:|:--------------------------------------------------:|:------:|
-|     GET      |            /api/airports             |             Returns a list of airports             | Public |
-|     GET      |      /api/airports/{airportId}       |           Returns details of an airport            | Public |
-|     GET      |  /api/airports/{airportId}/arrivals  | Returns a list of arriving flights for an airport  | Public |
-|     GET      | /api/airports/{airportId}/departures | Returns a list of departing flights for an airport | Public |
-
+| Request Type |                 URL                  |                        Functionality                         | Access |
+|:------------:|:------------------------------------:|:------------------------------------------------------------:|:------:|
+|     GET      |            /api/airports             |                  Returns a list of airports                  | Public |
+|     GET      |      /api/airports/{airportId}       |                Returns details of an airport                 | Public |
+|     GET      |   /api/airports/code/{airportCode}   | Returns details of an airport by searching with airport code | Public |
+|     GET      |  /api/airports/{airportId}/arrivals  |      Returns a list of arriving flights for an airport       | Public |
+|     GET      | /api/airports/{airportId}/departures |      Returns a list of departing flights for an airport      | Public |
 
 ## Flights
 | Request Type | URL                             | Functionality                        | Access  |
@@ -83,16 +81,15 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | POST         | /api/flights                    | Admin creates a new flight           | Private |
 | GET          | /api/flights/{flightId}         | Returns flight details               | Public  |
 | DELETE       | /api/flights/{flightId}         | Admin deletes flight                 | Private |
-| GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Private |
+| GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Public  |
 | POST         | /api/flights/{flightId}/tickets | Admin creates ticket  for flight     | Private |
 
 ## Tickets
-| Request Type | URL                                | Functionality          | Access  |
-|--------------|------------------------------------|------------------------|---------|
-| GET          | /api/tickets/{ticketId}            | Returns ticket details | Public  |
-| DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private |
-| POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private |
-
+| Request Type | URL                                | Functionality          | Access         |
+|--------------|------------------------------------|------------------------|----------------|
+| GET          | /api/tickets/{ticketId}            | Returns ticket details | Public/Private |
+| DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private        |
+| POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private        |
 
 # Future Features
  - [ ] Set up a payment service
@@ -104,6 +101,7 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | PUT          | /api/cc/{ccId} | User updates credit card data         | Private |
 | DELETE       | /api/cc/{ccId} | User deletes credit card data on file | Private |
 
+- [ ] Create miniature banking application for Credit Cards
 - [ ] Create a model for planes
   - [ ] Airplane model/type
   - [ ] Number of seats

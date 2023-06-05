@@ -4,6 +4,7 @@ import com.skylight.models.Flight;
 import com.skylight.models.Ticket;
 import com.skylight.services.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,6 +24,7 @@ public class FlightController {
       return flightService.getAllFlights();
    }
 
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    // Functionality: Admin creates a new flight (Public | Private)
    // Path: /api/flights
    @PostMapping(path = "")
@@ -37,14 +39,14 @@ public class FlightController {
       return flightService.getFlightById(flightId);
    }
 
-   // Functionality: Admin deletes flight (Public | Private)
+   // Functionality: Admin deletes flight (Private)
    // Path: /api/flights/{flightId}
-   @DeleteMapping(path = "/{flightId})")
+   @DeleteMapping(path = "/{flightId}")
    public Optional<Flight> deleteFlightById(@PathVariable Long flightId) {
       return flightService.deleteFlightById(flightId);
    }
 
-   // Functionality: Get all tickets available for flight (Public | Private)
+   // Functionality: Get all tickets available for flight (Public)
    // Path: /api/flights/{flightId}/tickets
    @GetMapping(path = "/{flightId}/tickets")
    public List<Ticket> getFlightTickets(@PathVariable Long flightId) {
@@ -54,7 +56,7 @@ public class FlightController {
    // Functionality: Admin creates ticket for flight (Public | Private)
    // Path: /api/flights/{flightId}/tickets
    @PostMapping(path = "/{flightId}/tickets")
-   public Ticket createTicketForFlight(@PathVariable Long flightId, @RequestBody Ticket ticket) {
-      return flightService.createTicketForFlight(flightId, ticket);
+   public ResponseEntity<Ticket> createTicketForFlight(@PathVariable Long flightId) {
+      return flightService.createTicketForFlight(flightId);
    }
 }

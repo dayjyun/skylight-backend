@@ -22,7 +22,7 @@ public class AirportController {
    // Functionality: Returns a list of airports	(Public)
    // Path: /api/airports
    @GetMapping(path = "")
-   public List<Airport> getAirports() {
+   public List<Airport> getAllAirports() {
       return airportService.getAllAirports();
    }
 
@@ -31,6 +31,13 @@ public class AirportController {
    @GetMapping(path = "/{airportId}")
    public Optional<Airport> getAirportById(@PathVariable Long airportId) {
       return airportService.getAirportById(airportId);
+   }
+
+   // Functionality: Returns details of an airport by code (Public)
+   // Path: /api/airports/code/{airportCode}
+   @GetMapping(path = "/code/{airportCode}")
+   public Optional<Airport> getAirportByCode(@PathVariable String airportCode) {
+      return airportService.getAirportByCode(airportCode);
    }
 
    // Functionality: Returns list of arrivals for an airport (Public)
