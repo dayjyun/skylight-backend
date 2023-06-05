@@ -51,11 +51,7 @@ public class UserService {
     * @param userObject is the data for the user being registered
     * @return the data for the newly registered user
     */
-   public User createUser(User userObject) {
-      // Check that the name field is not empty when updating the name
-      if (Objects.equals(userObject.getName(), "") || userObject.getName() == null) {
-         throw new BadRequestException("User name is required");
-      }
+   public ResponseEntity<User> createUser(User userObject) {
       // Check that the email field is not empty when updating the email
       if (Objects.equals(userObject.getEmail(), "") || userObject.getEmail() == null) {
          throw new BadRequestException("User email is required");
@@ -69,7 +65,7 @@ public class UserService {
          // Hash the password the user entered
          userObject.setPassword(passwordEncoder.encode(userObject.getPassword()));
          // Return the data for the newly created user
-         return userRepository.save(userObject);
+         return ResponseEntity.status(HttpStatus.CREATED).body(userRepository.save(userObject));
       } else {
          // Throw an error if the email already exists in the database
          throw new AlreadyExistsException("User with email address " + userObject.getEmail() + " already exists");

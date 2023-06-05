@@ -6,6 +6,11 @@ Feature: Users functionalities
 
   # Register
 
+  Scenario: User is able to register
+    Given an email is not registered
+    When a user registers with a unique email and password
+    Then a new user account is created
+
   # Logout
 
   # My Profile

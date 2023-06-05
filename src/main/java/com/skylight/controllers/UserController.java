@@ -21,7 +21,7 @@ public class UserController {
    // Functionality: User creates account (Public)
    // Path: /api/auth/register
    @PostMapping(path = "/register")
-   public User createUser(@RequestBody @Valid User user) {
+   public ResponseEntity<User> createUser(@RequestBody @Valid User user) {
       return userService.createUser(user);
    }
 

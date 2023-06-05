@@ -52,6 +52,35 @@ public class SkyLightDefinitions {
 
    // My Profile
 
+   @Given("an email is not registered")
+   public void anEmailIsNotRegistered() throws Exception {
+      RequestSpecification request = RestAssured.given();
+      JSONObject existingUser = new JSONObject();
+      existingUser.put("email", "k@email.com");
+      existingUser.put("password", "pw");
+      request.header("Content-Type", "application/json");
+      response = request.body(existingUser.toString()).post(BASE_URL + port + "/api/auth/register");
+      Assert.assertEquals(400, response.getStatusCode());
+   }
+
+   @When("a user registers with a unique email and password")
+   public void aUserRegistersWithAUniqueEmailAndAPassword() throws Exception {
+      RequestSpecification request = RestAssured.given();
+      JSONObject requestBody = new JSONObject();
+      requestBody.put("id", 1000L);
+      requestBody.put("name", "name");
+      requestBody.put("email", "new@email.com");
+      requestBody.put("password", "pw");
+      request.header("Content-Type", "application/json");
+      response = request.body(requestBody.toString()).post(BASE_URL + port + "/api/auth/register");
+   }
+
+   @Then("a new user account is created")
+   public void aNewUserAccountIsCreated() {
+      Assert.assertNotNull(String.valueOf(response));
+      Assert.assertEquals(201, response.getStatusCode());
+   }
+
    /**
     * Scenario: User is able to view their account details (Private)
     * Path: GET /api/myProfile
