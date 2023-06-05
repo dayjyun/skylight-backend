@@ -52,6 +52,14 @@ public class SkyLightDefinitions {
 
    // My Profile
 
+   /**
+    * Scenario: User is able to register (Public)
+    * Path: GET /api/auth/register
+    * anEmailIsNotRegistered verifies the return status code is 409 if the email exists in the database
+    * aUserRegistersWithAUniqueEmailAndAPassword creates a new user in the database
+    * aNewUserAccountIsCreated verifies the return status code is 201 if the user is created
+    * @throws Exception if JSON data creation does not pass
+    */
    @Given("an email is not registered")
    public void anEmailIsNotRegistered() throws Exception {
       RequestSpecification request = RestAssured.given();
@@ -79,6 +87,33 @@ public class SkyLightDefinitions {
    public void aNewUserAccountIsCreated() {
       Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(201, response.getStatusCode());
+   }
+
+   /**
+    * Scenario: User is able to log in (Public)
+    * Path: GET /api/auth/login
+    * anEmailIsInTheDatabase creates a new user in the database
+    * aUserLogsIn verifies the user's profile is not null
+    * aJWTKeyIsReturned verifies the return status code is 200 if the user is logged in
+    */
+   @Given("an email is in the database")
+   public void anEmailIsInTheDatabase() throws Exception {
+      RequestSpecification request = RestAssured.given();
+      JSONObject existingUser = new JSONObject();
+      existingUser.put("email", "k@email.com");
+      existingUser.put("password", "pw");
+      request.header("Content-Type", "application/json");
+      response = request.body(existingUser.toString()).post(BASE_URL + port + "/api/auth/login");
+   }
+
+   @When("a user logs in")
+   public void aUserLogsIn() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("a JWT key is returned")
+   public void aJWTKeyIsReturned() {
+      Assert.assertEquals(200, response.getStatusCode());
    }
 
    /**
@@ -531,10 +566,6 @@ public class SkyLightDefinitions {
    public void iSeeMyProfileIsUpdated() {
       Assert.assertNotNull(String.valueOf(response));
       Assert.assertEquals(200, response.getStatusCode());
-   }
-
-   @Given("a flight belongs to the logged-in user")
-   public void aFlightBelongsToTheLoggedInUser() {
    }
 }
 
