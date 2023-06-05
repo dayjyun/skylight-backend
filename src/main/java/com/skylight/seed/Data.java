@@ -68,10 +68,10 @@ public class Data implements CommandLineRunner {
          Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6446 N",  "73.7858 W");
 
          // Create flights
-         Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
-         Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 787", "07-01-2023", "0900", 0,"1100",  885);
-         Flight flightFromAUStoORD = new Flight(3L, "Jedi Starfighter", "07-01-2023", "0900", 0,"1200",  978);
-         Flight flightFromAUStoPHX = new Flight(4L, "Airbus A320", "07-01-2023", "1300", 0,"1530",  1133);
+         Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", austinAirport, "0900", 0,"1200",  1124);
+         Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 787", "07-01-2023", austinAirport, "0900", 0,"1100",  885);
+         Flight flightFromAUStoORD = new Flight(3L, "Jedi Starfighter", "07-01-2023", ohareAirport, "0900", 0,"1200",  978);
+         Flight flightFromAUStoPHX = new Flight(4L, "Airbus A320", "07-01-2023", phoenixAirport, "1300", 0,"1530",  1133);
 
          // Save airports
          airportRepository.save(midwayAirport);
