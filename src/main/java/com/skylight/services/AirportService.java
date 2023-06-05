@@ -78,6 +78,24 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
+
+
+   public Flight createFlight(Flight flight) {
+      // Create a new flight
+      Flight newFlight = flightRepository.save(flight);
+      // Return the new flight
+
+
+      // check that the date does not conflict with other dates
+      // check that the pilot is available at that time.
+      // Factor in layover time (60 minutes)
+      // add number of seats available
+      // Adds (logged-in) user as a list of passengers
+      // pilot is logged-in user
+      // flight.setPilot(pilot)
+      return newFlight;
+   }
+
    /**
     * getArrivals returns a list of all arriving flights for an airport
     * A NotFoundException is thrown if an airport is not found with the provided ID

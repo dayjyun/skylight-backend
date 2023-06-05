@@ -4,11 +4,9 @@ import com.skylight.models.Airport;
 import com.skylight.models.Flight;
 import com.skylight.services.AirportService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,6 +36,14 @@ public class AirportController {
    @GetMapping(path = "/code/{airportCode}")
    public Optional<Airport> getAirportByCode(@PathVariable String airportCode) {
       return airportService.getAirportByCode(airportCode);
+   }
+
+   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
+   // Functionality: Admin creates a new flight (ID/Code) (Public | Private)
+   // Path: /api/airports/{airportId}/arrivals
+   @PostMapping(path = "")
+   public Flight createFlight(@RequestBody @Valid Flight flight) {
+      return airportService.createFlight(flight);
    }
 
    // Functionality: Returns list of arrivals for an airport (Public)

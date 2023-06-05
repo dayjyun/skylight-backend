@@ -46,23 +46,6 @@ public class FlightService {
       return allFlights;
    }
 
-   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-   public Flight createFlight(Flight flight) {
-      // Create a new flight
-      Flight newFlight = flightRepository.save(flight);
-      // Return the new flight
-
-
-      // check that the date does not conflict with other dates
-      // check that the pilot is available at that time.
-      // Factor in layover time (60 minutes)
-      // add number of seats available
-      // Adds (logged-in) user as a list of passengers
-      // pilot is logged-in user
-         // flight.setPilot(pilot)
-      return newFlight;
-   }
-
    /**
     * getFlightById returns a flight by its ID
     * A NotFoundException is thrown if a flight is not found with the provided ID

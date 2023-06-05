@@ -25,14 +25,6 @@ public class FlightController {
       return flightService.getAllFlights();
    }
 
-   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-   // Functionality: Admin creates a new flight (Public | Private)
-   // Path: /api/flights
-   @PostMapping(path = "")
-   public Flight createFlight(@RequestBody @Valid Flight flight) {
-      return flightService.createFlight(flight);
-   }
-
    // Functionality: Returns flight details (Public)
    // Path: /api/flights/{flightId}
    @GetMapping(path = "/{flightId}")
