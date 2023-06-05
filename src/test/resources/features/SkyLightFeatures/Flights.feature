@@ -6,12 +6,6 @@ Feature: Flights functionalities
     When I search for flights
     Then I can see a list of flights
 
-#  # Private
-#  Scenario: User is able to schedule a flight
-#    Given I am an admin
-#    When I create a flight
-#    Then I can see the details of the flight created
-
   # Public
   Scenario: User is able to view details of a flight
     Given a flight is available

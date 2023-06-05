@@ -21,14 +21,15 @@ public class Flight {
 
    @Column
    @NotNull(message = "Date is required")
-   private String date;
+   private String departureDate;
 
    @Column
-   @NotNull(message = "Departure time is required")
+   private String arrivalDate;
+
+   @Column
    private String departureTime;
 
    @Column
-   @NotNull(message = "Arrival time is required")
    private String arrivalTime;
 
    @Column
@@ -65,20 +66,20 @@ public class Flight {
 
    public Flight() {}
 
-   public Flight(Long id, String airplane, String date, Airport destinationAirport, String departureTime,
+   public Flight(Long id, String airplane, String departureDate, String arrivalDate, String departureTime,
                  Integer layoverTime,
                  String arrivalTime,
                  Integer distanceMiles) {
       this.id = id;
       this.airplane = airplane;
       // MM-DD-YYYY
-      this.date = date;
-      this.destinationAirport = destinationAirport;
+      this.departureDate = departureDate;
+      this.arrivalDate = arrivalDate;
       // 24-Hour format
       this.departureTime = departureTime;
       this.arrivalTime = arrivalTime;
       // Waiting period is 60 minutes minimum
-      this.layoverTime = layoverTime + 60;
+      this.layoverTime = layoverTime;
       this.distanceMiles = distanceMiles;
       // Price is 30 cents per mile
       this.price = distanceMiles * 0.30;
@@ -100,12 +101,20 @@ public class Flight {
       this.airplane = airplane;
    }
 
-   public String getDate() {
-      return date;
+   public String getDepartureDate() {
+      return departureDate;
    }
 
-   public void setDate(String date) {
-      this.date = date;
+   public void setDepartureDate(String departureDate) {
+      this.departureDate = departureDate;
+   }
+
+   public String getArrivalDate() {
+      return arrivalDate;
+   }
+
+   public void setArrivalDate(String arrivalDate) {
+      this.arrivalDate = arrivalDate;
    }
 
    public String getDepartureTime() {
@@ -124,12 +133,28 @@ public class Flight {
       this.arrivalTime = arrivalTime;
    }
 
-   public int getLayoverTime() {
+   public Integer getLayoverTime() {
       return layoverTime;
    }
 
-   public void setLayoverTime(int layoverTime) {
-      this.layoverTime = layoverTime;
+   public void setLayoverTime(Integer layoverTime) {
+      this.layoverTime = layoverTime + 30;
+   }
+
+   public Integer getDistanceMiles() {
+      return distanceMiles;
+   }
+
+   public void setDistanceMiles(Integer distanceMiles) {
+      this.distanceMiles = distanceMiles;
+   }
+
+   public Double getPrice() {
+      return price;
+   }
+
+   public void setPrice(Double price) {
+      this.price = price;
    }
 
    public Airport getOriginAirport() {
@@ -148,23 +173,6 @@ public class Flight {
       this.destinationAirport = destinationAirport;
    }
 
-   public Integer getDistance() {
-      return distanceMiles;
-   }
-
-   public void setDistance(Integer distance) {
-      this.distanceMiles = distance;
-   }
-
-   public Double getPrice() {
-      return price;
-   }
-
-   public void setPrice(Double price) {
-      this.price = price;
-   }
-
-   // Relationships
    public User getPilot() {
       return pilot;
    }
@@ -186,14 +194,17 @@ public class Flight {
       return "Flight{" +
               "id=" + id +
               ", airplane='" + airplane + '\'' +
-              ", date='" + date + '\'' +
+              ", departureDate='" + departureDate + '\'' +
+              ", arrivalDate='" + arrivalDate + '\'' +
               ", departureTime='" + departureTime + '\'' +
               ", arrivalTime='" + arrivalTime + '\'' +
+              ", layoverTime=" + layoverTime +
+              ", distanceMiles=" + distanceMiles +
+              ", price=" + price +
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
-              ", distanceMiles='" + distanceMiles + '\'' +
-              ", price=" + price +
+              ", listOfTickets=" + listOfTickets +
               '}';
    }
 }

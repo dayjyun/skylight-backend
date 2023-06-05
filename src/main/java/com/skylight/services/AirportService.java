@@ -8,6 +8,7 @@ import com.skylight.repositories.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -80,21 +81,91 @@ public class AirportService {
 
 
 
-   public Flight createFlight(Flight flight) {
-      // Create a new flight
-      Flight newFlight = flightRepository.save(flight);
-      // Return the new flight
-
-
-      // check that the date does not conflict with other dates
-      // check that the pilot is available at that time.
-      // Factor in layover time (60 minutes)
-      // add number of seats available
-      // Adds (logged-in) user as a list of passengers
-      // pilot is logged-in user
-      // flight.setPilot(pilot)
-      return newFlight;
+   public Flight createFlightOrigin(String airportCode, Flight departingFlight) {
+      // Create an optional of the target airport
+      Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
+      // Check if the airport is present
+      if(airport.isPresent()) {
+         // Set origin airport to the flight
+         departingFlight.setOriginAirport(airport.get());
+         // Set the pilot to be the logged-in user
+         departingFlight.setPilot(MyProfileService.getLoggedInUser());
+         // Save the new flight
+         flightRepository.save(departingFlight);
+         // Add flight to list of departures for the airport
+         airport.get().getDepartingFlightsList().add(departingFlight);
+         // Save the updated airport data
+         airportRepository.save(airport.get());
+         // Return the departing flight details
+         return departingFlight;
+      }
+      // Throw an error if the airport is found
+      throw new NotFoundException("No airport found");
    }
+
+   public Flight createFlightDestination(String airportCode, Flight arrivingFlight) {
+      // Create an optional of the target airport
+      Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
+      // Check if the airport exists
+      if (airport.isPresent()) {
+         // Return existing flight details that belong to the logged-in user
+         Optional<Flight> existingFlight = flightRepository.findFlightByIdAndPilotId(arrivingFlight.getId(),
+                 MyProfileService.getLoggedInUser().getId());
+         // Update the existing flight details with the arrival details
+         // Arrival date
+         existingFlight.get().setArrivalDate(arrivingFlight.getArrivalDate());
+         // Arrival time
+         existingFlight.get().setArrivalTime(arrivingFlight.getArrivalTime());
+         // Layover time
+         if(arrivingFlight.getLayoverTime() == null) {
+            existingFlight.get().setLayoverTime(0);
+         } else {
+            existingFlight.get().setLayoverTime(arrivingFlight.getLayoverTime());
+         }
+         // Set destination airport to the flight
+         existingFlight.get().setDestinationAirport(airport.get());
+         // Save the new flight
+         flightRepository.save(existingFlight.get());
+         // Add flight to list of arrivals for the airport
+         airport.get().getArrivingFlightsList().add(existingFlight.get());
+         // Save the updated airport data
+         airportRepository.save(airport.get());
+         // Return the arriving flight details
+         return existingFlight.get();
+      }
+      // Throw an error if the airport is found
+      throw new NotFoundException("No airport found");
+   }
+
+
+   // check that the date does not conflict with other dates
+   // check that the pilot is available at that time.
+
+
+      // Factor in layover time (60 minutes)
+   public Flight createFlight(String originAirportCode, String destinationAirportCode, Flight flight) {
+      // Create an optional of the origin airport
+      Optional<Airport> originAirport = airportRepository.findAirportByAirportCodeIgnoreCase(originAirportCode);
+      // Check if the airport is present
+      if(originAirport.isPresent()) {
+         // Set origin airport to the flight
+         flight.setOriginAirport(originAirport.get());
+      }
+      // Create an optional of the destination airport
+      Optional<Airport> destinationAirport = airportRepository.findAirportByAirportCodeIgnoreCase(destinationAirportCode);
+      // Check if the airport is present
+      if(destinationAirport.isPresent()) {
+         // Set destination airport to the flight
+         flight.setDestinationAirport(destinationAirport.get());
+      }
+      // Set the pilot to be the logged-in user
+      flight.setPilot(MyProfileService.getLoggedInUser());
+      // Save the new flight
+      flightRepository.save(flight);
+      // Return the new flight details
+      return flight;
+   }
+
 
    /**
     * getArrivals returns a list of all arriving flights for an airport

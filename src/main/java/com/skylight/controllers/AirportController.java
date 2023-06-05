@@ -38,13 +38,31 @@ public class AirportController {
       return airportService.getAirportByCode(airportCode);
    }
 
+
+
    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-   // Functionality: Admin creates a new flight (ID/Code) (Public | Private)
-   // Path: /api/airports/{airportId}/arrivals
-   @PostMapping(path = "")
-   public Flight createFlight(@RequestBody @Valid Flight flight) {
-      return airportService.createFlight(flight);
+//    Functionality: Admin creates a new flight origin (ID/Code) (Private)
+//    Path: /api/airports/{airportId}/arrivals
+   @PostMapping(path = "/code/{airportCode}/origin")
+   public Flight createFlightOrigin(@PathVariable String airportCode, @RequestBody Flight departingFlight) {
+      return airportService.createFlightOrigin(airportCode, departingFlight);
    }
+
+   // Functionality: Admin creates a new flight destination (ID/Code) (Private)
+   // Path: /api/airports/code/{airportCode}/destination
+   @PostMapping(path = "/code/{airportCode}/destination")
+   public Flight createFlightDestination(@PathVariable String airportCode, @RequestBody Flight arrivingFlight) {
+      return airportService.createFlightDestination(airportCode, arrivingFlight);
+   }
+
+   @PostMapping(path = "/code/{originAirportCode}/{destinationAirportCode}")
+   public Flight createFlight(@PathVariable String originAirportCode, @PathVariable String destinationAirportCode,
+                                    @RequestBody Flight flightDetails) {
+      return airportService.createFlight(originAirportCode, destinationAirportCode, flightDetails);
+   }
+
+
+
 
    // Functionality: Returns list of arrivals for an airport (Public)
    // Path: /api/airports/{airportId}/arrivals
