@@ -64,12 +64,14 @@ public class Data implements CommandLineRunner {
          Airport ohareAirport = new Airport(2L, "O'Hare", "ORD", "Chicago", "IL", "41.8781 N",  "87.6298 W");
          Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
          Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
+         Airport dallasFortWorthAirport = new Airport(5L, "Dallas Fort Worth", "DFW", "Dallas", "TX", "32.8968 N",  "96.8083 W");
+         Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6397 N",  "73.7781 W");
 
          // Create flights
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  1124);
-         Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 737", "07-01-2023", "0900", 0,"1100",  885);
-         Flight flightFromAUStoORD = new Flight(3L, "Boeing 737", "07-01-2023", "0900", 0,"1200",  978);
-         Flight flightFromAUStoPHX = new Flight(4L, "Boeing 737", "07-01-2023", "1300", 0,"1530",  1133);
+         Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 787", "07-01-2023", "0900", 0,"1100",  885);
+         Flight flightFromAUStoORD = new Flight(3L, "Jedi Starfighter", "07-01-2023", "0900", 0,"1200",  978);
+         Flight flightFromAUStoPHX = new Flight(4L, "Airbus A320", "07-01-2023", "1300", 0,"1530",  1133);
 
          // Save airports
          airportRepository.save(midwayAirport);

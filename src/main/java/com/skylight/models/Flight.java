@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,12 +20,15 @@ public class Flight {
    private String airplane;
 
    @Column
+   @NotNull(message = "Date is required")
    private String date;
 
    @Column
+   @NotNull(message = "Departure time is required")
    private String departureTime;
 
    @Column
+   @NotNull(message = "Arrival time is required")
    private String arrivalTime;
 
    @Column
@@ -58,18 +62,6 @@ public class Flight {
    @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
    private List<Ticket> listOfTickets;
-
-   // List of flights a passenger is scheduled to board
-   // @ManyToMany
-   // @JoinTable(name = "tickets",
-   // joinColumns = @JoinColumn(name = "flight_id"),
-   // inverseJoinColumns = @JoinColumn(name = "user_id"))
-   // @JsonIgnore
-   // private List<User> bookedFlightsList;
-
-   // Number of seats/tickets available
-   // @Column
-   // private Integer numberOfSeats;
 
    public Flight() {}
 
@@ -186,27 +178,10 @@ public class Flight {
       this.listOfTickets = listOfTickets;
    }
 
-//   public Integer getNumberOfSeats() {
-//      return numberOfSeats;
-//   }
-
-//   public void setNumberOfSeats(Integer numberOfSeats) {
-//      this.numberOfSeats = numberOfSeats;
-//   }
-
-//   public List<User> getBookedFlightsList() {
-//      return bookedFlightsList;
-//   }
-
-//   public void setBookedFlightsList(List<User> bookedFlightsList) {
-//      this.bookedFlightsList = bookedFlightsList;
-//   }
-
    @Override
    public String toString() {
       return "Flight{" +
               "id=" + id +
-//              ", numberOfSeats=" + numberOfSeats +
               ", airplane='" + airplane + '\'' +
               ", date='" + date + '\'' +
               ", departureTime='" + departureTime + '\'' +
@@ -214,7 +189,6 @@ public class Flight {
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
-//              ", bookedFlightsList=" + bookedFlightsList +
               ", distanceMiles='" + distanceMiles + '\'' +
               ", price=" + price +
               '}';

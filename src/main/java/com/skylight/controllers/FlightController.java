@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Optional;
 
@@ -28,7 +29,7 @@ public class FlightController {
    // Functionality: Admin creates a new flight (Public | Private)
    // Path: /api/flights
    @PostMapping(path = "")
-   public Flight createFlight(@RequestBody Flight flight) {
+   public Flight createFlight(@RequestBody @Valid Flight flight) {
       return flightService.createFlight(flight);
    }
 

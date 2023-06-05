@@ -48,6 +48,11 @@ public class FlightService {
 
    /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
    public Flight createFlight(Flight flight) {
+      // Create a new flight
+      Flight newFlight = flightRepository.save(flight);
+      // Return the new flight
+
+
       // check that the date does not conflict with other dates
       // check that the pilot is available at that time.
       // Factor in layover time (60 minutes)
@@ -55,7 +60,7 @@ public class FlightService {
       // Adds (logged-in) user as a list of passengers
       // pilot is logged-in user
          // flight.setPilot(pilot)
-      return flight;
+      return newFlight;
    }
 
    /**
