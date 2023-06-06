@@ -142,6 +142,31 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
+
+      // Factor in layover time (60 minutes)
+   public Flight createFlight(String originAirportCode, String destinationAirportCode, Flight flight) {
+      // Create an optional of the origin airport
+      Optional<Airport> originAirport = airportRepository.findAirportByAirportCodeIgnoreCase(originAirportCode);
+      // Check if the airport is present
+      if(originAirport.isPresent()) {
+         // Set origin airport to the flight
+         flight.setOriginAirport(originAirport.get());
+      }
+      // Create an optional of the destination airport
+      Optional<Airport> destinationAirport = airportRepository.findAirportByAirportCodeIgnoreCase(destinationAirportCode);
+      // Check if the airport is present
+      if(destinationAirport.isPresent()) {
+         // Set destination airport to the flight
+         flight.setDestinationAirport(destinationAirport.get());
+      }
+      // Set the pilot to be the logged-in user
+      flight.setPilot(MyProfileService.getLoggedInUser());
+      // Save the new flight
+      flightRepository.save(flight);
+      // Return the new flight details
+      return flight;
+   }
+
    /**
     * getArrivals returns a list of all arriving flights for an airport
     * A NotFoundException is thrown if an airport is not found with the provided ID
