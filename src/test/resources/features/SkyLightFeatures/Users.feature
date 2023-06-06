@@ -12,15 +12,13 @@ Feature: Users functionalities
     When a user logs in
     Then a JWT key is returned
 
-  # Logout
-
   # My Profile
 
   # Private
   Scenario: User is able to view their account details
-  Given I am logged in
-  When I go to my profile
-  Then I can see my account details
+    Given I am logged in
+    When I go to my profile
+    Then I can see my account details
 
   # Private
   Scenario: User is able to see a list of flights they booked
@@ -39,7 +37,6 @@ Feature: Users functionalities
     Given I am logged in
     When I submit a request to become a pilot
     Then I am a pilot
-
 
   # Private
   Scenario: User is able to edit their account details

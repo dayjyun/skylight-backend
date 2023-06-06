@@ -1,4 +1,5 @@
 Feature: Tickets functionalities
+
   # Public
   Scenario: User is able to book a flight
     Given a ticket is available
