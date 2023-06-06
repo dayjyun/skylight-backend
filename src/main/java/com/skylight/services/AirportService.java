@@ -82,6 +82,11 @@ public class AirportService {
 
 
    public Flight createFlightOrigin(String airportCode, Flight departingFlight) {
+
+      // check that the date does not conflict with other dates
+      // check that the pilot is available at that time.
+
+
       // Create an optional of the target airport
       Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
       // Check if the airport is present
@@ -138,10 +143,6 @@ public class AirportService {
    }
 
 
-   // check that the date does not conflict with other dates
-   // check that the pilot is available at that time.
-
-
       // Factor in layover time (60 minutes)
    public Flight createFlight(String originAirportCode, String destinationAirportCode, Flight flight) {
       // Create an optional of the origin airport
@@ -165,7 +166,6 @@ public class AirportService {
       // Return the new flight details
       return flight;
    }
-
 
    /**
     * getArrivals returns a list of all arriving flights for an airport
