@@ -100,26 +100,5 @@ public class UserService {
          return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(new LoginResponse("Error : username or password is incorrect"));
       }
    }
-
-   /**
-    * getUserById retrieves the user by the user id, if the user id exists. If the user id does not exist, we throw the NotFoundException
-    * @param userId is what we're searching by
-    * @return the optional of the user
-    */
-   public Optional<User> getUserById(Long userId) {
-      // Obtain a user's data by its ID
-      Optional<User> user = userRepository.findById(userId);
-      // Check that the targeted user is found
-      if (user.isPresent()) {
-         // Return the targeted user's data
-         return user;
-      } else {
-         // Throw an error if the user data is not found by its ID
-         throw new NotFoundException("User with id " + userId + " not found");
-      }
-   }
-
-// Functionality: User logs out of account (Public)
-
 }
 
