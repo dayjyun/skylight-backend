@@ -1,7 +1,11 @@
 package com.skylight.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.hibernate.annotations.LazyCollection;
+import org.hibernate.annotations.LazyCollectionOption;
+
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -13,55 +17,72 @@ public class Flight {
    private Long id;
 
    @Column
-   private Long numberOfSeats;
-
-   @Column
    private String airplane;
 
    @Column
-   private String date;
+   @NotNull(message = "Date is required")
+   private String departureDate;
 
    @Column
-   private String time;
+   private String arrivalDate;
 
+   @Column
+   private String departureTime;
+
+   @Column
+   private String arrivalTime;
+
+   @Column
+   private Integer layoverTime;
+
+   @Column
+   private Integer distanceMiles;
+
+   @Column
+   private Double price;
+
+   // Many flights One origin airport
    @ManyToOne
    @JoinColumn(name = "origin_airport")
    private Airport originAirport;
 
+   // Many flights One destination airport
    @ManyToOne
    @JoinColumn(name = "destination_airport")
    private Airport destinationAirport;
 
    // Pilot created flight / assigned to the flight
+   // Many flights One pilot
    @ManyToOne
-   @JoinColumn(name = "pilot_id")
+   @JoinColumn(name = "user_id")
    @JsonIgnore
    private User pilot;
 
-   // List of flights a passenger is scheduled to board
-   @ManyToMany
-   @JoinTable(name = "flight_passengers",
-               joinColumns = @JoinColumn(name = "flight_id"),
-               inverseJoinColumns = @JoinColumn(name = "user_id"))
+   // One flight Many passengers
+   @OneToMany(mappedBy = "flight", orphanRemoval = true)
+   @LazyCollection(LazyCollectionOption.FALSE)
    @JsonIgnore
-   private List<User> bookedFlightsList;
-
-   @Column
-   private String distance;
-
-   @Column
-   private Float price;
+   private List<Ticket> listOfTickets;
 
    public Flight() {}
 
-   public Flight(Long id, Long numberOfSeats, String airplane, String date, String time, String distance, Float price) {
+   public Flight(Long id, String airplane, String departureDate, String arrivalDate, String departureTime,
+                 Integer layoverTime,
+                 String arrivalTime,
+                 Integer distanceMiles) {
       this.id = id;
-      this.numberOfSeats = numberOfSeats;
       this.airplane = airplane;
-      this.date = date;
-      this.time = time;
-      this.distance = distance;
-      this.price = price;
+      // MM-DD-YYYY
+      this.departureDate = departureDate;
+      this.arrivalDate = arrivalDate;
+      // 24-Hour format
+      this.departureTime = departureTime;
+      this.arrivalTime = arrivalTime;
+      // Waiting period is 60 minutes minimum
+      this.layoverTime = layoverTime;
+      this.distanceMiles = distanceMiles;
+      // Price is 30 cents per mile
+      this.price = distanceMiles * 0.30;
    }
 
    public Long getId() {
@@ -72,14 +93,6 @@ public class Flight {
       this.id = id;
    }
 
-   public Long getNumberOfSeats() {
-      return numberOfSeats;
-   }
-
-   public void setNumberOfSeats(Long numberOfSeats) {
-      this.numberOfSeats = numberOfSeats;
-   }
-
    public String getAirplane() {
       return airplane;
    }
@@ -88,20 +101,60 @@ public class Flight {
       this.airplane = airplane;
    }
 
-   public String getDate() {
-      return date;
+   public String getDepartureDate() {
+      return departureDate;
    }
 
-   public void setDate(String date) {
-      this.date = date;
+   public void setDepartureDate(String departureDate) {
+      this.departureDate = departureDate;
    }
 
-   public String getTime() {
-      return time;
+   public String getArrivalDate() {
+      return arrivalDate;
    }
 
-   public void setTime(String time) {
-      this.time = time;
+   public void setArrivalDate(String arrivalDate) {
+      this.arrivalDate = arrivalDate;
+   }
+
+   public String getDepartureTime() {
+      return departureTime;
+   }
+
+   public void setDepartureTime(String departureTime) {
+      this.departureTime = departureTime;
+   }
+
+   public String getArrivalTime() {
+      return arrivalTime;
+   }
+
+   public void setArrivalTime(String arrivalTime) {
+      this.arrivalTime = arrivalTime;
+   }
+
+   public Integer getLayoverTime() {
+      return layoverTime;
+   }
+
+   public void setLayoverTime(Integer layoverTime) {
+      this.layoverTime = layoverTime + 30;
+   }
+
+   public Integer getDistanceMiles() {
+      return distanceMiles;
+   }
+
+   public void setDistanceMiles(Integer distanceMiles) {
+      this.distanceMiles = distanceMiles;
+   }
+
+   public Double getPrice() {
+      return price;
+   }
+
+   public void setPrice(Double price) {
+      this.price = price;
    }
 
    public Airport getOriginAirport() {
@@ -120,23 +173,6 @@ public class Flight {
       this.destinationAirport = destinationAirport;
    }
 
-   public String getDistance() {
-      return distance;
-   }
-
-   public void setDistance(String distance) {
-      this.distance = distance;
-   }
-
-   public Float getPrice() {
-      return price;
-   }
-
-   public void setPrice(Float price) {
-      this.price = price;
-   }
-
-   // Relationships
    public User getPilot() {
       return pilot;
    }
@@ -145,28 +181,30 @@ public class Flight {
       this.pilot = pilot;
    }
 
-   public List<User> getBookedFlightsList() {
-      return bookedFlightsList;
+   public List<Ticket> getListOfTickets() {
+      return listOfTickets;
    }
 
-   public void setBookedFlightsList(List<User> bookedFlightsList) {
-      this.bookedFlightsList = bookedFlightsList;
+   public void setListOfTickets(List<Ticket> listOfTickets) {
+      this.listOfTickets = listOfTickets;
    }
 
    @Override
    public String toString() {
       return "Flight{" +
               "id=" + id +
-              ", numberOfSeats=" + numberOfSeats +
               ", airplane='" + airplane + '\'' +
-              ", date='" + date + '\'' +
-              ", time='" + time + '\'' +
+              ", departureDate='" + departureDate + '\'' +
+              ", arrivalDate='" + arrivalDate + '\'' +
+              ", departureTime='" + departureTime + '\'' +
+              ", arrivalTime='" + arrivalTime + '\'' +
+              ", layoverTime=" + layoverTime +
+              ", distanceMiles=" + distanceMiles +
+              ", price=" + price +
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
-              ", bookedFlightsList=" + bookedFlightsList +
-              ", distance='" + distance + '\'' +
-              ", price=" + price +
+              ", listOfTickets=" + listOfTickets +
               '}';
    }
 }
