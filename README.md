@@ -38,7 +38,28 @@ SkyLight would not be able to takeoff without any of its flight crew and ground 
 - **AWS**: [Amazon S3](https://aws.amazon.com/) for cloud storage
 
 # Features
-- 
+- User Registration and Login: Users can create an account on Skylight Airways by registering with their personal details. Once registered, users can log in to their accounts to access personalized features.
+
+- User Profile Management: Users have access to a personalized profile where they can view and edit their account information, ensuring their details are up-to-date.
+
+- Flight Booking Management: Users can browse through a list of available flights, view flight schedules, destinations, and other relevant information, and book tickets for their preferred flights.
+
+- Flight Tracking: Users have the convenience of accessing a list of flights they have booked, allowing them to easily track and manage their travel plans.
+
+- Pilot Request Submission: Aspiring pilots can submit a request through the website, expressing their interest in becoming pilots and starting their journey towards achieving 
+their dream.
+
+- Airport Information: Users can explore comprehensive information about various airports, including location, facilities, and services provided. They can also search for 
+airports based on their unique airport codes.
+
+- Administrative Privileges: Administrators have exclusive privileges to create and manage flights. They can add new flights to the system, update flight information, and delete 
+flights if necessary.
+
+- Ticket Cancellation: Users can easily cancel their booked tickets if needed. They can navigate to their booked tickets and initiate the cancellation process, receiving prompt 
+updates on the status of their cancellation.
+
+- User Authentication and Security: Certain functionalities and features require users to be authenticated and logged in to access them, ensuring privacy and security of 
+sensitive information.
 
 
 # Run Application
