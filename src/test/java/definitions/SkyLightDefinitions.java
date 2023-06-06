@@ -291,6 +291,58 @@ public class SkyLightDefinitions {
    }
 
    /**
+    * Scenario: User is able to schedule flight origin (Private)
+    * Path: /api/airports/code/{airportCode}/origin
+    */
+   @Given("I am an admin")
+   public void iAmAnAdmin() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given();
+      JSONObject newFlight = new JSONObject();
+      newFlight.put("airplane", "Plane type");
+      newFlight.put("departureDate", "Date");
+      newFlight.put("departureTime", "Time");
+      newFlight.put("departureTime", "Time");
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer " + getSecurityKeyAdmin());
+      response = request.body(newFlight.toString()).post(BASE_URL + port + "/api/airports/code/MDW/origin");
+   }
+
+   @When("I create a flight origin")
+   public void iCreateAFlightOrigin() {
+      Assert.assertNotNull(String.valueOf(response));
+   }
+
+   @Then("I can see the details of the flight created")
+   public void iCanSeeTheDetailsOfTheFlightCreated() {
+      Assert.assertEquals(200, response.getStatusCode());
+   }
+
+   /**
+    * Scenario: User is able to schedule flight destination (Private)
+    * Path: /api/airports/code/{airportCode}/destination
+    */
+   @When("I create a flight destination")
+   public void iCreateAFlightDestination() throws Exception {
+      RestAssured.baseURI = BASE_URL;
+      request = RestAssured.given();
+      JSONObject newFlight = new JSONObject();
+      newFlight.put("id", 5L);
+      newFlight.put("airplane", "Plane type");
+      newFlight.put("arrivalDate", "Date");
+      newFlight.put("arrivalTime", "Time");
+      request.header("Content-Type", "application/json");
+      request.header("Authorization", "Bearer " + getSecurityKeyAdmin());
+      response = request.body(newFlight.toString()).post(BASE_URL + port + "/api/airports/code/MDW/destination");
+   }
+
+   @Then("I can see the details of the flight destination")
+   public void iCanSeeTheDetailsOfTheFlightDestination() {
+      Assert.assertNotNull(String.valueOf(response));
+      Assert.assertEquals(200, response.getStatusCode());
+   }
+
+   /**
     * Scenario: User is able to view a list of arriving flights (Public)
     * Path: GET /api/airports/{airportId}/arrivals
     * aListOfArrivingFlightsAreAvailable returns the list of arriving flights for the airport with the specified ID
@@ -360,10 +412,6 @@ public class SkyLightDefinitions {
    public void iCanSeeAListOfFlights() {
       Assert.assertEquals(HttpStatus.OK, responseEntity.getStatusCode());
    }
-
-//
-//   User is able to schedule a flight
-//
 
    /**
     * Scenario: User is able to view a flight (Public)

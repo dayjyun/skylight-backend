@@ -5,6 +5,7 @@ import org.hibernate.annotations.LazyCollection;
 import org.hibernate.annotations.LazyCollectionOption;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.List;
 
 @Entity
@@ -19,7 +20,11 @@ public class Flight {
    private String airplane;
 
    @Column
-   private String date;
+   @NotNull(message = "Date is required")
+   private String departureDate;
+
+   @Column
+   private String arrivalDate;
 
    @Column
    private String departureTime;
@@ -59,31 +64,22 @@ public class Flight {
    @JsonIgnore
    private List<Ticket> listOfTickets;
 
-   // List of flights a passenger is scheduled to board
-   // @ManyToMany
-   // @JoinTable(name = "tickets",
-   // joinColumns = @JoinColumn(name = "flight_id"),
-   // inverseJoinColumns = @JoinColumn(name = "user_id"))
-   // @JsonIgnore
-   // private List<User> bookedFlightsList;
-
-   // Number of seats/tickets available
-   // @Column
-   // private Integer numberOfSeats;
-
    public Flight() {}
 
-   public Flight(Long id, String airplane, String date, String departureTime, int layoverTime, String arrivalTime,
+   public Flight(Long id, String airplane, String departureDate, String arrivalDate, String departureTime,
+                 Integer layoverTime,
+                 String arrivalTime,
                  Integer distanceMiles) {
       this.id = id;
       this.airplane = airplane;
       // MM-DD-YYYY
-      this.date = date;
+      this.departureDate = departureDate;
+      this.arrivalDate = arrivalDate;
       // 24-Hour format
       this.departureTime = departureTime;
       this.arrivalTime = arrivalTime;
       // Waiting period is 60 minutes minimum
-      this.layoverTime = layoverTime + 60;
+      this.layoverTime = layoverTime;
       this.distanceMiles = distanceMiles;
       // Price is 30 cents per mile
       this.price = distanceMiles * 0.30;
@@ -105,12 +101,20 @@ public class Flight {
       this.airplane = airplane;
    }
 
-   public String getDate() {
-      return date;
+   public String getDepartureDate() {
+      return departureDate;
    }
 
-   public void setDate(String date) {
-      this.date = date;
+   public void setDepartureDate(String departureDate) {
+      this.departureDate = departureDate;
+   }
+
+   public String getArrivalDate() {
+      return arrivalDate;
+   }
+
+   public void setArrivalDate(String arrivalDate) {
+      this.arrivalDate = arrivalDate;
    }
 
    public String getDepartureTime() {
@@ -129,12 +133,28 @@ public class Flight {
       this.arrivalTime = arrivalTime;
    }
 
-   public int getLayoverTime() {
+   public Integer getLayoverTime() {
       return layoverTime;
    }
 
-   public void setLayoverTime(int layoverTime) {
-      this.layoverTime = layoverTime;
+   public void setLayoverTime(Integer layoverTime) {
+      this.layoverTime = layoverTime + 30;
+   }
+
+   public Integer getDistanceMiles() {
+      return distanceMiles;
+   }
+
+   public void setDistanceMiles(Integer distanceMiles) {
+      this.distanceMiles = distanceMiles;
+   }
+
+   public Double getPrice() {
+      return price;
+   }
+
+   public void setPrice(Double price) {
+      this.price = price;
    }
 
    public Airport getOriginAirport() {
@@ -153,23 +173,6 @@ public class Flight {
       this.destinationAirport = destinationAirport;
    }
 
-   public Integer getDistance() {
-      return distanceMiles;
-   }
-
-   public void setDistance(Integer distance) {
-      this.distanceMiles = distance;
-   }
-
-   public Double getPrice() {
-      return price;
-   }
-
-   public void setPrice(Double price) {
-      this.price = price;
-   }
-
-   // Relationships
    public User getPilot() {
       return pilot;
    }
@@ -186,37 +189,22 @@ public class Flight {
       this.listOfTickets = listOfTickets;
    }
 
-//   public Integer getNumberOfSeats() {
-//      return numberOfSeats;
-//   }
-
-//   public void setNumberOfSeats(Integer numberOfSeats) {
-//      this.numberOfSeats = numberOfSeats;
-//   }
-
-//   public List<User> getBookedFlightsList() {
-//      return bookedFlightsList;
-//   }
-
-//   public void setBookedFlightsList(List<User> bookedFlightsList) {
-//      this.bookedFlightsList = bookedFlightsList;
-//   }
-
    @Override
    public String toString() {
       return "Flight{" +
               "id=" + id +
-//              ", numberOfSeats=" + numberOfSeats +
               ", airplane='" + airplane + '\'' +
-              ", date='" + date + '\'' +
+              ", departureDate='" + departureDate + '\'' +
+              ", arrivalDate='" + arrivalDate + '\'' +
               ", departureTime='" + departureTime + '\'' +
               ", arrivalTime='" + arrivalTime + '\'' +
+              ", layoverTime=" + layoverTime +
+              ", distanceMiles=" + distanceMiles +
+              ", price=" + price +
               ", originAirport=" + originAirport +
               ", destinationAirport=" + destinationAirport +
               ", pilot=" + pilot +
-//              ", bookedFlightsList=" + bookedFlightsList +
-              ", distanceMiles='" + distanceMiles + '\'' +
-              ", price=" + price +
+              ", listOfTickets=" + listOfTickets +
               '}';
    }
 }

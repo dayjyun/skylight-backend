@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -32,6 +31,7 @@ public class FlightService {
    /**
     * getAllFlights returns all flights in the database
     * A NotFoundException is thrown if there are no flights in the database
+    * @throws NotFoundException if no flights are found
     * @return a list of flights
     */
    public List<Flight> getAllFlights() {
@@ -46,22 +46,11 @@ public class FlightService {
       return allFlights;
    }
 
-   /* !!!!!!!!!!!!!!!!!!!!!!!!!!!! */
-   public Flight createFlight(Flight flight) {
-      // check that the date does not conflict with other dates
-      // check that the pilot is available at that time.
-      // Factor in layover time (60 minutes)
-      // add number of seats available
-      // Adds (logged-in) user as a list of passengers
-      // pilot is logged-in user
-         // flight.setPilot(pilot)
-      return flight;
-   }
-
    /**
     * getFlightById returns a flight by its ID
     * A NotFoundException is thrown if a flight is not found with the provided ID
     * @param flightId is the flight ID to search by
+    * @throws NotFoundException if no flight is found
     * @return a Flight
     */
    public Optional<Flight> getFlightById(Long flightId) {
@@ -80,6 +69,7 @@ public class FlightService {
     * deleteFlightById deletes flight by ID
     * A NotFoundException is thrown if the flight is not found with the provided ID
     * @param flightId is the flight ID to search by
+    * @throws NotFoundException if no flight is found
     * @return the deleted flight data
     */
    public Optional<Flight> deleteFlightById(Long flightId) {
@@ -101,6 +91,8 @@ public class FlightService {
     * A NotFoundException is thrown if the flight is not found with the provided ID
     * A NotFoundException is thrown if no tickets are found for the flight
     * @param flightId is the flight ID to search by
+    * @throws NotFoundException if no flight is found
+    * @throws NotFoundException if no tickets are found for the flight
     * @return a list of tickets
     */
    public List<Ticket> getFlightTickets(Long flightId) {
@@ -126,6 +118,7 @@ public class FlightService {
     * createTicketForFlight creates a new ticket for an existing flight that belongs to the logged-in user
     * A NotFoundException is thrown if the flight is not found with the provided ID
     * @param flightId is the flight ID to search by
+    * @throws NotFoundException if flight is not found
     * @return newly created ticket
     */
    public ResponseEntity<Ticket> createTicketForFlight(Long flightId) {

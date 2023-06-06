@@ -18,6 +18,18 @@ Feature: Airports functionalities
     When I search by airport code
     Then I can see the details for the airport
 
+  # Private
+  Scenario: User is able to schedule flight origin
+    Given I am an admin
+    When I create a flight origin
+    Then I can see the details of the flight created
+
+  # Private
+  Scenario: User is able to schedule flight destination
+    Given I am an admin
+    When I create a flight destination
+    Then I can see the details of the flight destination
+
   # Public
   Scenario: User is able to view a list of arriving flights
     Given a list of arriving flights are available
