@@ -29,6 +29,7 @@ public class AirportService {
    /**
     * allAirports returns a list of all airports in the database
     * A NotFoundException is thrown if there are no airports in the database
+    * @throws NotFoundException if no airports are found in the database
     * @return a list of all airports
     */
    public List<Airport> getAllAirports() {
@@ -47,6 +48,7 @@ public class AirportService {
     * getAirportById returns an airport by its id
     * A NotFoundException is thrown if an airport is not found with the provided ID
     * @param airportId is the airport ID to search by
+    * @throws NotFoundException if no airport is found with the provided ID
     * @return Airport
     */
    public Optional<Airport> getAirportById(Long airportId) {
@@ -65,6 +67,7 @@ public class AirportService {
     * getAirportByCode returns an airport by its code
     * A NotFoundException is thrown if an airport is not found with the provided ID
     * @param airportCode is the airport code to search by
+    * @throws NotFoundException if no airport is found with the provided code
     * @return Airport
     */
    public Optional<Airport> getAirportByCode(String airportCode) {
@@ -84,6 +87,7 @@ public class AirportService {
     * A NotFoundException is thrown if there are no airports found with the provided code
     * @param airportCode is the origin airport details
     * @param departingFlight is the origin flight data
+    * @throws NotFoundException if no airport is found with the provided code
     * @return flight departure details
     */
    public Flight createFlightOrigin(String airportCode, Flight departingFlight) {
@@ -113,6 +117,7 @@ public class AirportService {
     * A NotFoundException is thrown if there are no airports found with the provided code
     * @param airportCode is the destination airport details
     * @param arrivingFlight is the destination flight data
+    * @throws NotFoundException if no airport is found with the provided code
     * @return flight departure and destination details
     */
    public Flight createFlightDestination(String airportCode, Flight arrivingFlight) {
@@ -153,6 +158,7 @@ public class AirportService {
     * getArrivals returns a list of all arriving flights for an airport
     * A NotFoundException is thrown if an airport is not found with the provided ID
     * @param airportId is the airport ID to search by
+    * @throws NotFoundException if there are no list of arrival flights
     * @return list of flights
     */
    public List<Flight> getArrivals(Long airportId) {
@@ -178,6 +184,7 @@ public class AirportService {
     * getArrivals returns a list of all arriving flights for an airport
     * A NotFoundException is thrown if an airport is not found with the provided ID
     * @param airportId is the airport ID to search by
+    * @throws NotFoundException if there are no list of departure flights
     * @return list of flights
     */
    public List<Flight> getDepartures(Long airportId) {
