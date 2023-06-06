@@ -60,25 +60,26 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 |     GET      |         /api/myProfile          |         Returns logged-in user’s account         | Private |
 |     PUT      |         /api/myProfile          |                Edit user account                 | Private |
 |     GET      |    /api/myProfile/myTickets     |    Returns a list of flights the user booked     | Private |
-|     GET      |       /api/myProfile/air        | Returns a list of flight the admin has submitted | Private |
 |     POST     |   /api/myProfile/flyTheSkies    |         User requests to become a pilot          | Private |
+|     GET      |       /api/myProfile/air        | Returns a list of flight the admin has submitted | Private |
 
 [//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
 ## Airports
-| Request Type |                 URL                  |                        Functionality                         | Access |
-|:------------:|:------------------------------------:|:------------------------------------------------------------:|:------:|
-|     GET      |            /api/airports             |                  Returns a list of airports                  | Public |
-|     GET      |      /api/airports/{airportId}       |                Returns details of an airport                 | Public |
-|     GET      |   /api/airports/code/{airportCode}   | Returns details of an airport by searching with airport code | Public |
-|     GET      |  /api/airports/{airportId}/arrivals  |      Returns a list of arriving flights for an airport       | Public |
-|     GET      | /api/airports/{airportId}/departures |      Returns a list of departing flights for an airport      | Public |
+| Request Type |                     URL                      |                     Functionality                      | Access  |
+|:------------:|:--------------------------------------------:|:------------------------------------------------------:|:-------:|
+|     GET      |                /api/airports                 |               Returns a list of airports               | Public  |
+|     GET      |          /api/airports/{airportId}           |             Returns details of an airport              | Public  |
+|     GET      |       /api/airports/code/{airportCode}       | Returns airport details by searching with airport code | Public  |
+|     POST     |   /api/airports/code/{airportCode}/origin    |     Admin creates flight origin from airport code      | Private |
+|     POST     | /api/airports/code/{airportCode}/destination |   Admin creates flight destination from airport code   | Private |
+|     GET      |      /api/airports/{airportId}/arrivals      |   Returns a list of arriving flights for an airport    | Public  |
+|     GET      |     /api/airports/{airportId}/departures     |   Returns a list of departing flights for an airport   | Public  |
 
 ## Flights
 | Request Type | URL                             | Functionality                        | Access  |
 |--------------|---------------------------------|--------------------------------------|---------|
 | GET          | /api/flights                    | Returns a list of all flights        | Public  |
-| POST         | /api/flights                    | Admin creates a new flight           | Private |
 | GET          | /api/flights/{flightId}         | Returns flight details               | Public  |
 | DELETE       | /api/flights/{flightId}         | Admin deletes flight                 | Private |
 | GET          | /api/flights/{flightId}/tickets | Get all tickets available for flight | Public  |
@@ -92,7 +93,11 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 | POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private        |
 
 # Future Features
+ - [ ] Google Maps API for dynamic location (latitude and longitude) and distance rendering
+ - [ ] Search airports by city name
+ - [ ] More HTTP Requests by using airport code
  - [ ] Set up a payment service
+   - [ ] Determine ticket price based on distance  
 ### Credit Cards
 | Request Type | URL            | Functionality                         | Access  |
 |--------------|----------------|---------------------------------------|---------|
@@ -106,7 +111,7 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
   - [ ] Airplane model/type
   - [ ] Number of seats
   - [ ] Belongs to pilot
-- [ ] Generate class type:
+- [ ] Generate class type for tickets:
   - [ ] First Class 
   - [ ] Premium
   - [ ] Business 
@@ -114,3 +119,11 @@ Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 - [ ] Calendar Integration
 
 # Acknowledgements
+A sincere thank you to these developers for providing feedback or simply being a part of fun conversations
+- [Suresh Sigera](https://github.com/sureshmelvinsigera)
+- [Maksym Zinchenko](https://github.com/maklaut007)
+- [Jeff Ou](https://github.com/pophero110)
+- [Jaime Padilla](https://github.com/Jaypad07)
+- [Dominique Akers](https://github.com/Dommy99)
+- [Kim Nguyen](https://github.com/knnguyen2410)
+- [Edgar Zambrana](https://github.com/EdgarJoell)
