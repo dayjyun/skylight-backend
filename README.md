@@ -16,8 +16,30 @@
 # SkyLight
 
 # Technologies
+SkyLight would not be able to takeoff without any of its flight crew and ground support
+- **IDE**: [IntelliJ](https://www.jetbrains.com/idea/) is the integrated development environment for software development.
+- **Programming Language**: The API is developed using [Java 17](https://www.java.com/en/).
+- **BDD**: [Cucumber](https://cucumber.io/) Testing framework is used for Behavior-Driven Development using Gherkin syntax
+- **Framework**: The API is built on [Spring Boot](https://spring.io/projects/spring-framework) version 2.7.8.
+  - **Server**: The application runs on the Tomcat server.
+- **Project Management**: [GitHub Projects](https://github.com/users/dayjyun/projects/8) is utilized for project management and tracking progress.
+- **Documentation Tool**: Google Docs is used for planning and documenting.
+- **Version Control**: GitHub is used for version control. The codebase can be found at [GitHub Repository](https://github.com/dayjyun/skylight-backend/commits/main).
+- **Documentation**: The API documentation is maintained in the [GitHub Wiki](https://github.com/dayjyun/skylight-backend/wiki/SkyLight), providing additional resources and 
+  information.
+- **Entity Relationship Diagram (ERD)**: [Dbdiagram.io](https://dbdiagram.io/d/64668923dca9fb07c45a10b8) is used to create the ERD for the database design.
+- **Database**: The [H2 Database Engine](https://www.geeksforgeeks.org/spring-boot-h2-database/) is used during development.
+- **Web Browser**: Google Chrome Browser was used to access the H2 Database Engine.
+- **Secret Key Generation**: The secret key generator provided by [GRC](https://www.grc.com/passwords.htm) is used to generate secure secret keys.
+- **Application Generator**: [Spring Initializer](https://start.spring.io/) is used to boostrap the project structure. The project is built using Maven.
+  - **Packaging**: The spring boot application uses Jar packaging.
+- **API Testing**: [Postman](https://www.postman.com/) is used to test the API endpoints and manage the workspace.
+- **Markdown Table Generator**: The Markdown table generator available at [Tables Generator](https://www.tablesgenerator.com/markdown_tables) is used to create Markdown tables.
+- **AWS**: [Amazon S3](https://aws.amazon.com/) for cloud storage
 
 # Features
+- 
+
 
 # Run Application
 
@@ -45,10 +67,10 @@
 # Approach
 [User Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight)
 
-[Kanban Board](https://github.com/users/dayjyun/projects/8])
+[Kanban Board](https://github.com/users/dayjyun/projects/8)
 
 # ERD
-Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
+Take an in-depth look at the diagram's details [link](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 ![](https://skylight-project.s3.amazonaws.com/skyLight_diagram.png)
 
 # Endpoints
