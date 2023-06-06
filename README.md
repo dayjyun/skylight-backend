@@ -49,7 +49,7 @@
 
 # ERD
 Link to [diagram](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
-![](https://skylight-project.s3.amazonaws.com/skyLight_diagram_2.png)
+![](https://skylight-project.s3.amazonaws.com/skyLight_diagram.png)
 
 # Endpoints
 ## User
