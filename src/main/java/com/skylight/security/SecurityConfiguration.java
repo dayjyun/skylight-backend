@@ -63,6 +63,7 @@ public class SecurityConfiguration {
    @Bean
    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception { // accepts a http server request
       http.authorizeRequests()
+              .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
           .antMatchers(HttpMethod.POST,
                   "/api/auth/register",
                   "/api/auth/login"

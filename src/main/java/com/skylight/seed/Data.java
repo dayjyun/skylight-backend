@@ -72,6 +72,8 @@ public class Data implements CommandLineRunner {
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 787", "07-01-2023", "07-01-2023", "0900", 0,"1100",  885);
          Flight flightFromAUStoORD = new Flight(3L, "Jedi Starfighter", "07-01-2023", "07-01-2023", "0900", 0,"1200",  978);
          Flight flightFromAUStoPHX = new Flight(4L, "Airbus A320", "07-01-2023", "07-01-2023", "1300", 0,"1530",  1133);
+         Flight flightFromJFKtoDFW = new Flight(5L, "Boeing 747", "07-02-2023", "07-02-2023", "0800", 0, "1100", 1370);
+         Flight flightFromORDtoJFK = new Flight(6L, "Airbus A380", "07-02-2023", "07-02-2023", "0900", 0, "1130", 740);
 
          // Save airports
          airportRepository.save(midwayAirport);
@@ -161,12 +163,38 @@ public class Data implements CommandLineRunner {
          originAUStoPHX.add(flightFromAUStoORD);
          kc.setMyFlightsList(originAUStoPHX);
 
+         // Flight JFK to DFW
+         // Pilot maksym
+         flightFromJFKtoDFW.setOriginAirport(johnFKennedyAirport);
+         flightFromJFKtoDFW.setDestinationAirport(dallasFortWorthAirport);
+         // Add flight to flight list for maksym
+         flightFromJFKtoDFW.setPilot(maksym); // 2
+         ArrayList<Flight> originJFKtoDFW = new ArrayList<>();
+         originJFKtoDFW.add(flightFromJFKtoDFW);
+         maksym.setMyFlightsList(originJFKtoDFW);
+
+         // Flight ORD to JFK
+         // Pilot anakin
+         flightFromORDtoJFK.setOriginAirport(ohareAirport);
+         flightFromORDtoJFK.setDestinationAirport(johnFKennedyAirport);
+         // Add flight to flight list for anakin
+         flightFromORDtoJFK.setPilot(anakin); // 3
+         ArrayList<Flight> originORDtoJFK = new ArrayList<>();
+         originORDtoJFK.add(flightFromORDtoJFK);
+         anakin.setMyFlightsList(originORDtoJFK);
+
+         // Save flight details
+//         flightRepository.save(flightFromJFKtoDFW);
+//         flightRepository.save(flightFromORDtoJFK);
+
 
          // Save flight details
          flightRepository.save(flightFromMDWtoAUS);
          flightRepository.save(flightFromPHXtoAUS);
          flightRepository.save(flightFromAUStoORD);
          flightRepository.save(flightFromAUStoPHX);
+         flightRepository.save(flightFromJFKtoDFW);
+         flightRepository.save(flightFromORDtoJFK);
 
          // Create tickets
          Ticket ticketFromMDWtoAUS = new Ticket(1L,  flightFromMDWtoAUS, dominique);
@@ -174,6 +202,8 @@ public class Data implements CommandLineRunner {
          Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
          Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
          Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, null);
+         Ticket ticketFromJFKtoDFW = new Ticket(6L, flightFromJFKtoDFW, null);
+         Ticket ticketFromORDtoJFK = new Ticket(7L, flightFromORDtoJFK, null);
 
          // Save ticket details
          ticketRepository.save(ticketFromMDWtoAUS);
@@ -181,6 +211,8 @@ public class Data implements CommandLineRunner {
          ticketRepository.save(ticketFromAUStoORD);
          ticketRepository.save(ticketFromAUStoPHX);
          ticketRepository.save(ticketFromMDWtoAUS2);
+         ticketRepository.save(ticketFromJFKtoDFW);
+         ticketRepository.save(ticketFromORDtoJFK);
 
 
          // Assign tickets to flights
@@ -200,6 +232,19 @@ public class Data implements CommandLineRunner {
          ArrayList<Ticket> fourList = new ArrayList<>();
          fourList.add(ticketFromAUStoPHX);
          flightFromAUStoPHX.setListOfTickets(fourList);
+
+         ArrayList<Ticket> fiveList = new ArrayList<>();
+         fiveList.add(ticketFromJFKtoDFW);
+         flightFromJFKtoDFW.setListOfTickets(fiveList);
+
+         ArrayList<Ticket> sixList = new ArrayList<>();
+         sixList.add(ticketFromORDtoJFK);
+         flightFromORDtoJFK.setListOfTickets(sixList);
+
+         // Assign new tickets to users / passengers
+         ArrayList<Ticket> jeffTickets = new ArrayList<>();
+         jeffTickets.add(ticketFromJFKtoDFW);
+         jeff.setMyTicketsList(jeffTickets);
 
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
