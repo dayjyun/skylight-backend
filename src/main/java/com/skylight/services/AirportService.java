@@ -79,14 +79,14 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
-
-
+   /**
+    * createFlightOrigin creates a new flight destination
+    * A NotFoundException is thrown if there are no airports found with the provided code
+    * @param airportCode is the origin airport details
+    * @param departingFlight is the origin flight data
+    * @return flight departure details
+    */
    public Flight createFlightOrigin(String airportCode, Flight departingFlight) {
-
-      // check that the date does not conflict with other dates
-      // check that the pilot is available at that time.
-
-
       // Create an optional of the target airport
       Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
       // Check if the airport is present
@@ -108,6 +108,13 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
+   /**
+    * createFlightDestination creates a new flight destination
+    * A NotFoundException is thrown if there are no airports found with the provided code
+    * @param airportCode is the destination airport details
+    * @param arrivingFlight is the destination flight data
+    * @return flight departure and destination details
+    */
    public Flight createFlightDestination(String airportCode, Flight arrivingFlight) {
       // Create an optional of the target airport
       Optional<Airport> airport = airportRepository.findAirportByAirportCodeIgnoreCase(airportCode);
