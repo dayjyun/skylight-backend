@@ -17,7 +17,7 @@ import javax.validation.Valid;
 public class UserController {
    @Autowired
    private UserService userService;
-   
+
    /**
     * Functionality: User creates account (Public)
     * Path: /api/auth/register
