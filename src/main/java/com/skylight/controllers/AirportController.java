@@ -55,15 +55,6 @@ public class AirportController {
       return airportService.createFlightDestination(airportCode, arrivingFlight);
    }
 
-   @PostMapping(path = "/code/{originAirportCode}/{destinationAirportCode}")
-   public Flight createFlight(@PathVariable String originAirportCode, @PathVariable String destinationAirportCode,
-                                    @RequestBody Flight flightDetails) {
-      return airportService.createFlight(originAirportCode, destinationAirportCode, flightDetails);
-   }
-
-
-
-
    // Functionality: Returns list of arrivals for an airport (Public)
    // Path: /api/airports/{airportId}/arrivals
    @GetMapping(path = "/{airportId}/arrivals")
