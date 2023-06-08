@@ -60,12 +60,21 @@ public class Data implements CommandLineRunner {
          }
 
          // Create Airports
-         Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
-         Airport ohareAirport = new Airport(2L, "O'Hare", "ORD", "Chicago", "IL", "41.8781 N",  "87.6298 W");
-         Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
-         Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
-         Airport dallasFortWorthAirport = new Airport(5L, "Dallas Fort Worth", "DFW", "Dallas", "TX", "32.8998 N",  "97.0403 W");
-         Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6446 N",  "73.7858 W");
+         Airport midwayAirport = new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7867", "-87.7521");
+         Airport ohareAirport = new Airport(2L, "OHare", "ORD", "Chicago", "IL", "41.987611", "-87.904721");
+         Airport austinAirport = new Airport(3L, "Austin Bergstrom International", "AUS", "Austin", "TX", "30.2026", "-97.6653");
+         Airport phoenixAirport = new Airport(4L, "Phoenix Sky Harbor", "PHX", "Phoenix", "AZ", "33.4343", "-112.0083");
+         Airport dallasFortWorthAirport = new Airport(5L, "Dallas Fort Worth", "DFW", "Dallas", "TX", "32.8998", "-97.0403");
+         Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6446", "-73.7858");
+         Airport atlantaAirport = new Airport(7L, "Hartsfield Jackson Atlanta International", "ATL", "Atlanta", "GA", "33.6407", "-84.4277");
+         Airport losAngelesAirport = new Airport(8L, "Los Angeles International", "LAX", "Los Angeles", "CA", "33.9416", "-118.4085");
+         Airport denverAirport = new Airport(9L, "Denver International", "DEN", "Denver", "CO", "39.8561", "-104.6737");
+         Airport miamiAirport = new Airport(10L, "Miami International", "MIA", "Miami", "FL", "25.7959", "-80.2870");
+         Airport sanFranciscoAirport = new Airport(11L, "San Francisco International", "SFO", "San Francisco", "CA", "37.6213", "-122.3790");
+         Airport seattleAirport = new Airport(12L, "Seattle Tacoma International", "SEA", "Seattle", "WA", "47.4502", "-122.3088");
+         Airport orlandoAirport = new Airport(13L, "Orlando International", "MCO", "Orlando", "FL", "28.4312", "-81.3081");
+         Airport lasVegasAirport = new Airport(14L, "McCarran International", "LAS", "Las Vegas", "NV", "36.0851", "-115.1537");
+         Airport bostonAirport = new Airport(15L, "Logan International", "BOS", "Boston", "MA", "42.3656", "-71.0096");;
 
          // Create flights
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "07-01-2023", "0900", 0,"1200",  1124);
@@ -82,6 +91,15 @@ public class Data implements CommandLineRunner {
          airportRepository.save(phoenixAirport);
          airportRepository.save(dallasFortWorthAirport);
          airportRepository.save(johnFKennedyAirport);
+         airportRepository.save(atlantaAirport);
+         airportRepository.save(losAngelesAirport);
+         airportRepository.save(denverAirport);
+         airportRepository.save(miamiAirport);
+         airportRepository.save(sanFranciscoAirport);
+         airportRepository.save(seattleAirport);
+         airportRepository.save(orlandoAirport);
+         airportRepository.save(lasVegasAirport);
+         airportRepository.save(bostonAirport);
 
 
          // Set origin flights
