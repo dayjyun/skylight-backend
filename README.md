@@ -148,7 +148,8 @@ Take an in-depth look at the diagram's details [here](https://dbdiagram.io/d/646
 | DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private        |
 | POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private        |
 
-While the endpoints may seem like a lot, each one of these endpoints play a crucial role in managing as a collective structure. Besides, airports aren't a walk in the park either .
+While the endpoints may seem like a lot, each one of these endpoints play a crucial role in managing as a collective structure. Besides, airports aren't a walk in the park either.
+
 <img src="https://skylight-project.s3.amazonaws.com/frontend/bk-destination.png" width="400" alt="Destination Image">
 <img src="https://skylight-project.s3.amazonaws.com/frontend/bk-flight-details.png" width="400" alt="Flight Details Image">
 
