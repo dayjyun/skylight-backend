@@ -14,7 +14,8 @@
 - [Acknowledgements](#acknowledgements)
 
 # SkyLight
-Skylight is the ultimate destination for effortless flight exploration and booking. With a user-friendly platform, personalized profiles, and comprehensive features,
+Skylight is the fly-share service and the ultimate destination for effortless flight exploration and booking. With a user-friendly platform, personalized profiles, and 
+comprehensive features,
 your flight experience has never been more convenient. Jump on board to your next destination or even have the chance to fulfill your dream of becoming a pilot. Discover, book, 
 and go! Skylight Airways - your window to the sky.
 
@@ -68,6 +69,7 @@ sensitive information.
 
 
 # Run Application
+To get started, simply clone the website, run the application in your preferred Java Environment, and you're all set! Be sure to check the `pom.xml` file contains the list of dependencies below. 
 
 <details>
     <summary>Dependencies</summary>
@@ -91,12 +93,20 @@ sensitive information.
 </details>
 
 # Approach
-[User Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight)
-
-[Kanban Board](https://github.com/users/dayjyun/projects/8)
-
+Effective planning was crucial for the success of the project. While I had a clear vision of the end goal and a starting point, I knew that the journey would be the most 
+challenging part. To streamline my thoughts and ideas, I created a Google Doc as a scratch file, allowing me to capture and refine my implementation strategies. It often 
+required clarity and restructuring, but the diagram below represents the culmination of the entire thought process. Check out the 
+[user Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight) for a full list of things to do. While you're at it, sneak in to the [Kanban Board]
+(https://github.com/users/dayjyun/projects/8)
+to see the entire work structure! 
 # ERD
-Take an in-depth look at the diagram's details [link](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
+The successful outcome of the project hinged on the central role of the **Flights** model, which served as the driving component connecting all other models. **Flights** played a 
+pivotal role, as without them, airports would be abandoned, air travel for users would be impossible, and ticket sales would be nonexistent.
+
+The relationship between **Flights** and **Airports** is uniquely characterized by two one-to-many connections. This design choice preserves a distinct relationship between the 
+two 
+objects within the same model, ensuring the integrity and coherence of the data.
+Take an in-depth look at the diagram's details [here](https://dbdiagram.io/d/64668923dca9fb07c45a10b8)
 ![](https://skylight-project.s3.amazonaws.com/skyLight_diagram.png)
 
 # Endpoints
@@ -110,8 +120,6 @@ Take an in-depth look at the diagram's details [link](https://dbdiagram.io/d/646
 |     GET      |    /api/myProfile/myTickets     |    Returns a list of flights the user booked     | Private |
 |     POST     |   /api/myProfile/flyTheSkies    |         User requests to become a pilot          | Private |
 |     GET      |       /api/myProfile/air        | Returns a list of flight the admin has submitted | Private |
-
-[//]: # (|     DELETE      | /api/myProfile/logout | User logs out of account | Private |)
 
 ## Airports
 | Request Type |                     URL                      |                     Functionality                      | Access  |
@@ -139,6 +147,10 @@ Take an in-depth look at the diagram's details [link](https://dbdiagram.io/d/646
 | GET          | /api/tickets/{ticketId}            | Returns ticket details | Public/Private |
 | DELETE       | /api/tickets/{ticketId}            | Deletes booked ticket  | Private        |
 | POST         | /api/tickets/{ticketId}/bookFlight | User books flight      | Private        |
+
+While the endpoints may seem like a lot, each one of these endpoints play a crucial role in managing as a collective structure. Besides, airports aren't a walk in the park either .
+<img src="https://skylight-project.s3.amazonaws.com/frontend/bk-destination.png" width="400" alt="Destination Image">
+<img src="https://skylight-project.s3.amazonaws.com/frontend/bk-flight-details.png" width="400" alt="Flight Details Image">
 
 # Future Features
  - [ ] Google Maps API for dynamic location (latitude and longitude) and distance rendering
