@@ -96,8 +96,7 @@ To get started, simply clone the website, run the application in your preferred 
 Effective planning was crucial for the success of the project. While I had a clear vision of the end goal and a starting point, I knew that the journey would be the most 
 challenging part. To streamline my thoughts and ideas, I created a Google Doc as a scratch file, allowing me to capture and refine my implementation strategies. It often 
 required clarity and restructuring, but the diagram below represents the culmination of the entire thought process. Check out the 
-[user Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight) for a full list of things to do. While you're at it, sneak in to the [Kanban Board]
-(https://github.com/users/dayjyun/projects/8)
+[user Stories](https://github.com/dayjyun/skylight-backend/wiki/SkyLight) for a full list of things to do. While you're at it, sneak in to the [Kanban Board](https://github.com/users/dayjyun/projects/8)
 to see the entire work structure! 
 # ERD
 The successful outcome of the project hinged on the central role of the **Flights** model, which served as the driving component connecting all other models. **Flights** played a 
