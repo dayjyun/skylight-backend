@@ -219,7 +219,7 @@ public class Data implements CommandLineRunner {
          Ticket ticketFromPHXtoAUS = new Ticket(2L, flightFromPHXtoAUS, kim);
          Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
          Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
-         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, null);
+         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, dominique);
          Ticket ticketFromJFKtoDFW = new Ticket(6L, flightFromJFKtoDFW, null);
          Ticket ticketFromORDtoJFK = new Ticket(7L, flightFromORDtoJFK, null);
 
@@ -267,6 +267,7 @@ public class Data implements CommandLineRunner {
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
          dominiqueTickets.add(ticketFromMDWtoAUS);
+         dominiqueTickets.add(ticketFromMDWtoAUS2);
          dominique.setMyTicketsList(dominiqueTickets);
 
          ArrayList<Ticket> kimTickets = new ArrayList<>();
