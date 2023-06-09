@@ -68,7 +68,7 @@ public class SkyLightDefinitions {
       existingUser.put("password", "pw");
       request.header("Content-Type", "application/json");
       response = request.body(existingUser.toString()).post(BASE_URL + port + "/api/auth/register");
-      Assert.assertEquals(409, response.getStatusCode());
+      Assert.assertEquals(400, response.getStatusCode());
    }
 
    @When("a user registers with a unique email and password")

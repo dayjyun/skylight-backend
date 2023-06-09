@@ -49,8 +49,8 @@ public class AirportController {
    }
 
    /**
-    * Functionality: Admin creates a new flight origin (ID/Code) (Private)
-    * Path: /api/airports/{airportId}/arrivals
+    * Functionality: Admin creates a new flight origin (Code) (Private)
+    * Path: /api/airports/code/{airportCode}/arrivals
     * @param airportCode is the origin airport details
     * @param departingFlight is the origin flight data
     * @return flight departure details

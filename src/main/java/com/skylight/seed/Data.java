@@ -60,18 +60,29 @@ public class Data implements CommandLineRunner {
          }
 
          // Create Airports
-         Airport midwayAirport =  new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7865 N",  "87.6298 W");
-         Airport ohareAirport = new Airport(2L, "O'Hare", "ORD", "Chicago", "IL", "41.8781 N",  "87.6298 W");
-         Airport austinAirport =  new Airport(3L, "Austin", "AUS", "Austin", "TX", "30.2672 N",  "97.7431 W");
-         Airport phoenixAirport = new Airport(4L, "Phoenix", "PHX", "Phoenix", "AZ", "33.4484 N",  "112.0740 W");
-         Airport dallasFortWorthAirport = new Airport(5L, "Dallas Fort Worth", "DFW", "Dallas", "TX", "32.8998 N",  "97.0403 W");
-         Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6446 N",  "73.7858 W");
+         Airport midwayAirport = new Airport(1L, "Midway", "MDW", "Chicago", "IL", "41.7867", "-87.7521");
+         Airport ohareAirport = new Airport(2L, "OHare", "ORD", "Chicago", "IL", "41.987611", "-87.904721");
+         Airport austinAirport = new Airport(3L, "Austin Bergstrom International", "AUS", "Austin", "TX", "30.2026", "-97.6653");
+         Airport phoenixAirport = new Airport(4L, "Phoenix Sky Harbor", "PHX", "Phoenix", "AZ", "33.4343", "-112.0083");
+         Airport dallasFortWorthAirport = new Airport(5L, "Dallas Fort Worth", "DFW", "Dallas", "TX", "32.8998", "-97.0403");
+         Airport johnFKennedyAirport = new Airport(6L, "John F Kennedy", "JFK", "New York", "NY", "40.6446", "-73.7858");
+         Airport atlantaAirport = new Airport(7L, "Hartsfield Jackson Atlanta International", "ATL", "Atlanta", "GA", "33.6407", "-84.4277");
+         Airport losAngelesAirport = new Airport(8L, "Los Angeles International", "LAX", "Los Angeles", "CA", "33.9416", "-118.4085");
+         Airport denverAirport = new Airport(9L, "Denver International", "DEN", "Denver", "CO", "39.8561", "-104.6737");
+         Airport miamiAirport = new Airport(10L, "Miami International", "MIA", "Miami", "FL", "25.7959", "-80.2870");
+         Airport sanFranciscoAirport = new Airport(11L, "San Francisco International", "SFO", "San Francisco", "CA", "37.6213", "-122.3790");
+         Airport seattleAirport = new Airport(12L, "Seattle Tacoma International", "SEA", "Seattle", "WA", "47.4502", "-122.3088");
+         Airport orlandoAirport = new Airport(13L, "Orlando International", "MCO", "Orlando", "FL", "28.4312", "-81.3081");
+         Airport lasVegasAirport = new Airport(14L, "McCarran International", "LAS", "Las Vegas", "NV", "36.0851", "-115.1537");
+         Airport bostonAirport = new Airport(15L, "Logan International", "BOS", "Boston", "MA", "42.3656", "-71.0096");;
 
          // Create flights
          Flight flightFromMDWtoAUS = new Flight(1L, "Boeing 737", "07-01-2023", "07-01-2023", "0900", 0,"1200",  1124);
          Flight flightFromPHXtoAUS = new Flight(2L, "Boeing 787", "07-01-2023", "07-01-2023", "0900", 0,"1100",  885);
          Flight flightFromAUStoORD = new Flight(3L, "Jedi Starfighter", "07-01-2023", "07-01-2023", "0900", 0,"1200",  978);
          Flight flightFromAUStoPHX = new Flight(4L, "Airbus A320", "07-01-2023", "07-01-2023", "1300", 0,"1530",  1133);
+         Flight flightFromJFKtoDFW = new Flight(5L, "Boeing 747", "07-02-2023", "07-02-2023", "0800", 0, "1100", 1370);
+         Flight flightFromORDtoJFK = new Flight(6L, "Airbus A380", "07-02-2023", "07-02-2023", "0900", 0, "1130", 740);
 
          // Save airports
          airportRepository.save(midwayAirport);
@@ -80,6 +91,15 @@ public class Data implements CommandLineRunner {
          airportRepository.save(phoenixAirport);
          airportRepository.save(dallasFortWorthAirport);
          airportRepository.save(johnFKennedyAirport);
+         airportRepository.save(atlantaAirport);
+         airportRepository.save(losAngelesAirport);
+         airportRepository.save(denverAirport);
+         airportRepository.save(miamiAirport);
+         airportRepository.save(sanFranciscoAirport);
+         airportRepository.save(seattleAirport);
+         airportRepository.save(orlandoAirport);
+         airportRepository.save(lasVegasAirport);
+         airportRepository.save(bostonAirport);
 
 
          // Set origin flights
@@ -161,19 +181,47 @@ public class Data implements CommandLineRunner {
          originAUStoPHX.add(flightFromAUStoORD);
          kc.setMyFlightsList(originAUStoPHX);
 
+         // Flight JFK to DFW
+         // Pilot maksym
+         flightFromJFKtoDFW.setOriginAirport(johnFKennedyAirport);
+         flightFromJFKtoDFW.setDestinationAirport(dallasFortWorthAirport);
+         // Add flight to flight list for maksym
+         flightFromJFKtoDFW.setPilot(maksym); // 2
+         ArrayList<Flight> originJFKtoDFW = new ArrayList<>();
+         originJFKtoDFW.add(flightFromJFKtoDFW);
+         maksym.setMyFlightsList(originJFKtoDFW);
+
+         // Flight ORD to JFK
+         // Pilot anakin
+         flightFromORDtoJFK.setOriginAirport(ohareAirport);
+         flightFromORDtoJFK.setDestinationAirport(johnFKennedyAirport);
+         // Add flight to flight list for anakin
+         flightFromORDtoJFK.setPilot(anakin); // 3
+         ArrayList<Flight> originORDtoJFK = new ArrayList<>();
+         originORDtoJFK.add(flightFromORDtoJFK);
+         anakin.setMyFlightsList(originORDtoJFK);
+
+         // Save flight details
+//         flightRepository.save(flightFromJFKtoDFW);
+//         flightRepository.save(flightFromORDtoJFK);
+
 
          // Save flight details
          flightRepository.save(flightFromMDWtoAUS);
          flightRepository.save(flightFromPHXtoAUS);
          flightRepository.save(flightFromAUStoORD);
          flightRepository.save(flightFromAUStoPHX);
+         flightRepository.save(flightFromJFKtoDFW);
+         flightRepository.save(flightFromORDtoJFK);
 
          // Create tickets
          Ticket ticketFromMDWtoAUS = new Ticket(1L,  flightFromMDWtoAUS, dominique);
          Ticket ticketFromPHXtoAUS = new Ticket(2L, flightFromPHXtoAUS, kim);
          Ticket ticketFromAUStoORD = new Ticket(3L, flightFromAUStoORD, jay);
          Ticket ticketFromAUStoPHX = new Ticket(4L, flightFromAUStoPHX, deShe);
-         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, null);
+         Ticket ticketFromMDWtoAUS2 = new Ticket(5L, flightFromAUStoPHX, dominique);
+         Ticket ticketFromJFKtoDFW = new Ticket(6L, flightFromJFKtoDFW, null);
+         Ticket ticketFromORDtoJFK = new Ticket(7L, flightFromORDtoJFK, null);
 
          // Save ticket details
          ticketRepository.save(ticketFromMDWtoAUS);
@@ -181,6 +229,8 @@ public class Data implements CommandLineRunner {
          ticketRepository.save(ticketFromAUStoORD);
          ticketRepository.save(ticketFromAUStoPHX);
          ticketRepository.save(ticketFromMDWtoAUS2);
+         ticketRepository.save(ticketFromJFKtoDFW);
+         ticketRepository.save(ticketFromORDtoJFK);
 
 
          // Assign tickets to flights
@@ -201,9 +251,23 @@ public class Data implements CommandLineRunner {
          fourList.add(ticketFromAUStoPHX);
          flightFromAUStoPHX.setListOfTickets(fourList);
 
+         ArrayList<Ticket> fiveList = new ArrayList<>();
+         fiveList.add(ticketFromJFKtoDFW);
+         flightFromJFKtoDFW.setListOfTickets(fiveList);
+
+         ArrayList<Ticket> sixList = new ArrayList<>();
+         sixList.add(ticketFromORDtoJFK);
+         flightFromORDtoJFK.setListOfTickets(sixList);
+
+         // Assign new tickets to users / passengers
+         ArrayList<Ticket> jeffTickets = new ArrayList<>();
+         jeffTickets.add(ticketFromJFKtoDFW);
+         jeff.setMyTicketsList(jeffTickets);
+
          // Assign tickets to users / passengers
          ArrayList<Ticket> dominiqueTickets = new ArrayList<>();
          dominiqueTickets.add(ticketFromMDWtoAUS);
+         dominiqueTickets.add(ticketFromMDWtoAUS2);
          dominique.setMyTicketsList(dominiqueTickets);
 
          ArrayList<Ticket> kimTickets = new ArrayList<>();

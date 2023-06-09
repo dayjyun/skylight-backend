@@ -31,8 +31,8 @@ public class TicketController {
     * @return the deleted ticket data
     */
    @DeleteMapping(path = "/{ticketId}")
-   public Optional<Ticket> deleteTicketAdmin(@PathVariable Long ticketId) {
-      return ticketService.deleteTicketAdmin(ticketId);
+   public Optional<Ticket> deleteTicket(@PathVariable Long ticketId) {
+      return ticketService.deleteTicket(ticketId);
    }
 
    /**

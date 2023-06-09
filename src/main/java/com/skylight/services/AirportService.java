@@ -171,7 +171,8 @@ public class AirportService {
          // Check if the list of arrival flights is empty
          if(arrivalsList.isEmpty()) {
             // Throw an error if no flights are found
-            throw new NotFoundException("No arrival flights found");
+//            throw new NotFoundException("No arrival flights found");
+            return null;
          }
          // Return the airport data
          return arrivalsList;
@@ -197,7 +198,8 @@ public class AirportService {
          // Check if the list of departure flights is empty
          if(departuresList.isEmpty()) {
             // Throw an error if no flights are found
-            throw new NotFoundException("No departure flights found");
+//            throw new NotFoundException("No departure flights found");
+            return null;
          }
          // Return the airport data
          return departuresList;

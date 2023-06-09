@@ -14,6 +14,11 @@
 - [Acknowledgements](#acknowledgements)
 
 # SkyLight
+Skylight is the ultimate destination for effortless flight exploration and booking. With a user-friendly platform, personalized profiles, and comprehensive features,
+your flight experience has never been more convenient. Jump on board to your next destination or even have the chance to fulfill your dream of becoming a pilot. Discover, book, 
+and go! Skylight Airways - your window to the sky.
+
+Be sure to checkout the [Frontend Repo](https://github.com/dayjyun/skylight-frontend)!
 
 # Technologies
 SkyLight would not be able to takeoff without any of its flight crew and ground support
