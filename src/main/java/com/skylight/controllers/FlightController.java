@@ -61,7 +61,7 @@ public class FlightController {
    }
 
    /**
-    * Functionality: Admin creates ticket for flight (Public | Private)
+    * Functionality: Admin creates ticket for flight (Private)
     * Path: /api/flights/{flightId}/tickets
     * @param flightId is the flight ID to search by
     * @return newly created ticket

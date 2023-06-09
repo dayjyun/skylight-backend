@@ -20,7 +20,6 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.Objects;
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -52,13 +51,17 @@ public class UserService {
     * @return the data for the newly registered user
     */
    public ResponseEntity<User> createUser(User userObject) {
+      // Check that the name field is not empty when updating the name
+      if (Objects.equals(userObject.getName(), "") || userObject.getName() == null) {
+         throw new BadRequestException("Name is required");
+      }
       // Check that the email field is not empty when updating the email
       if (Objects.equals(userObject.getEmail(), "") || userObject.getEmail() == null) {
-         throw new BadRequestException("User email is required");
+         throw new BadRequestException("Email is required");
       }
       // Check that the password field is not empty when updating the password
       if (Objects.equals(userObject.getPassword(), "") || userObject.getPassword() == null) {
-         throw new BadRequestException("User password is required");
+         throw new BadRequestException("Password is required");
       }
       // Check the email does not exist in the database
       if (!userRepository.existsByEmail(userObject.getEmail())) {

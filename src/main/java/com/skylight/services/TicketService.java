@@ -47,12 +47,12 @@ public class TicketService {
    }
 
    /**
-    * deleteTicket deletes a ticket by its ID A NotFoundException is thrown if the ticket is not found with the provided ID
+    * deleteTicket deletes a ticket by its only if the user is an admin or the ticket belongs to the logged-in user ID
     * A NotFoundException is thrown if the ticket is not found with the provided ID
     * @param ticketId is the ticket ID to search by
     * @return the deleted ticket data
     */
-   public Optional<Ticket> deleteTicketAdmin(Long ticketId) {
+   public Optional<Ticket> deleteTicket(Long ticketId) {
       // Create an optional for a ticket
       Optional<Ticket> ticket = ticketRepository.findById(ticketId);
       // Check if the ticket is present and check ticket belongs to the flight made by the logged-in user or the ticket owner

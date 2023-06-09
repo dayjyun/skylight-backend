@@ -53,8 +53,7 @@ public class MyProfileController {
     * Path: /api/myProfile/flyTheSkies
     * @return updated user data
     */
-   @PutMapping("/flyTheSkies")
-   public User flyTheSkies() {
+   @PutMapping("/flyTheSkies") public User flyTheSkies() {
       return myProfileService.flyTheSkies();
    }
 
