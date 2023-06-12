@@ -94,4 +94,9 @@ public class AirportController {
       return airportService.getDepartures(airportId);
    }
 
+   @PostMapping(path = "/code/{originAirportCode}/{destinationAirportCode}")
+   public Flight createFlight(@PathVariable String originAirportCode, @PathVariable String destinationAirportCode,
+                              @RequestBody Flight flightDetails) {
+      return airportService.createFlight(originAirportCode, destinationAirportCode, flightDetails);
+   }
 }

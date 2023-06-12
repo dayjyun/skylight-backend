@@ -207,4 +207,24 @@ public class AirportService {
       // Throw an error if the airport is found
       throw new NotFoundException("No airport found");
    }
+
+   public Flight createFlight(String originAirportCode, String destinationAirportCode, Flight flight) {
+      // Create an optional of the origin airport
+      Optional<Airport> originAirport = airportRepository.findAirportByAirportCodeIgnoreCase(originAirportCode);
+      // Set origin airport to the flight
+      originAirport.ifPresent(flight::setOriginAirport);
+      // Create an optional of the destination airport
+      Optional<Airport> destinationAirport = airportRepository.findAirportByAirportCodeIgnoreCase(destinationAirportCode);
+      if(destinationAirport == originAirport) {
+         throw new Con
+      }
+      // Set destination airport to the flight
+      destinationAirport.ifPresent(flight::setDestinationAirport);
+      // Set the pilot to be the logged-in user
+      flight.setPilot(MyProfileService.getLoggedInUser());
+      // Save the new flight
+      flightRepository.save(flight);
+      // Return the new flight details
+      return flight;
+   }
 }
