@@ -209,6 +209,14 @@ public class AirportService {
       throw new NotFoundException("No airport found");
    }
 
+   /**
+    * createFlight creates a new flight in the database
+    * A AlreadyExistsException is thrown if both origin and destination airports are the same
+    * @param originAirportCode is the origin airport code
+    * @param destinationAirportCode is the destination airport code
+    * @param flight is the flight data
+    * @return details of the newly created flight
+    */
    public Flight createFlight(String originAirportCode, String destinationAirportCode, Flight flight) {
       // Create an optional of the origin airport
       Optional<Airport> originAirport = airportRepository.findAirportByAirportCodeIgnoreCase(originAirportCode);
@@ -216,7 +224,9 @@ public class AirportService {
       originAirport.ifPresent(flight::setOriginAirport);
       // Create an optional of the destination airport
       Optional<Airport> destinationAirport = airportRepository.findAirportByAirportCodeIgnoreCase(destinationAirportCode);
+      // Check if origin and destination airports are the same
       if(destinationAirport.get().equals(originAirport.get())) {
+         // Throw an AlreadyExistsException if the airports are the same
          throw new AlreadyExistsException("Origin and destination cannot be the same");
       }
       // Set destination airport to the flight
