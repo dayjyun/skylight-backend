@@ -1,5 +1,6 @@
 package com.skylight.services;
 
+import com.skylight.exceptions.AlreadyExistsException;
 import com.skylight.exceptions.NotFoundException;
 import com.skylight.models.Airport;
 import com.skylight.models.Flight;
@@ -215,8 +216,8 @@ public class AirportService {
       originAirport.ifPresent(flight::setOriginAirport);
       // Create an optional of the destination airport
       Optional<Airport> destinationAirport = airportRepository.findAirportByAirportCodeIgnoreCase(destinationAirportCode);
-      if(destinationAirport == originAirport) {
-         throw new Con
+      if(destinationAirport.get().equals(originAirport.get())) {
+         throw new AlreadyExistsException("Origin and destination cannot be the same");
       }
       // Set destination airport to the flight
       destinationAirport.ifPresent(flight::setDestinationAirport);
